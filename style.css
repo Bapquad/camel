@@ -182,7 +182,7 @@ body
 
 .layout 
 {
-	width: 960px;
+	max-width: 960px;
 	margin: auto;
 }
 
@@ -311,4 +311,12 @@ footer
 footer #copyright 
 {
 	text-align: center;
+}
+
+@media (max-width: 768px) 
+{
+	h1 
+	{
+		background:  red;
+	}
 }
