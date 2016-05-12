@@ -188,13 +188,13 @@ body
 
 header 
 {
+	border-bottom: 1px solid #fff;
 	padding-bottom: 10px;
 }
 
 header .header 
 {
-	background: url(img/bg_header.png) no-repeat left top;
-	background-size: 100% 100%;
+	background: url(img/bg_header.png) no-repeat left top / 100% 100%;
 	margin-top: 20px;
 	position: relative;
 	min-height: 74px;
@@ -207,20 +207,11 @@ header #logo
 	left: 0;
 }
 
-header nav 
+header nav ul 
 {
-	position: relative;
 	overflow: hidden;
 	width: 560px;
 	margin: 0 auto;
-}
-
-header nav .clear 
-{
-	position: absolute;
-	width: 100%;
-	background: url(img/bg_header.png) no-repeat center top;
-	height: 24px;
 }
 
 header nav ul li 
@@ -240,48 +231,47 @@ header nav ul li a
 	color: white;
 	width: 100px;
 	text-align: center;
+	position: relative;
 }
-
-
 
 header nav ul #home a
 {
 	background: #3e4247 url(img/bg_header.png) no-repeat -208px -13px;
-	height: 2.31em;
-	line-height: 2.31em;
-	margin-top: 1.049em;
+	height: 37px;
+	line-height: 37px;
+	margin-top: 13px;
 }
 
 header nav ul #dld a
 {
 	background: #3e4247 url(img/bg_header.png) no-repeat -319px -6px;
-	height: 2.75em;
-	line-height: 2.75em;
-	margin-top: 0.49em;
+	height: 44px;
+	line-height: 44px;
+	margin-top: 6px;
 }
 
 header nav ul #exm a
 {
 	background: #3e4247 url(img/bg_header.png) no-repeat -436px -3px;
-	height: 2.93em;
-    line-height: 2.93em;
-    margin-top: 0.21em;
+	height: 47px;
+    line-height: 47px;
+    margin-top: 3px;
 }
 
 header nav ul #spp a
 {
 	background: #3e4247 url(img/bg_header.png) no-repeat -525px -3px;
-	height: 2.93em;
-	line-height: 2.93em;
-	margin-top: 0.21em;
+	height: 47px;
+	line-height: 47px;
+	margin-top: 3px;
 }
 
 header nav ul #ctt a
 {
 	background: #3e4247 url(img/bg_header.png) no-repeat -651px -6px;
-	height: 2.75em;
-    line-height: 2.75em;
-    margin-top: 0.49em;
+	height: 44px;
+    line-height: 44px;
+    margin-top: 6px;
 }
 
 header nav ul li a:hover 
@@ -295,20 +285,8 @@ header nav ul li a:hover
 	padding: 30px 0;
 }
 
-.container iframe 
-{
-	display:block; 
-	width: 100%; 
-	height: 480px; 
-	border: 0 none;
-}
-
 footer 
 {
+	border-top: 1px solid #fff;
 	padding-top: 10px;
-}
-
-footer #copyright 
-{
-	text-align: center;
 }

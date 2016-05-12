@@ -51,7 +51,8 @@ var Camel = function(CANVASElementID, Settings, Extensions, numberHolder)
 	this.gl 		= NULL;
 	this.context 	= NULL;
 	
-	this.lastTime	= NULL;
+	this.lastTime	= 0;
+	this.clearColor = new Array(3);
 	
 	this.renderHolder = (numberHolder == UNSET) ? new Array(8) : new Array(numberHolder);
 	try 
@@ -98,6 +99,14 @@ Camel.prototype.sizeFitBrowser = function()
 	this.element.style.height = window.innerHeight+'px';
 	return;
 };
+
+Camel.prototype.setClearColor = function(r, g, b) 
+{
+	this.clearColor[0] = r/255;
+	this.clearColor[1] = g/255;
+	this.clearColor[2] = b/255;
+	return this;
+}
 
 Camel.prototype.getGLSL = function(ScriptID) 
 {
@@ -394,8 +403,10 @@ Camel.prototype.buildBefore = function(beforeCB)
 	this.beforeCycle = beforeCB;
 };
 
-Camel.prototype.cycle = function(dt) 
-{	
+Camel.prototype.cycle = function(time) 
+{
+	var dt = time - this.lastTime;
+	this.lastTime = time;
 	var lim = this.renderHolder.length;
 	for(var i=0; i<lim; i++) 
 	{
@@ -416,7 +427,7 @@ Camel.prototype.cycle = function(dt)
 			if(this.beforeCycle != UNSET)
 				this.beforeCycle();
 
-			this.gl.clearColor(1.0, 1.0, 1.0, 1.0);
+			this.gl.clearColor(this.clearColor[0], this.clearColor[1], this.clearColor[2], 1.0);
 			this.gl.viewport(0.0, 0.0, this.getWidth(), this.getHeight());
 			this.gl.clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		}

@@ -122,64 +122,64 @@ function create()
 	Camel.mx4.translateZ(planeMatrix, -80);
 	
 	/** create tex-render */
-	var tex_vs = engine.getGLSL('tex-vertex-shader');
-	var tex_fs = engine.getGLSL('tex-fragment-shader');
+	// var tex_vs = engine.getGLSL('tex-vertex-shader');
+	// var tex_fs = engine.getGLSL('tex-fragment-shader');
 	
-	var tex_scene = engine.buildScene(
-		engine.buildRender(
-			[tex_vs, tex_fs], 
-			{
-				'pMatrix' : CAMEL_UNIFORM, 
-				'vMatrix' : CAMEL_UNIFORM, 
-				'mMatrix' : CAMEL_UNIFORM, 
-				'sampler' : CAMEL_UNIFORM, 
-				'positionIn' : CAMEL_ATTRIB, 
-				'texCoordIn' : CAMEL_ATTRIB, 
-			}, 
-			function() 
-			{
-				this.use();
-			}
-		), 
-		function() {
+	// var tex_scene = engine.buildScene(
+	// 	engine.buildRender(
+	// 		[tex_vs, tex_fs], 
+	// 		{
+	// 			'pMatrix' : CAMEL_UNIFORM, 
+	// 			'vMatrix' : CAMEL_UNIFORM, 
+	// 			'mMatrix' : CAMEL_UNIFORM, 
+	// 			'sampler' : CAMEL_UNIFORM, 
+	// 			'positionIn' : CAMEL_ATTRIB, 
+	// 			'texCoordIn' : CAMEL_ATTRIB, 
+	// 		}, 
+	// 		function() 
+	// 		{
+	// 			this.use();
+	// 		}
+	// 	), 
+	// 	function() {
 			
-		}, 
-		function(dt) {
-			Camel.mx4.rotateY(modelMatrix, dt*0.002);
-		}, 
-		function(r) 
-		{
-			r.gl.uniformMatrix4fv(r.pMatrix, false, projection.loadMXFloat());
-			r.gl.uniformMatrix4fv(r.vMatrix, false, camera.loadMXFloat());
+	// 	}, 
+	// 	function(dt) {
+	// 		Camel.mx4.rotateY(modelMatrix, dt*0.002);
+	// 	}, 
+	// 	function(r) 
+	// 	{
+	// 		r.gl.uniformMatrix4fv(r.pMatrix, false, projection.loadMXFloat());
+	// 		r.gl.uniformMatrix4fv(r.vMatrix, false, camera.loadMXFloat());
 
-			r.gl.uniformMatrix4fv(r.mMatrix, false, planeMatrix);
+	// 		r.gl.uniformMatrix4fv(r.mMatrix, false, planeMatrix);
 
-			r.gl.uniform1i(r.sampler, 0);
-			if(RttBuff.Texture != NULL) 
-			{
-				r.gl.activeTexture(r.gl.TEXTURE0);
-				r.gl.bindTexture(r.gl.TEXTURE_2D, RttBuff.Texture);
-			}
+	// 		r.gl.uniform1i(r.sampler, 0);
+	// 		if(RttBuff.Texture != NULL) 
+	// 		{
+	// 			r.gl.activeTexture(r.gl.TEXTURE0);
+	// 			r.gl.bindTexture(r.gl.TEXTURE_2D, RttBuff.Texture);
+	// 		}
 
-			// if(alpha || alpha != undefined) 
-			// {
-			// 	r.gl.enable(r.gl.BLEND);
-			// 	r.gl.enable(r.gl.CULL_FACE);
-			// }
-			// else
-			// {
-			// 	r.gl.disable(r.gl.BLEND);
-			// 	r.gl.disable(r.gl.CULL_FACE);	
-			// }
+	// 		// if(alpha || alpha != undefined) 
+	// 		// {
+	// 		// 	r.gl.enable(r.gl.BLEND);
+	// 		// 	r.gl.enable(r.gl.CULL_FACE);
+	// 		// }
+	// 		// else
+	// 		// {
+	// 		// 	r.gl.disable(r.gl.BLEND);
+	// 		// 	r.gl.disable(r.gl.CULL_FACE);	
+	// 		// }
 			
-			r.gl.bindBuffer(r.gl.ARRAY_BUFFER, plane_vbuff);
-			r.gl.vertexAttribPointer(r.positionIn, 3, r.gl.FLOAT, false,4*(3+2),0);
-			r.gl.vertexAttribPointer(r.texCoordIn, 2, r.gl.FLOAT, false,4*(3+2),3*4);
+	// 		r.gl.bindBuffer(r.gl.ARRAY_BUFFER, plane_vbuff);
+	// 		r.gl.vertexAttribPointer(r.positionIn, 3, r.gl.FLOAT, false,4*(3+2),0);
+	// 		r.gl.vertexAttribPointer(r.texCoordIn, 2, r.gl.FLOAT, false,4*(3+2),3*4);
 
-			r.gl.bindBuffer(r.gl.ELEMENT_ARRAY_BUFFER, plane_ibuff);
-			r.gl.drawElements(r.gl.TRIANGLES, plane_face.length, r.gl.UNSIGNED_INT, 0);
-		}
-	);
+	// 		r.gl.bindBuffer(r.gl.ELEMENT_ARRAY_BUFFER, plane_ibuff);
+	// 		r.gl.drawElements(r.gl.TRIANGLES, plane_face.length, r.gl.UNSIGNED_INT, 0);
+	// 	}
+	// );
 
 	/** Create scene */
 	var vs = engine.getGLSL('vertex-shader');
@@ -242,6 +242,8 @@ function create()
 			r.gl.drawElements(r.gl.TRIANGLES, dragon.indices.length, r.gl.UNSIGNED_INT, 0);
 		}
 	);
+	
+	engine.setClearColor(23, 26, 30);
 
 	engine.buildBefore(function() {
 		engine.openRTT(RttBuff);
