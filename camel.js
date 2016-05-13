@@ -25,6 +25,8 @@ var CAMEL_CREATE_CELL = 0,
 	CAMEL_CREATE_BOX = 1, 
 	CAMEL_CREATE_SPHERE = 2, 
 	CAMEL_CREATE_CONE = 3;
+var CAMEL_TYPE_OBJECT = 'object', 
+	CAMEL_TYPE_STRING = 'string';
 var CAMEL_MATH_EPSILON = 0.000001;
 var NULL = null, 
 	TRUE = true, 
@@ -112,19 +114,32 @@ Camel.prototype.setClearColor = function(r, g, b)
 	return this;
 }
 
-Camel.prototype.getGLSL = function(ScriptID) 
+Camel.prototype.getGLSL = function(shaderID) 
 {
-	var c, d, sc, sd;
-	sc = document.getElementById(ScriptID);
-	if(!sc)
-		return NULL;
-	c = EMPTY;
-	d = sc.firstChild;
-	while(d) 
+	var c = EMPTY, d = 0, sc = 0, sd = 0;
+	if(typeof shaderID == CAMEL_TYPE_OBJECT) 
 	{
-		c += d.textContent;
-		d = d.nextSibling;
+		if(shaderID.Ext == 'vert') 
+			sc = {type:CAMEL_VERTEX};
+		else if(shaderID.Ext == 'frag')
+			sc = {type:CAMEL_FRAGMENT};
+		else 
+			return;
+		c = shaderID.Asset.getXHR().responseText;
 	}
+	else 
+	{
+		sc = document.getElementById(shaderID);
+		if(!sc)
+			return NULL;
+		d = sc.firstChild;
+		while(d) 
+		{
+			c += d.textContent;
+			d = d.nextSibling;
+		}
+	}
+	
 	if(sc.type == CAMEL_VERTEX) 
 	{
 		sd = this.gl.createShader(this.gl.VERTEX_SHADER);
@@ -137,6 +152,7 @@ Camel.prototype.getGLSL = function(ScriptID)
 	{
 		return NULL;
 	}
+
 	this.gl.shaderSource(sd, c);
 	this.gl.compileShader(sd);
 	if(!this.gl.getShaderParameter(sd, this.gl.COMPILE_STATUS)) 
@@ -760,18 +776,23 @@ Camel.AssetManager.prototype.getProgress = function()
 	return (this.errorCount+this.successCount)*100/this.AssetList.length;
 };
 
-Camel.AssetManager.prototype.getType = function(Path) 
+Camel.AssetManager.prototype.parseExt = function(Path) 
 {
 	var ExtensionRegular = /(?:\.([^.]+))?$/;
-	var ExtensionStr = ExtensionRegular.exec(Path)[1];
-	var Extension = 0;
+	return ExtensionRegular.exec(Path)[1];	
+};
+
+Camel.AssetManager.prototype.getType = function(Path) 
+{
+	this.extStr = this.parseExt(Path);
+	var type = 0;
 	for(var i=0;i<this.QueueType.length;i++) {
-		if(this.QueueType[i].indexOf(ExtensionStr) != -1) {
-			Extension = i;
+		if(this.QueueType[i].indexOf(this.extStr) != -1) {
+			type = i;
 			break;
 		}
 	}
-	return Extension;
+	return type;
 };
 
 Camel.AssetManager.prototype.isQueued = function(Path) 
@@ -809,7 +830,8 @@ Camel.AssetManager.prototype.QueueFile = function(Path)
 		default:
 			break;
 	}
-	this.AssetList.push({Path:Path, Asset:FilePoint, Type:Type, Ready:false});
+	this.AssetList.push({Path:Path, Asset:FilePoint, Type:Type, Ready:false, Ext:this.extStr});
+	this.extStr = null;
 	return;
 };
 
@@ -1070,6 +1092,15 @@ Camel.Geometry = function()
 		this.numberOfIndices = this.indices.length;
 		return this;
 	};
+	
+	this.setModel = function(model) 
+	{
+		model = JSON.parse(model.Asset.getXHR().responseText);
+		this.vertices = model.vertices;
+		this.indices = model.indices;
+		this.numberOfIndices = this.indices.length;
+		return this;
+	};
 };
 
 Camel.Color = function() 
@@ -1132,6 +1163,13 @@ Camel.Cell = function()
 	
 	this.createCell(10);
 };
+
+Camel.Model = function(assetModel) 
+{
+	this.__proto__ = new Camel.Particle();
+	
+	this.setModel(assetModel);
+}
 
 
 
