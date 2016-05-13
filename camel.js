@@ -21,6 +21,10 @@ var CAMEL_WEBGL = 'experimental-webgl',
 	CAMEL_QUEUE_SOUND = 1,
 	CAMEL_QUEUE_XHTTP = 2,
 	CAMEL_QUEUE_VIDEO = 3;
+var CAMEL_CREATE_CELL = 0, 
+	CAMEL_CREATE_BOX = 1, 
+	CAMEL_CREATE_SPHERE = 2, 
+	CAMEL_CREATE_CONE = 3;
 var CAMEL_MATH_EPSILON = 0.000001;
 var NULL = null, 
 	TRUE = true, 
@@ -392,6 +396,31 @@ Camel.prototype.getContext = function()
 
 Camel.prototype.buildBefore = function(beforeCB) 
 {
+	var lim = this.renderHolder.length;
+	for(var i=0; i<lim; i++) 
+	{
+		if(this.renderHolder[i] == UNSET) 
+			break;
+		
+		var limscn = this.renderHolder[i].sceneHolder.length;
+		for(var j=0; j<limscn; j++) 
+		{
+			if(this.renderHolder[i].sceneHolder[j] != UNSET) 
+			{
+				this.renderHolder[i].sceneHolder[j].start();
+				for(var k=0; k<32; k++) 
+				{
+					if(this.renderHolder[i].sceneHolder[j].particleHolder[k] != UNSET 
+					&& this.renderHolder[i].sceneHolder[j].particleHolder[k].vertices != UNSET 
+					&& this.renderHolder[i].sceneHolder[j].particleHolder[k].indices != UNSET) 
+					{
+						this.renderHolder[i].sceneHolder[j].particleHolder[k].vertexBuffer = this.createVAB(this.renderHolder[i].sceneHolder[j].particleHolder[k].vertices);
+						this.renderHolder[i].sceneHolder[j].particleHolder[k].indicesBuffer = this.createIAB(this.renderHolder[i].sceneHolder[j].particleHolder[k].indices);
+					}
+				}
+			}
+		}
+	}
 	this.gl.enable(this.gl.DEPTH_TEST);
 	this.gl.clearColor(1.0, 1.0, 1.0, 1.0);
 	this.gl.depthFunc(this.gl.LEQUAL);
@@ -512,39 +541,6 @@ Camel.Vec4.prototype.loadFloat = function()
 {
 	return this.vec;
 }
-
-/**________________________________________________________________________
- * 
- * The Mx44 of Camel
- */
-Camel.Mx44 = function() 
-{
-	this.mx = new Float32Array(16);	
-};
-Camel.Mx44.prototype.loadMXFloat = function() 
-{
-	return this.mx;
-};
-Camel.Mx44.prototype.identity = function(m) 
-{
-	if(m != undefined)
-	{
-		m = new Float32Array(16);
-		m[0]=1.0;	m[1]=0.0; m[2]=0.0; m[3]=0.0;
-		m[4]=0.0;	m[5]=1.0; m[6]=0.0; m[7]=0.0;
-		m[8]=0.0;	m[9]=0.0; m[10]=1.0; m[11]=0.0;
-		m[12]=0.0; m[13]=0.0; m[14]=0.0; m[15]=1.0;
-		return m;
-	}
-	else 
-	{
-		this.mx[0]=1.0;	this.mx[1]=0.0; this.mx[2]=0.0; this.mx[3]=0.0;
-		this.mx[4]=0.0;	this.mx[5]=1.0; this.mx[6]=0.0; this.mx[7]=0.0;
-		this.mx[8]=0.0;	this.mx[9]=0.0; this.mx[10]=1.0; this.mx[11]=0.0;
-		this.mx[12]=0.0; this.mx[13]=0.0; this.mx[14]=0.0; this.mx[15]=1.0;
-		return this;
-	}
-};
 
 /**________________________________________________________________________
  * 
@@ -677,190 +673,6 @@ Camel.Camera.prototype.integrate = function()
 	this.mx[15] = 1;
 
 	return this;
-};
-
-Camel.mx4 = { 
-	/**
-	 * Create the new Matrix4x4.
-	 * 
-	 * Return the new matrix4x4
-	 */
-	create : function() 
-	{
-		return [1, 0, 0, 0, 
-				0, 1, 0, 0, 
-				0, 0, 1, 0, 
-				0, 0, 0, 1];
-	},
-	
-	/**
-	 * Create the new Projection Matrix4x4
-	 * 
-	 * Return the new matrix of projection
-	 */
-	perspective : function(angle, a, zMin, zMax) 
-	{
-		var tan=Math.tan(Math.degToRad(0.5*angle)),
-			A=-(zMax+zMin)/(zMax-zMin),
-			B=(-2*zMax*zMin)/(zMax-zMin);
-
-	    return [
-			0.5/tan,0 ,			0, 0,
-			0, 		0.5*a/tan,	0, 0,
-			0, 		0,         	A, -1,
-			0,		0,			B, 0
-	    ];
-	}, 
-	lookAt : function (out, eye, at, up) {
-	    var x0, x1, x2, y0, y1, y2, z0, z1, z2, len,
-	        eyex = eye[0],
-	        eyey = eye[1],
-	        eyez = eye[2],
-	        upx = up[0],
-	        upy = up[1],
-	        upz = up[2],
-	        atx = at[0],
-	        aty = at[1],
-	        atz = at[2];
-
-	    if (Math.abs(eyex - atx) < CAMEL_MATH_EPSILON &&
-	        Math.abs(eyey - aty) < CAMEL_MATH_EPSILON &&
-	        Math.abs(eyez - atz) < CAMEL_MATH_EPSILON) {
-	        return Camel.mx4.identity(out);
-	    }
-
-	    z0 = eyex - atx;
-	    z1 = eyey - aty;
-	    z2 = eyez - atz;
-
-	    len = 1 / Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2);
-	    z0 *= len;
-	    z1 *= len;
-	    z2 *= len;
-
-	    x0 = upy * z2 - upz * z1;
-	    x1 = upz * z0 - upx * z2;
-	    x2 = upx * z1 - upy * z0;
-	    len = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2);
-	    if (!len) {
-	        x0 = 0;
-	        x1 = 0;
-	        x2 = 0;
-	    } else {
-	        len = 1 / len;
-	        x0 *= len;
-	        x1 *= len;
-	        x2 *= len;
-	    }
-
-	    y0 = z1 * x2 - z2 * x1;
-	    y1 = z2 * x0 - z0 * x2;
-	    y2 = z0 * x1 - z1 * x0;
-
-	    len = Math.sqrt(y0 * y0 + y1 * y1 + y2 * y2);
-	    if (!len) {
-	        y0 = 0;
-	        y1 = 0;
-	        y2 = 0;
-	    } else {
-	        len = 1 / len;
-	        y0 *= len;
-	        y1 *= len;
-	        y2 *= len;
-	    }
-
-	    out[0] = x0;
-	    out[1] = y0;
-	    out[2] = z0;
-	    out[3] = 0;
-	    out[4] = x1;
-	    out[5] = y1;
-	    out[6] = z1;
-	    out[7] = 0;
-	    out[8] = x2;
-	    out[9] = y2;
-	    out[10] = z2;
-	    out[11] = 0;
-	    out[12] = -(x0 * eyex + x1 * eyey + x2 * eyez);
-	    out[13] = -(y0 * eyex + y1 * eyey + y2 * eyez);
-	    out[14] = -(z0 * eyex + z1 * eyey + z2 * eyez);
-	    out[15] = 1;
-
-	    return out;
-	},
-	
-	reset : function(m) 
-	{
-		m[0]=1, m[1]=0, m[2]=0, m[3]=0,
-		m[4]=0, m[5]=1, m[6]=0, m[7]=0,
-		m[8]=0, m[9]=0, m[10]=1, m[11]=0,
-		m[12]=0, m[13]=0, m[14]=0, m[15]=1;
-	}, 
-	
-	identity : function(m) 
-	{
-		if(m != undefined)
-			var m = new Array(16);
-		m[0]=1, m[1]=0, m[2]=0, m[3]=0,
-		m[4]=0, m[5]=1, m[6]=0, m[7]=0,
-		m[8]=0, m[9]=0, m[10]=1, m[11]=0,
-		m[12]=0, m[13]=0, m[14]=0, m[15]=1;
-		return m;
-	}, 
-	
-	rotateX: function(m, angle) 
-	{
-		var c=Math.cos(angle);
-		var s=Math.sin(angle);
-		var mv1=m[1], mv5=m[5], mv9=m[9];
-		m[1]=m[1]*c-m[2]*s;
-		m[5]=m[5]*c-m[6]*s;
-		m[9]=m[9]*c-m[10]*s;
-
-		m[2]=m[2]*c+mv1*s;
-		m[6]=m[6]*c+mv5*s;
-		m[10]=m[10]*c+mv9*s;
-	},
-	rotateY: function(m, angle) 
-	{
-		var c=Math.cos(angle);
-		var s=Math.sin(angle);
-		var mv0=m[0], mv4=m[4], mv8=m[8];
-		m[0]=c*m[0]+s*m[2];
-		m[4]=c*m[4]+s*m[6];
-		m[8]=c*m[8]+s*m[10];
-
-		m[2]=c*m[2]-s*mv0;
-		m[6]=c*m[6]-s*mv4;
-		m[10]=c*m[10]-s*mv8;
-	},
-
-	rotateZ: function(m, angle) 
-	{
-		var c=Math.cos(angle);
-		var s=Math.sin(angle);
-		var mv0=m[0], mv4=m[4], mv8=m[8];
-		m[0]=c*m[0]-s*m[1];
-		m[4]=c*m[4]-s*m[5];
-		m[8]=c*m[8]-s*m[9];
-
-		m[1]=c*m[1]+s*mv0;
-		m[5]=c*m[5]+s*mv4;
-		m[9]=c*m[9]+s*mv8;
-	},
-	
-	translateZ: function(m, t) 
-	{
-		m[14]+=t;
-	},
-	 
-	translateY: function(m, t){
-		m[13]+=t;
-	},
-	 
-	translateX: function(m, t){
-		m[12]+=t;
-	}
 };
 
 Camel.GetHttpRequest = function() 
@@ -1096,6 +908,130 @@ Camel.Scene.prototype.pass = function(renderer)
 	}
 };
 
+Camel.Scene.prototype.addChild = function(particle) 
+{
+	for(var i=0;i<32;i++) 
+	{
+		if(this.particleHolder[i] == UNSET) 
+		{
+			this.particleHolder[i] = particle;
+			return particle;
+		}
+		else 
+		{
+			return;
+		}
+	}
+};
+
+/**________________________________________________________________________
+ * 
+ * The Mx44 of Camel
+ * 
+ * This is a implemental class.
+ * 
+ */
+Camel.Mx44 = function() 
+{
+	this.mx = new Float32Array(16);
+	
+	// Initialize the matrix
+	this.mx[0]=1.0;	this.mx[1]=0.0; this.mx[2]=0.0; this.mx[3]=0.0;
+	this.mx[4]=0.0;	this.mx[5]=1.0; this.mx[6]=0.0; this.mx[7]=0.0;
+	this.mx[8]=0.0;	this.mx[9]=0.0; this.mx[10]=1.0; this.mx[11]=0.0;
+	this.mx[12]=0.0; this.mx[13]=0.0; this.mx[14]=0.0; this.mx[15]=1.0;
+	
+	this.loadMXFloat = function() 
+	{
+		return this.mx;
+	};
+	
+	this.identity = function(m) 
+	{
+		if(m != undefined)
+		{
+			m = new Float32Array(16);
+			m[0]=1.0;	m[1]=0.0; m[2]=0.0; m[3]=0.0;
+			m[4]=0.0;	m[5]=1.0; m[6]=0.0; m[7]=0.0;
+			m[8]=0.0;	m[9]=0.0; m[10]=1.0; m[11]=0.0;
+			m[12]=0.0; m[13]=0.0; m[14]=0.0; m[15]=1.0;
+			return m;
+		}
+		else 
+		{
+			this.mx[0]=1.0;	this.mx[1]=0.0; this.mx[2]=0.0; this.mx[3]=0.0;
+			this.mx[4]=0.0;	this.mx[5]=1.0; this.mx[6]=0.0; this.mx[7]=0.0;
+			this.mx[8]=0.0;	this.mx[9]=0.0; this.mx[10]=1.0; this.mx[11]=0.0;
+			this.mx[12]=0.0; this.mx[13]=0.0; this.mx[14]=0.0; this.mx[15]=1.0;
+			return this;
+		}
+	};
+	
+	this.translateZ = function(d) 
+	{
+		this.mx[14]+=d;
+	};
+	 
+	this.translateY = function(d) 
+	{
+		this.mx[13]+=d;
+	};
+	 
+	this.translateX = function(d) 
+	{
+		this.mx[12]+=d;
+	};
+	
+	this.translate = function(x, y, z) 
+	{
+		this.mx[12]+=x;
+		this.mx[13]+=y;
+		this.mx[14]+=z;
+	};
+	
+	this.rotateX = function(angle) 
+	{
+		var c=Math.cos(angle);
+		var s=Math.sin(angle);
+		var mv1=this.mx[1], mv5=this.mx[5], mv9=this.mx[9];
+		this.mx[1]=this.mx[1]*c-this.mx[2]*s;
+		this.mx[5]=this.mx[5]*c-this.mx[6]*s;
+		this.mx[9]=this.mx[9]*c-this.mx[10]*s;
+
+		this.mx[2]=this.mx[2]*c+mv1*s;
+		this.mx[6]=this.mx[6]*c+mv5*s;
+		this.mx[10]=this.mx[10]*c+mv9*s;
+	};
+	
+	this.rotateY = function(angle) 
+	{
+		var c=Math.cos(angle);
+		var s=Math.sin(angle);
+		var mv0=this.mx[0], mv4=this.mx[4], mv8=this.mx[8];
+		this.mx[0]=c*this.mx[0]+s*this.mx[2];
+		this.mx[4]=c*this.mx[4]+s*this.mx[6];
+		this.mx[8]=c*this.mx[8]+s*this.mx[10];
+
+		this.mx[2]=c*this.mx[2]-s*mv0;
+		this.mx[6]=c*this.mx[6]-s*mv4;
+		this.mx[10]=c*this.mx[10]-s*mv8;
+	};
+
+	this.rotateZ = function(angle) 
+	{
+		var c=Math.cos(angle);
+		var s=Math.sin(angle);
+		var mv0=this.mx[0], mv4=this.mx[4], mv8=this.mx[8];
+		this.mx[0]=c*this.mx[0]-s*this.mx[1];
+		this.mx[4]=c*this.mx[4]-s*this.mx[5];
+		this.mx[8]=c*this.mx[8]-s*this.mx[9];
+
+		this.mx[1]=c*this.mx[1]+s*mv0;
+		this.mx[5]=c*this.mx[5]+s*mv4;
+		this.mx[9]=c*this.mx[9]+s*mv8;
+	};
+};
+
 Camel.Transform = function() 
 {
 	this.x = 0.0;
@@ -1111,9 +1047,51 @@ Camel.Transform = function()
 	this.scaleZ = 1.0;
 };
 
+Camel.Geometry = function() 
+{
+	this.vertexBuffer = NULL;
+	this.indicesBuffer = NULL;
+	this.numberOfIndices = NULL;
+	this.vertices = NULL;
+	this.indices = NULL;
+
+	this.createCell = function(size) 
+	{
+		this.vertices = [
+			-1.0*size, -1.0*size, 0.0, 0.0, 0.0, 
+			1.0*size, -1.0*size, 0.0, 1.0, 0.0, 
+			1.0*size,  1.0*size, 0.0, 1.0, 1.0, 
+			-1.0*size,  1.0*size, 0.0, 0.0, 1.0,  
+		];
+		this.indices = [
+			0,1,2,
+			0,2,3,
+		];
+		this.numberOfIndices = this.indices.length;
+		return this;
+	};
+};
+
+Camel.Color = function() 
+{
+	this.alpha = 1.0;
+	this.color = {
+		diffuse : {
+			r:128, g:128, b:128
+		}, 
+		ambient : {
+			r:128, g:128, b:128
+		}, 
+		specular : {
+			r:128, g:128, b:128
+		}, 
+	};
+};
+
 Camel.Light = function() 
 {
 	this.__proto__ = new Camel.Transform();	
+	this.__proto__.__proto__ = new Camel.Color();
 };
 
 Camel.PointLight = function() 
@@ -1128,28 +1106,231 @@ Camel.DirectLight = function()
 
 Camel.Material = function() 
 {
-	this.alpha = 1.0;
+	this.__proto__ = new Camel.Color();
+	
 	this.map = {
 		diffuse : NULL, 
 		ambient : NULL, 
 		specular : NULL, 
 	};
-	this.color = {
-		diffuse : {r:128, g:128, b:128}, 
-		ambient : {r:128, g:128, b:128}, 
-		specular : {r:128, g:128, b:128}, 
-	};
-};
-
-Camel.Geometry = function() 
-{
-	this.vertices = NULL;
-	this.indices = NULL;
 };
 
 Camel.Particle = function() 
 {
-	this.__proto__ = new Camel.Transform();
-	this.__proto__.__proto__ = new Camel.Material();
+	this.__proto__ = new Camel.Mx44();
+	this.__proto__.__proto__ = new Camel.Transform();	
 	this.__proto__.__proto__.__proto__ = new Camel.Geometry();
+	this.__proto__.__proto__.__proto__.__proto__ = new Camel.Material();
+	
+	this.visible = true;
+	this.disable = false;
+};
+
+Camel.Cell = function() 
+{
+	this.__proto__ = new Camel.Particle();
+	
+	this.createCell(10);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Camel.mx4 = { 
+	/**
+	 * Create the new Matrix4x4.
+	 * 
+	 * Return the new matrix4x4
+	 */
+	create : function() 
+	{
+		return [1, 0, 0, 0, 
+				0, 1, 0, 0, 
+				0, 0, 1, 0, 
+				0, 0, 0, 1];
+	},
+	
+	/**
+	 * Create the new Projection Matrix4x4
+	 * 
+	 * Return the new matrix of projection
+	 */
+	perspective : function(angle, a, zMin, zMax) 
+	{
+		var tan=Math.tan(Math.degToRad(0.5*angle)),
+			A=-(zMax+zMin)/(zMax-zMin),
+			B=(-2*zMax*zMin)/(zMax-zMin);
+
+	    return [
+			0.5/tan,0 ,			0, 0,
+			0, 		0.5*a/tan,	0, 0,
+			0, 		0,         	A, -1,
+			0,		0,			B, 0
+	    ];
+	}, 
+	lookAt : function (out, eye, at, up) {
+	    var x0, x1, x2, y0, y1, y2, z0, z1, z2, len,
+	        eyex = eye[0],
+	        eyey = eye[1],
+	        eyez = eye[2],
+	        upx = up[0],
+	        upy = up[1],
+	        upz = up[2],
+	        atx = at[0],
+	        aty = at[1],
+	        atz = at[2];
+
+	    if (Math.abs(eyex - atx) < CAMEL_MATH_EPSILON &&
+	        Math.abs(eyey - aty) < CAMEL_MATH_EPSILON &&
+	        Math.abs(eyez - atz) < CAMEL_MATH_EPSILON) {
+	        return Camel.mx4.identity(out);
+	    }
+
+	    z0 = eyex - atx;
+	    z1 = eyey - aty;
+	    z2 = eyez - atz;
+
+	    len = 1 / Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2);
+	    z0 *= len;
+	    z1 *= len;
+	    z2 *= len;
+
+	    x0 = upy * z2 - upz * z1;
+	    x1 = upz * z0 - upx * z2;
+	    x2 = upx * z1 - upy * z0;
+	    len = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2);
+	    if (!len) {
+	        x0 = 0;
+	        x1 = 0;
+	        x2 = 0;
+	    } else {
+	        len = 1 / len;
+	        x0 *= len;
+	        x1 *= len;
+	        x2 *= len;
+	    }
+
+	    y0 = z1 * x2 - z2 * x1;
+	    y1 = z2 * x0 - z0 * x2;
+	    y2 = z0 * x1 - z1 * x0;
+
+	    len = Math.sqrt(y0 * y0 + y1 * y1 + y2 * y2);
+	    if (!len) {
+	        y0 = 0;
+	        y1 = 0;
+	        y2 = 0;
+	    } else {
+	        len = 1 / len;
+	        y0 *= len;
+	        y1 *= len;
+	        y2 *= len;
+	    }
+
+	    out[0] = x0;
+	    out[1] = y0;
+	    out[2] = z0;
+	    out[3] = 0;
+	    out[4] = x1;
+	    out[5] = y1;
+	    out[6] = z1;
+	    out[7] = 0;
+	    out[8] = x2;
+	    out[9] = y2;
+	    out[10] = z2;
+	    out[11] = 0;
+	    out[12] = -(x0 * eyex + x1 * eyey + x2 * eyez);
+	    out[13] = -(y0 * eyex + y1 * eyey + y2 * eyez);
+	    out[14] = -(z0 * eyex + z1 * eyey + z2 * eyez);
+	    out[15] = 1;
+
+	    return out;
+	},
+	
+	reset : function(m) 
+	{
+		m[0]=1, m[1]=0, m[2]=0, m[3]=0,
+		m[4]=0, m[5]=1, m[6]=0, m[7]=0,
+		m[8]=0, m[9]=0, m[10]=1, m[11]=0,
+		m[12]=0, m[13]=0, m[14]=0, m[15]=1;
+	}, 
+	
+	identity : function(m) 
+	{
+		if(m != undefined)
+			var m = new Array(16);
+		m[0]=1, m[1]=0, m[2]=0, m[3]=0,
+		m[4]=0, m[5]=1, m[6]=0, m[7]=0,
+		m[8]=0, m[9]=0, m[10]=1, m[11]=0,
+		m[12]=0, m[13]=0, m[14]=0, m[15]=1;
+		return m;
+	}, 
+	
+	rotateX: function(m, angle) 
+	{
+		var c=Math.cos(angle);
+		var s=Math.sin(angle);
+		var mv1=m[1], mv5=m[5], mv9=m[9];
+		m[1]=m[1]*c-m[2]*s;
+		m[5]=m[5]*c-m[6]*s;
+		m[9]=m[9]*c-m[10]*s;
+
+		m[2]=m[2]*c+mv1*s;
+		m[6]=m[6]*c+mv5*s;
+		m[10]=m[10]*c+mv9*s;
+	},
+	rotateY: function(m, angle) 
+	{
+		var c=Math.cos(angle);
+		var s=Math.sin(angle);
+		var mv0=m[0], mv4=m[4], mv8=m[8];
+		m[0]=c*m[0]+s*m[2];
+		m[4]=c*m[4]+s*m[6];
+		m[8]=c*m[8]+s*m[10];
+
+		m[2]=c*m[2]-s*mv0;
+		m[6]=c*m[6]-s*mv4;
+		m[10]=c*m[10]-s*mv8;
+	},
+
+	rotateZ: function(m, angle) 
+	{
+		var c=Math.cos(angle);
+		var s=Math.sin(angle);
+		var mv0=m[0], mv4=m[4], mv8=m[8];
+		m[0]=c*m[0]-s*m[1];
+		m[4]=c*m[4]-s*m[5];
+		m[8]=c*m[8]-s*m[9];
+
+		m[1]=c*m[1]+s*mv0;
+		m[5]=c*m[5]+s*mv4;
+		m[9]=c*m[9]+s*mv8;
+	},
+	
+	translateZ: function(m, t) 
+	{
+		m[14]+=t;
+	},
+	 
+	translateY: function(m, t){
+		m[13]+=t;
+	},
+	 
+	translateX: function(m, t){
+		m[12]+=t;
+	}
 };
