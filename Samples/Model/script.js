@@ -81,7 +81,6 @@ function create()
 	
 	/** Create scene */
 	var scene = engine.buildScene(
-		CAMEL_RENDERER_WORLD, 
 		function() {
 			this.dragon = this.addChild(new Camel.Model(AssetMgr.getAsset('model/dragon.json')));
 			this.dragon.translateY(-6.0);

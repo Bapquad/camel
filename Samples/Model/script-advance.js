@@ -88,6 +88,7 @@ function create()
 			this.cell.translate(38, 18, -80);
 			this.cell.setAlpha(20);
 			this.cell.set2Side(true);
+			
 			this.cell.setDiffuseMap(engine.createRTT('bnv2.04', 512, 512, 1.0, 0.0, 0.0, 0.0, function() {
 				scene.pass(CAMEL_RENDERER_WORLD);
 			}));
@@ -99,7 +100,6 @@ function create()
 	
 	/** Create scene */
 	var scene = engine.buildScene(
-		CAMEL_RENDERER_WORLD, 
 		function() {
 			this.dragon = this.addChild(new Camel.Model(AssetMgr.getAsset('model/dragon.json')));
 			this.dragon.translateY(-6.0);

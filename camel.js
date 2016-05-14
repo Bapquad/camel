@@ -182,11 +182,12 @@ Camel.prototype.getGLSL = function(shaderID)
 
 Camel.prototype.buildScene = function(renderer, startCB, updateCB, renderCB, beforeRenderCB) 
 {
-	var scene = NULL;
+	var scene = EMPTY;
 	switch(typeof renderer) 
 	{
 		case CAMEL_TYPE_FUNC:
-		
+			scene = new Camel.Scene(renderer, updateCB, renderCB, beforeRenderCB);
+			scene.addRenderer(CAMEL_RENDERER_WORLD);
 			break;
 		case CAMEL_TYPE_OBJECT:
 		default:
