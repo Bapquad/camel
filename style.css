@@ -203,8 +203,8 @@ header .header
 header #logo 
 {
 	position: absolute;
-	top: 0;
-	left: 0;
+	top: 54px;
+	left: 33px;
 }
 
 header nav 

@@ -79,6 +79,24 @@ function create()
 								  new Camel.Vec3(0.0, 0.0, -1.0),
 								  new Camel.Vec3(0.0, 1.0, 0.0));
 	
+	/** create tex-render */
+	var tex_scene = engine.buildScene(
+		CAMEL_RENDERER_TEXTURE, 
+		function() {
+			this.cell = this.addChild(new Camel.Cell(10));
+			this.cell.createCell(10);
+			this.cell.translate(38, 18, -80);
+			this.cell.setAlpha(20);
+			this.cell.set2Side(true);
+			this.cell.setDiffuseMap(engine.createRTT('bnv2.04', 512, 512, 1.0, 0.0, 0.0, 0.0, function() {
+				scene.pass(CAMEL_RENDERER_WORLD);
+			}));
+			
+			this.projection = projection;
+			this.camera = camera;
+		}
+	);
+	
 	/** Create scene */
 	var scene = engine.buildScene(
 		CAMEL_RENDERER_WORLD, 

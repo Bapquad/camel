@@ -13,8 +13,8 @@
  */
 
 var CAMEL_WEBGL = 'experimental-webgl', 
-	CAMEL_VERTEX = 'x-shader/x-vertex', 
-	CAMEL_FRAGMENT = 'x-shader/x-fragment', 
+	CAMEL_SHADER_VERT = 'x-shader/x-vertex', 
+	CAMEL_SHADER_FRAGMENT = 'x-shader/x-fragment', 
 	CAMEL_ATTRIB = 0, 
 	CAMEL_UNIFORM = 1, 
 	CAMEL_QUEUE_IMAGE = 0, 
@@ -26,8 +26,13 @@ var CAMEL_CREATE_CELL = 0,
 	CAMEL_CREATE_SPHERE = 2, 
 	CAMEL_CREATE_CONE = 3;
 var CAMEL_TYPE_OBJECT = 'object', 
-	CAMEL_TYPE_STRING = 'string';
+	CAMEL_TYPE_STRING = 'string', 
+	CAMEL_TYPE_FUNC = 'function';
 var CAMEL_MATH_EPSILON = 0.000001;
+var CAMEL_IL_FOUR = 4, 
+	CAMEL_IL_THREE = 3,  
+	CAMEL_IL_TWO = 2, 
+	CAMEL_IL_ONE = 1;
 var NULL = null, 
 	TRUE = true, 
 	FALSE = false, 
@@ -35,7 +40,11 @@ var NULL = null,
 	EMPTY = '', 
 	UNSET = undefined;
 var GL_COLOR_BUFFER_BIT = 16384, 
-	GL_DEPTH_BUFFER_BIT = 256; 
+	GL_DEPTH_BUFFER_BIT = 256;
+var CAMEL_RENDERER_TEXTURE = EMPTY, 
+	CAMEL_RENDERER_WORLD = EMPTY;
+var CAMEL_LIGHT_DIRECT = 0, 
+	CAMEL_LIGHT_POINT = 1;
 	
 /**
  * New function for Math
@@ -63,12 +72,15 @@ var Camel = function(CANVASElementID, Settings, Extensions, numberHolder)
 	this.renderHolder = (numberHolder == UNSET) ? new Array(8) : new Array(numberHolder);
 	try 
 	{
+		var engine = this;
 		this.gl = this.element.getContext(CAMEL_WEBGL, Settings);
 		this.gl.engine = this;
 		this.context = this.getWGL();
 		var lim = Extensions.length;
 		for(var i=0; i<lim; i++)
 			this.gl.getExtension(Extensions[i]);
+		
+		this.buildDefault();
 	}
 	catch(e) 
 	{
@@ -79,12 +91,12 @@ var Camel = function(CANVASElementID, Settings, Extensions, numberHolder)
 
 Camel.prototype.getWidth = function() 
 {
-	return this.element.width;
+	return parseInt(this.element.style.width);
 };
 
 Camel.prototype.getHeight = function() 
 {
-	return this.element.height;
+	return parseInt(this.element.style.height);
 };
 
 Camel.prototype.getBrowserWidth = function() 
@@ -108,24 +120,29 @@ Camel.prototype.sizeFitBrowser = function()
 
 Camel.prototype.setClearColor = function(r, g, b) 
 {
-	this.clearColor[0] = r/255;
-	this.clearColor[1] = g/255;
-	this.clearColor[2] = b/255;
+	this.clearColor[0] = (r/255).toFixed(2);
+	this.clearColor[1] = (g/255).toFixed(2);
+	this.clearColor[2] = (b/255).toFixed(2);
 	return this;
 }
 
 Camel.prototype.getGLSL = function(shaderID) 
 {
 	var c = EMPTY, d = 0, sc = 0, sd = 0;
-	if(typeof shaderID == CAMEL_TYPE_OBJECT) 
+	if(typeof shaderID == CAMEL_TYPE_OBJECT && shaderID.isAsset) 
 	{
 		if(shaderID.Ext == 'vert') 
-			sc = {type:CAMEL_VERTEX};
+			sc = {type:CAMEL_SHADER_VERT};
 		else if(shaderID.Ext == 'frag')
-			sc = {type:CAMEL_FRAGMENT};
+			sc = {type:CAMEL_SHADER_FRAGMENT};
 		else 
 			return;
 		c = shaderID.Asset.getXHR().responseText;
+	}
+	else if(typeof shaderID == CAMEL_TYPE_OBJECT && shaderID[0].indexOf('-shader') >=0) 
+	{
+		sc = {type:shaderID.shift()};
+		c = shaderID.join('\n');
 	}
 	else 
 	{
@@ -140,11 +157,11 @@ Camel.prototype.getGLSL = function(shaderID)
 		}
 	}
 	
-	if(sc.type == CAMEL_VERTEX) 
+	if(sc.type == CAMEL_SHADER_VERT) 
 	{
 		sd = this.gl.createShader(this.gl.VERTEX_SHADER);
 	}
-	else if(sc.type = CAMEL_FRAGMENT) 
+	else if(sc.type = CAMEL_SHADER_FRAGMENT) 
 	{
 		sd = this.gl.createShader(this.gl.FRAGMENT_SHADER);
 	}
@@ -165,8 +182,17 @@ Camel.prototype.getGLSL = function(shaderID)
 
 Camel.prototype.buildScene = function(renderer, startCB, updateCB, renderCB, beforeRenderCB) 
 {
-	var scene = new Camel.Scene(startCB, updateCB, renderCB, beforeRenderCB);
-	scene.addRenderer(renderer);
+	var scene = NULL;
+	switch(typeof renderer) 
+	{
+		case CAMEL_TYPE_FUNC:
+		
+			break;
+		case CAMEL_TYPE_OBJECT:
+		default:
+			scene = new Camel.Scene(startCB, updateCB, renderCB, beforeRenderCB);
+			scene.addRenderer(renderer);
+	}
 	return scene;
 };
 
@@ -189,7 +215,7 @@ Camel.prototype.orderRender = function(renderer)
 	}
 };
 
-Camel.prototype.buildRender = function(shaders, constants, startCB) 
+Camel.prototype.buildRender = function(shaders, constants, beforeCB, finishCB) 
 {
 	if(Array.isArray(shaders) && this.gl) 
 	{
@@ -219,6 +245,14 @@ Camel.prototype.buildRender = function(shaders, constants, startCB)
 					case CAMEL_ATTRIB:
 						renderer[x] = gl.getAttribLocation(p, x);
 						gl.enableVertexAttribArray(renderer[x]);
+						if(renderer.inputLayout == UNSET) 
+						{
+							renderer.inputLayout = 1;
+						}
+						else 
+						{
+							renderer.inputLayout++;
+						}
 						break;
 					case CAMEL_UNIFORM:
 					default:
@@ -227,7 +261,15 @@ Camel.prototype.buildRender = function(shaders, constants, startCB)
 				}
 			}
 			
-			renderer.start = startCB;
+			if(beforeCB == UNSET)
+				renderer.before = function() 
+				{
+					this.use();
+				};				
+			else
+				renderer.before = beforeCB;
+				
+			renderer.finish = finishCB;
 			
 			renderer.use = function() 
 			{
@@ -315,7 +357,7 @@ Camel.prototype.createTexture = function(asset)
 	return asset;
 };
 
-Camel.prototype.createRTT = function(width, height, red, green, blue, alpha) 
+Camel.prototype.createRTT = function(name, width, height, red, green, blue, alpha, render) 
 {
 	var rb = this.gl.createRenderbuffer();
 	this.gl.bindRenderbuffer(this.gl.RENDERBUFFER, rb);
@@ -366,6 +408,14 @@ Camel.prototype.createRTT = function(width, height, red, green, blue, alpha)
 		alpha : alpha
 	};
 	fbuff.Texture = rt;
+	fbuff.pass = render;
+	
+	if(this.frameBuffers == UNSET) 
+	{
+		this.frameBuffers = new Object();
+	};
+	
+	this.frameBuffers[name] = fbuff;
 
 	this.gl.bindTexture(this.gl.TEXTURE_2D, NULL);
 	this.gl.bindRenderbuffer(this.gl.RENDERBUFFER, NULL);
@@ -410,7 +460,7 @@ Camel.prototype.getContext = function()
 	return this.gl;
 };
 
-Camel.prototype.buildBefore = function(beforeCB) 
+Camel.prototype.prepare = function() 
 {
 	var lim = this.renderHolder.length;
 	for(var i=0; i<lim; i++) 
@@ -445,11 +495,24 @@ Camel.prototype.buildBefore = function(beforeCB)
 	this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
 	this.gl.frontFace(this.gl.CCW);
 	
-	this.beforeCycle = beforeCB;
+	this.beforeCycle = function() 
+	{
+		for(x in this.frameBuffers)
+		{
+			this.openRTT(this.frameBuffers[x]);
+				this.frameBuffers[x].pass();
+			this.closeRTT();
+		}
+	};
 };
 
 Camel.prototype.cycle = function(time) 
 {
+	if(time<=0) 
+	{
+		this.prepare();
+		return;
+	}
 	var dt = time - this.lastTime;
 	this.lastTime = time;
 	var lim = this.renderHolder.length;
@@ -485,8 +548,8 @@ Camel.prototype.cycle = function(time)
 				&& this.renderHolder[i].sceneHolder[j].render != NULL 
 				&& !this.renderHolder[i].sceneHolder[j].disable) 
 				{
-					this.renderHolder[i].start();
-					this.renderHolder[i].sceneHolder[j].render(this.renderHolder[i]);
+					this.renderHolder[i].before();
+					this.renderHolder[i].sceneHolder[j].pass(this.renderHolder[i]);
 				}
 			}
 		}
@@ -496,7 +559,17 @@ Camel.prototype.cycle = function(time)
 			this.gl.flush();
 		}
 	}
-}
+};
+
+Camel.prototype.buildDefault = function() 
+{
+	var engine = this, c = [CAMEL_SHADER_VERT, 'attribute vec3 positionIn;', 'attribute vec2 texCoordIn;', 'uniform mat4 pMatrix;', 'uniform mat4 vMatrix;', 'uniform mat4 mMatrix;', 'varying vec2 texCoordOut;', 'void main(void)', '{', '	gl_Position = pMatrix * vMatrix * mMatrix * vec4(positionIn, 1.0);', '	texCoordOut = texCoordIn;', '}'];var vs = engine.getGLSL(c);
+		c =	[CAMEL_SHADER_FRAGMENT,'precision mediump float;','uniform sampler2D sampler;','uniform float mat_alpha;','varying vec2 texCoordOut;','void main(void)','{','	vec3 color = vec3(texture2D(sampler, texCoordOut));','	gl_FragColor = vec4(color, mat_alpha);','}'];var fs = engine.getGLSL(c);
+		CAMEL_RENDERER_TEXTURE = this.buildRender([vs,fs],{'pMatrix' : CAMEL_UNIFORM,'vMatrix' : CAMEL_UNIFORM,'mMatrix' : CAMEL_UNIFORM,'sampler' : CAMEL_UNIFORM,'mat_alpha' : CAMEL_UNIFORM,'positionIn' : CAMEL_ATTRIB,'texCoordIn' : CAMEL_ATTRIB,});
+		c = [CAMEL_SHADER_VERT,'attribute vec3 positionIn;','attribute vec3 normalIn;','attribute vec2 texCoordIn;','uniform mat4 pMatrix;','uniform mat4 vMatrix;','uniform mat4 mMatrix;','varying vec2 texCoordOut;','varying vec3 normalOut;','varying vec3 viewOut;','void main(void)','{','	gl_Position = pMatrix * vMatrix * mMatrix * vec4(positionIn, 1.0);','	texCoordOut = texCoordIn;','	normalOut = vec3(mMatrix * vec4(normalIn, 0.0));','	viewOut = vec3(vMatrix * mMatrix * vec4(positionIn, 1.0));','}'];vs = engine.getGLSL(c);
+		c = [CAMEL_SHADER_FRAGMENT,'precision mediump float;','uniform sampler2D sampler;','varying vec2 texCoordOut;','varying vec3 normalOut;','varying vec3 viewOut;','struct PLight ','{','	vec3 ambient_color;','	vec3 diffuse_color;','	vec3 specular_color;','	vec3 position;','};','uniform vec3 dlight_ambient_color;','uniform vec3 dlight_diffuse_color;','uniform vec3 dlight_specular_color;','uniform vec3 dlight_vector;','uniform PLight plight[7];','uniform vec3 mat_ambient_color;','uniform vec3 mat_diffuse_color;','uniform vec3 mat_specular_color;','uniform float mat_shininess;','uniform float mat_alpha;','void main(void)','{','	vec3 color = vec3(texture2D(sampler, texCoordOut));','	vec3 ambient = dlight_ambient_color * mat_ambient_color;','	vec3 diffuse = dlight_diffuse_color * mat_diffuse_color * max(0.0, dot(normalOut, dlight_vector));','	vec3 Eye = normalize(viewOut);','	vec3 N = reflect(dlight_vector, normalOut);','	vec3 specular = dlight_specular_color * mat_specular_color * pow(max(dot(N, Eye), 0.0), mat_shininess);','	vec3 light = ambient + diffuse + specular;','	gl_FragColor = vec4(color*light, mat_alpha);','}'];fs = engine.getGLSL(c);
+		CAMEL_RENDERER_WORLD = this.buildRender([vs,fs],{'pMatrix' : CAMEL_UNIFORM,'vMatrix' : CAMEL_UNIFORM,'mMatrix' : CAMEL_UNIFORM,'sampler' : CAMEL_UNIFORM,'mat_alpha' : CAMEL_UNIFORM,'mat_shininess' : CAMEL_UNIFORM,'mat_diffuse_color' : CAMEL_UNIFORM,'mat_ambient_color' : CAMEL_UNIFORM,'mat_specular_color' : CAMEL_UNIFORM,'dlight_ambient_color' : CAMEL_UNIFORM,'dlight_diffuse_color' : CAMEL_UNIFORM,'dlight_specular_color' : CAMEL_UNIFORM,'dlight_vector' : CAMEL_UNIFORM,'plight[0].ambient_color' : CAMEL_UNIFORM,'plight[0].diffuse_color' : CAMEL_UNIFORM,'plight[0].specular_color' : CAMEL_UNIFORM,'plight[0].position' : CAMEL_UNIFORM,'plight[1].ambient_color' : CAMEL_UNIFORM, 'plight[1].diffuse_color' : CAMEL_UNIFORM,'plight[1].specular_color' : CAMEL_UNIFORM,'plight[1].position' : CAMEL_UNIFORM,'positionIn' : CAMEL_ATTRIB, 'texCoordIn' : CAMEL_ATTRIB,'normalIn' : CAMEL_ATTRIB});
+};
 
 Camel.Alert = function(param) 
 {
@@ -517,13 +590,18 @@ Camel.Log = function(param)
 Camel.Vec2 = function(x, y) 
 {
 	this.vec = new Float32Array(2);
-	this.vec[0] = x;
-	this.vec[1] = y;
+	this.setVector(x, y);
 };
-Camel.Vec2.prototype.loadFloat = function() 
+Camel.Vec2.prototype.loadVecFloat = function() 
 {
 	return this.vec;
-}
+};
+Camel.Vec2.prototype.setVector = function(x, y) 
+{
+	this.vec[0] = x;
+	this.vec[1] = y;
+	return this;
+};
 
 /**________________________________________________________________________
  * 
@@ -532,14 +610,19 @@ Camel.Vec2.prototype.loadFloat = function()
 Camel.Vec3 = function(x, y, z) 
 {
 	this.vec = new Float32Array(3);
+	this.setVector(x, y, z);
+};
+Camel.Vec3.prototype.loadVecFloat = function() 
+{
+	return this.vec;
+};
+Camel.Vec3.prototype.setVector = function(x, y, z) 
+{
 	this.vec[0] = x;
 	this.vec[1] = y;
 	this.vec[2] = z;
+	return this;
 };
-Camel.Vec3.prototype.loadFloat = function() 
-{
-	return this.vec;
-}
 
 /**________________________________________________________________________
  * 
@@ -548,15 +631,20 @@ Camel.Vec3.prototype.loadFloat = function()
 Camel.Vec4 = function(x, y, z, w) 
 {
 	this.vec = new Float32Array(4);
+	this.setVector(x, y, z, w);
+};
+Camel.Vec4.prototype.loadVecFloat = function() 
+{
+	return this.vec;
+};
+Camel.Vec4.prototype.setVector = function(x, y, z, w) 
+{
 	this.vec[0] = x;
 	this.vec[1] = y;
 	this.vec[2] = z;
 	this.vec[3] = w;
+	return this;
 };
-Camel.Vec4.prototype.loadFloat = function() 
-{
-	return this.vec;
-}
 
 /**________________________________________________________________________
  * 
@@ -600,9 +688,9 @@ Camel.Perspective.prototype.integrate = function(angle, aspect, near, far)
  */
 Camel.Camera = function(eye, look, up) 
 {
-	this.eye = eye.loadFloat();		//: Camel::Vec3
-	this.look = look.loadFloat();	//: Camel::Vec3 
-	this.up = up.loadFloat(); 		//: Camel::Vec3
+	this.eye = eye.loadVecFloat();		//: Camel::Vec3
+	this.look = look.loadVecFloat();	//: Camel::Vec3 
+	this.up = up.loadVecFloat(); 		//: Camel::Vec3
 	this.mx = new Float32Array(16);
 	this.integrate();
 }; 
@@ -628,7 +716,7 @@ Camel.Camera.prototype.integrate = function()
 	if (Math.abs(eyex - lookx) < CAMEL_MATH_EPSILON &&
 		Math.abs(eyey - looky) < CAMEL_MATH_EPSILON &&
 		Math.abs(eyez - lookz) < CAMEL_MATH_EPSILON) {
-		return this.identity().loadFloat();
+		return this.identity().loadMXFloat();
 	}
 
 	z0 = eyex - lookx;
@@ -830,7 +918,16 @@ Camel.AssetManager.prototype.QueueFile = function(Path)
 		default:
 			break;
 	}
-	this.AssetList.push({Path:Path, Asset:FilePoint, Type:Type, Ready:false, Ext:this.extStr});
+	this.AssetList.push(
+		{
+			Path:Path, 
+			Asset:FilePoint, 
+			Type:Type, 
+			Ready:false, 
+			Ext:this.extStr,
+			isAsset:true,  
+		}
+	);
 	this.extStr = null;
 	return;
 };
@@ -899,9 +996,107 @@ Camel.Scene = function(startCB, updateCB, renderCB, beforeRenderCB)
 	this.visible	= true;
 	this.disable	= false;
 	this.particleHolder = new Array(32);
+	
 	this.start = startCB;
-	this.update	= updateCB;
-	this.render	= renderCB;
+	
+	if(updateCB == UNSET) 
+		this.update	= function(dt) 
+		{
+			for(var i=0;i<32;i++) 
+			{
+				if(this.particleHolder[i] == UNSET 
+				|| this.particleHolder[i].disable 
+				|| this.particleHolder[i].ontick == UNSET)
+					continue;
+				this.particleHolder[i].ontick(dt);
+			}
+		};
+	else 
+		this.ontick	= updateCB;
+	
+	if(renderCB == UNSET)
+		this.render	= function(renderer) 
+		{
+			renderer.gl.uniformMatrix4fv(renderer.pMatrix, false, this.projection.loadMXFloat());
+			renderer.gl.uniformMatrix4fv(renderer.vMatrix, false, this.camera.loadMXFloat());
+			
+			if(this.lightHolder != UNSET)
+				for(var i=0;i<8;i++) 
+				{
+					if(this.lightHolder[i] == UNSET) 
+						break;
+					if(this.lightHolder[i].type == CAMEL_LIGHT_DIRECT) 
+					{
+						renderer.gl.uniform3fv(renderer.dlight_ambient_color, this.lightHolder[i].color.ambient.loadVecFloat());
+						renderer.gl.uniform3fv(renderer.dlight_diffuse_color, this.lightHolder[i].color.ambient.loadVecFloat());
+						renderer.gl.uniform3fv(renderer.dlight_specular_color, this.lightHolder[i].color.specular.loadVecFloat());
+						renderer.gl.uniform3fv(renderer.dlight_vector, this.lightHolder[i].loadVecFloat());
+					}
+					else (this.lightHolder[i].type == CAMEL_LIGHT_POINT)
+					{
+						renderer.gl.uniform3fv(renderer.plight_ambient_color, this.lightHolder[i].color.ambient.loadVecFloat());
+						renderer.gl.uniform3fv(renderer.plight_diffuse_color, this.lightHolder[i].color.ambient.loadVecFloat());
+						renderer.gl.uniform3fv(renderer.plight_specular_color, this.lightHolder[i].color.specular.loadVecFloat());
+						renderer.gl.uniform3fv(renderer.plight_vector, this.lightHolder[i].loadVecFloat());
+					}
+				}
+			
+			for(var i=0;i<32;i++) 
+			{
+				if(this.particleHolder[i] == UNSET 
+				|| this.particleHolder[i].disable 
+				|| !this.particleHolder[i].visible)
+					continue;
+					
+				if(this.particleHolder[i].alpha < 1.0) 
+				{
+					renderer.gl.uniform1f(renderer.mat_alpha, this.particleHolder[i].alpha);
+					renderer.gl.enable(renderer.gl.BLEND);
+				}
+				else
+					renderer.gl.disable(renderer.gl.BLEND);
+				
+				renderer.gl.uniform1f(renderer.mat_shininess, this.particleHolder[i].shininess);
+				renderer.gl.uniform3fv(renderer.mat_ambient_color, this.particleHolder[i].color.ambient.loadVecFloat());
+				renderer.gl.uniform3fv(renderer.mat_diffuse_color, this.particleHolder[i].color.diffuse.loadVecFloat());
+				renderer.gl.uniform3fv(renderer.mat_specular_color, this.particleHolder[i].color.specular.loadVecFloat());
+				
+				if(!this.particleHolder[i].cull)
+					renderer.gl.enable(renderer.gl.CULL_FACE);	
+				else 
+					renderer.gl.disable(renderer.gl.CULL_FACE);
+				
+				renderer.gl.uniform1i(renderer.sampler, 0);
+				if(this.particleHolder[i].map.diffuse != NULL) 
+				{
+					renderer.gl.activeTexture(renderer.gl.TEXTURE0);
+					renderer.gl.bindTexture(renderer.gl.TEXTURE_2D, this.particleHolder[i].map.diffuse.Texture);
+				}
+				
+				renderer.gl.uniformMatrix4fv(renderer.mMatrix, false, this.particleHolder[i].mx);
+
+				renderer.gl.bindBuffer(renderer.gl.ARRAY_BUFFER, this.particleHolder[i].vertexBuffer);
+				switch(renderer.inputLayout) 
+				{
+					case CAMEL_IL_TWO :
+						renderer.gl.vertexAttribPointer(renderer.positionIn, 3, renderer.gl.FLOAT, false,4*(3+2),0);
+						renderer.gl.vertexAttribPointer(renderer.texCoordIn, 2, renderer.gl.FLOAT, false,4*(3+2),3*4);
+						break;
+					case CAMEL_IL_THREE :
+					default:
+						renderer.gl.vertexAttribPointer(renderer.positionIn, 3, renderer.gl.FLOAT, false,4*(3+3+2),0);
+						renderer.gl.vertexAttribPointer(renderer.normalIn, 3, renderer.gl.FLOAT, false,4*(3+3+2),3*4);
+						renderer.gl.vertexAttribPointer(renderer.texCoordIn, 2, renderer.gl.FLOAT, false,4*(3+3+2),(3+3)*4);
+						break;
+				};
+
+				renderer.gl.bindBuffer(renderer.gl.ELEMENT_ARRAY_BUFFER, this.particleHolder[i].indicesBuffer);
+				renderer.gl.drawElements(renderer.gl.TRIANGLES, this.particleHolder[i].numberOfIndices, renderer.gl.UNSIGNED_INT, 0);
+			}
+		};
+	else 
+		this.render	= renderCB;
+	
 	this.beforeRender = beforeRenderCB;
 };
 
@@ -925,7 +1120,7 @@ Camel.Scene.prototype.pass = function(renderer)
 {
 	if(this.visible && this.render != NULL && !this.disable) 
 	{
-		renderer.start();
+		renderer.before();
 		this.render(renderer);
 	}
 };
@@ -942,6 +1137,29 @@ Camel.Scene.prototype.addChild = function(particle)
 		else 
 		{
 			return;
+		}
+	}
+};
+
+Camel.Scene.prototype.addLight = function(light) 
+{
+	if(this.lightHolder == UNSET) 
+	{
+		this.lightHolder = new Array(8);
+		this.lightHolder[0] = light;
+		return light;
+	};
+	for(var i=0;i=8;i++) 
+	{
+		if(light.type == CAMEL_LIGHT_DIRECT 
+		&& this.lightHolder[i].type == CAMEL_LIGHT_DIRECT) 
+		{
+			break;
+		};
+		if(this.lightHolder[i] == UNSET) 
+		{
+			this.lightHolder[i] = light;
+			break;
 		}
 	}
 };
@@ -998,7 +1216,7 @@ Camel.Mx44 = function()
 	{
 		this.mx[13]+=d;
 	};
-	 
+	
 	this.translateX = function(d) 
 	{
 		this.mx[12]+=d;
@@ -1105,34 +1323,118 @@ Camel.Geometry = function()
 
 Camel.Color = function() 
 {
+	this.cull = true;
 	this.alpha = 1.0;
-	this.color = {
-		diffuse : {
-			r:128, g:128, b:128
-		}, 
-		ambient : {
-			r:128, g:128, b:128
-		}, 
-		specular : {
-			r:128, g:128, b:128
-		}, 
+	this.shininess = 10.0;
+	this.color = 
+	{
+		diffuse : new Camel.Vec3(
+			(128/255).toFixed(2), 
+			(128/255).toFixed(2), 
+			(128/255).toFixed(2)
+		), 
+		ambient : new Camel.Vec3(
+			(128/255).toFixed(2), 
+			(128/255).toFixed(2), 
+			(128/255).toFixed(2)
+		), 
+		specular : new Camel.Vec3(
+			(255/255).toFixed(2), 
+			(255/255).toFixed(2), 
+			(255/255).toFixed(2)
+		), 
+	};
+	
+	/**
+	 * Function allow developer set the alpha value
+	 *  
+	 * Parameters
+	 * 		[value] which the developer want to setup to object.
+	 * 
+	 * @return self
+	 */
+	this.setAlpha = function(value) 
+	{
+		this.alpha = value/100;
+		return this;
+	};
+	
+	/**
+	 * Function allow developer set the diffuse color 
+	 * 
+	 * Parameters
+	 * 		[red] which the developer want to setup the red color value to the diffuse color.
+	 * 		[green] which the developer want to setup the green color value to the diffuse color.
+	 * 		[blue] which the developer want to setup the blue color value to the diffuse color.
+	 * 
+	 * @return self
+	 */
+	this.setDiffuse = function(red, green, blue) 
+	{
+		this.color.diffuse.vec[0] = (red/255).toFixed(2);
+		this.color.diffuse.vec[1] = (green/255).toFixed(2);
+		this.color.diffuse.vec[2] = (blue/255).toFixed(2);
+		return this;
+	};
+	
+	this.setAmbient = function(red, green, blue) 
+	{
+		this.color.ambient.vec[0] = (red/255).toFixed(2);
+		this.color.ambient.vec[1] = (green/255).toFixed(2);
+		this.color.ambient.vec[2] = (blue/255).toFixed(2);
+		return this;
+	};
+	
+	this.setSpecular = function(red, green, blue) 
+	{
+		this.color.specular.vec[0] = (red/255).toFixed(2);
+		this.color.specular.vec[1] = (green/255).toFixed(2);
+		this.color.specular.vec[2] = (blue/255).toFixed(2);
+		return this;
+	};
+	
+	this.set2Side = function(value) 
+	{
+		this.cull = value;
+		return this;
+	};
+	
+	/**
+	 * Get the alpha value
+	 */
+	this.getAlpha = function() 
+	{
+		return this.alpha;
+	};
+	
+	/**
+	 * Set Shininess
+	 */
+	this.setShininess = function(value) 
+	{
+		this.shininess = value;
+		return this;
 	};
 };
 
-Camel.Light = function() 
+Camel.Light = function(x, y, z) 
 {
-	this.__proto__ = new Camel.Transform();	
-	this.__proto__.__proto__ = new Camel.Color();
+	this.__proto__ = new Camel.Color();	
+	this.__proto__.__proto__ =  new Camel.Vec3(x, y, z);
 };
 
-Camel.PointLight = function() 
+Camel.PointLight = function(x, y, z) 
 {
-	this.__proto__ = new Camel.Light();
+	this.__proto__ = new Camel.Light(x, y, z);
+	
+	this.type = CAMEL_LIGHT_POINT;
 };
 
-Camel.DirectLight = function() 
+Camel.DirectLight = function(x, y, z) 
 {
-	this.__proto__ = new Camel.Light();
+	this.__proto__ = new Camel.Light(x, y, z);
+	
+	this.type = CAMEL_LIGHT_DIRECT;
 };
 
 Camel.Material = function() 
@@ -1143,6 +1445,24 @@ Camel.Material = function()
 		diffuse : NULL, 
 		ambient : NULL, 
 		specular : NULL, 
+	};
+	
+	this.setDiffuseMap = function(map) 
+	{
+		this.map.diffuse = map;
+		return this;
+	};
+	
+	this.setAmbientMap = function(map) 
+	{
+		this.map.ambient = map;
+		return this;
+	};
+	
+	this.setSpecularMap = function(map) 
+	{
+		this.map.specular = map;
+		return this;
 	};
 };
 
@@ -1155,6 +1475,48 @@ Camel.Particle = function()
 	
 	this.visible = true;
 	this.disable = false;
+	this.freezed = false;
+	
+	this.hide = function() 
+	{
+		this.visible = false;
+		return this;
+	};
+	
+	this.show = function() 
+	{
+		this.visible = true;
+		return this;
+	};
+	
+	this.live = function() 
+	{
+		this.disable = false;
+		return this;
+	};
+	
+	this.dead = function() 
+	{
+		this.disable = true;
+		return this;
+	};
+	
+	this.lock = function() 
+	{
+		this.freezed = true;
+		return this;
+	};
+	
+	this.free = function() 
+	{
+		this.freezed = false;
+		return this;
+	};
+	
+	this.onTick = function(callback) 
+	{
+		this.ontick = callback;
+	};
 };
 
 Camel.Cell = function() 
@@ -1169,7 +1531,7 @@ Camel.Model = function(assetModel)
 	this.__proto__ = new Camel.Particle();
 	
 	this.setModel(assetModel);
-}
+};
 
 
 

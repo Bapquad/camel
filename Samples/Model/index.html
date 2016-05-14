@@ -78,9 +78,13 @@ html, body
 	precision mediump float;
 	uniform sampler2D sampler;
 	varying vec2 texCoordOut;
+	
+	const float mat_alpha = 1.0;
+	
 	void main(void) 
 	{
-		gl_FragColor = texture2D(sampler, texCoordOut);
+		vec3 color = texture2D(sampler, texCoordOut);
+		gl_FragColor = vec4(color, mat_alpha);
 	}
 </script>
 <script src="script.js" type="text/javascript"></script>
