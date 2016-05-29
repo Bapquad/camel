@@ -15,13 +15,11 @@ function UnTick() {
 	CancelAnimationFrame(TickGID);	
 }
 
-var AssetMgr;
-var TimeWait;
+var AssetMgr = new Camel.AssetManager('jpg|png|gif', 'mp3|wav|ogg', 'json|vert|frag');
+var Timer = 0;
 
 function init() 
 {
-	AssetMgr = new Camel.AssetManager('jpg|png|gif', 'mp3|wav|ogg', 'json|vert|frag');
-	AssetMgr.QueueFile('images/texture.png');
 	AssetMgr.QueueFile('images/dragon.png');
 	AssetMgr.QueueFile('model/dragon.json');
 	AssetMgr.QueueDownloadAll();
@@ -30,10 +28,10 @@ function init()
 
 function progress() 
 {
-	TimeWait = AssetMgr.getProgress();
+	Timer = AssetMgr.getProgress();
 	if(AssetMgr.isComplete()) {
 		UnTick();
-		TimeWait = setTimeout(create, 300);
+		Timer = setTimeout(create, 300);
 		return;
 	}
 	TickGID = RequestAnimationFrame(progress);
@@ -41,9 +39,7 @@ function progress()
 
 function create() 
 {
-	clearTimeout(TimeWait);
-	
-	var modelMatrix, planeMatrix; 
+	clearTimeout(Timer);
 	
 	var engine = new Camel(
 		"Camel",				// ID of Canvas Element.
@@ -60,21 +56,17 @@ function create()
 		3 
 	);
 	engine.setClearColor(23, 26, 30);
+	engine.sizeFitBrowser();
 	
 	/**
 	 * Create Projection and Camera
 	 */
-	var projection;
+	var projection = new Camel.Perspective(45, engine.getWidth()/engine.getHeight(), 1, 200);
 	window.onresize = function() 
 	{
 		engine.sizeFitBrowser();
-		if(projection == UNSET) 
-			projection = new Camel.Perspective(45, engine.getWidth()/engine.getHeight(), 1, 200);
-		else 
-			projection.set(45, engine.getWidth()/engine.getHeight(), 1, 200);
+		projection.set(45, engine.getWidth()/engine.getHeight(), 1, 200);
 	};
-	window.onresize();
-	
 	var camera = new Camel.Camera(new Camel.Vec3(0.0, 5.0, 20.0), 
 								  new Camel.Vec3(0.0, 0.0, -1.0),
 								  new Camel.Vec3(0.0, 1.0, 0.0));
@@ -82,9 +74,9 @@ function create()
 	/** create tex-render */
 	var tex_scene = engine.buildScene(
 		CAMEL_RENDERER_TEXTURE, 
-		function() {
+		function() 
+		{
 			this.cell = this.addChild(new Camel.Cell(10));
-			this.cell.createCell(10);
 			this.cell.translate(38, 18, -80);
 			this.cell.setAlpha(20);
 			this.cell.set2Side(true);
@@ -100,7 +92,8 @@ function create()
 	
 	/** Create scene */
 	var scene = engine.buildScene(
-		function() {
+		function() 
+		{
 			this.dragon = this.addChild(new Camel.Model(AssetMgr.getAsset('model/dragon.json')));
 			this.dragon.translateY(-6.0);
 			this.dragon.translateZ(-16.0);
