@@ -429,7 +429,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[2] = -s;
 	    out[3] = c;
 	    return out;
-	}
+	};
 
 	/**
 	 * Creates a matrix from a vector scaling
@@ -448,7 +448,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[2] = 0;
 	    out[3] = v[1];
 	    return out;
-	}
+	};
 
 	/**
 	 * Returns a string representation of a mat2
@@ -745,7 +745,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[4] = 0;
 	    out[5] = 0;
 	    return out;
-	}
+	};
 
 	/**
 	 * Creates a matrix from a vector scaling
@@ -766,7 +766,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[4] = 0;
 	    out[5] = 0;
 	    return out;
-	}
+	};
 
 	/**
 	 * Creates a matrix from a vector translation
@@ -787,7 +787,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[4] = v[0];
 	    out[5] = v[1];
 	    return out;
-	}
+	};
 
 	/**
 	 * Returns a string representation of a mat2d
@@ -1191,7 +1191,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[7] = v[1];
 	    out[8] = 1;
 	    return out;
-	}
+	};
 
 	/**
 	 * Creates a matrix from a given angle
@@ -1219,7 +1219,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[7] = 0;
 	    out[8] = 1;
 	    return out;
-	}
+	};
 
 	/**
 	 * Creates a matrix from a vector scaling
@@ -1245,7 +1245,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[7] = 0;
 	    out[8] = 1;
 	    return out;
-	}
+	};
 
 	/**
 	 * Copies the values from a mat2d into a mat3
@@ -2550,7 +2550,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[14] = v[2];
 	    out[15] = 1;
 	    return out;
-	}
+	};
 
 	/**
 	 * Creates a matrix from a vector scaling
@@ -2581,7 +2581,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[14] = 0;
 	    out[15] = 1;
 	    return out;
-	}
+	};
 
 	/**
 	 * Creates a matrix from a given angle around a given axis
@@ -2629,7 +2629,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[14] = 0;
 	    out[15] = 1;
 	    return out;
-	}
+	};
 
 	/**
 	 * Creates a matrix from the given angle around the X axis
@@ -2664,7 +2664,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[14] = 0;
 	    out[15] = 1;
 	    return out;
-	}
+	};
 
 	/**
 	 * Creates a matrix from the given angle around the Y axis
@@ -2699,7 +2699,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[14] = 0;
 	    out[15] = 1;
 	    return out;
-	}
+	};
 
 	/**
 	 * Creates a matrix from the given angle around the Z axis
@@ -2734,7 +2734,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[14] = 0;
 	    out[15] = 1;
 	    return out;
-	}
+	};
 
 	/**
 	 * Creates a matrix from a quaternion rotation and vector translation
