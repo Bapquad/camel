@@ -43,11 +43,31 @@ var GL_COLOR_BUFFER_BIT = 16384,
 	GL_DEPTH_BUFFER_BIT = 256;
 var CAMEL_RENDERER_TEXTURE = EMPTY, 
 	CAMEL_RENDERER_WORLD = EMPTY, 
+	CAMEL_RENDERER_STANDARD = EMPTY, 
 	CAMEL_RENDERER_CAREM = EMPTY;
 var CAMEL_LIGHT_DIRECT = 0, 
 	CAMEL_LIGHT_POINT = 1;
 var CAMEL_STRIKE_ATTRIB = 0, 
 	CAMEL_OFFSET_ATTRIB = 0;
+	
+var CAMEL_IS_OPERA = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;	// Opera 8.0+
+var CAMEL_IS_FIREFOX = typeof InstallTrigger !== 'undefined';	// Firefox 1.0+
+var CAMEL_IS_SAFARI = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;	// At least Safari 3+: "[object HTMLElementConstructor]"
+var CAMEL_IS_IE = /*@cc_on!@*/false || !!document.documentMode;	// Internet Explorer 6-11
+var CAMEL_IS_EDGE = !CAMEL_IS_IE && !!window.StyleMedia;	// Edge 20+
+var CAMEL_IS_CHROME = !!window.chrome && !!window.chrome.webstore;		// Chrome 1+
+var CAMEL_IS_BLINK = (CAMEL_IS_CHROME || CAMEL_IS_OPERA) && !!window.CSS;	// Blink engine detection
+var CAMEL_DEVICE_ANDROID = /android/i.test(navigator.userAgent.toLowerCase());
+var CAMEL_DEVICE_BLACKBERRY = /blackberry/i.test(navigator.userAgent.toLowerCase());
+var CAMEL_DEVICE_IOS =/ipad|iphone|ipod/i.test(navigator.userAgent.toLowerCase());
+var CAMEL_DEVICE_IPHONE = /iphone/i.test(navigator.userAgent.toLowerCase());
+var CAMEL_DEVICE_IPAD = /ipad/i.test(navigator.userAgent.toLowerCase());
+var CAMEL_DEVICE_IPOD = /ipod/i.test(navigator.userAgent.toLowerCase());
+var CAMEL_IS_OPERAMINI = navigator.userAgent.match(/Opera Mini/i);
+var CAMEL_DEVICE_WINDOWSPHONE = /windows phone/i.test(navigator.userAgent.toLowerCase());
+var CAMEL_DEVICE_WEBOS = /webos/i.test(navigator.userAgent.toLowerCase());
+var CAMEL_DEVICE_MOBILE = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) 
+    || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0,4));
 	
 /**
  * New function for Math
@@ -91,6 +111,8 @@ var Camel = function(CANVASElementID, Settings, Extensions, numberHolder)
 		return FALSE;
 	}
 };
+
+Camel.Digital = /(^Digit)|(^Numpad)|(^Delete$)|(^Period$)|(^Backspace$)|(^ArrowRight$)|(^ArrowLeft$)|(^F5$)/;
 
 Camel.prototype.getWidth = function() 
 {
@@ -559,16 +581,227 @@ Camel.prototype.cycle = function(time)
 
 Camel.prototype.buildDefault = function() 
 {
-	var engine = this, c = [CAMEL_SHADER_VERT, 'attribute vec3 positionIn;', 'attribute vec2 texCoordIn;', 'uniform mat4 pMatrix;', 'uniform mat4 vMatrix;', 'uniform mat4 mMatrix;', 'varying vec2 texCoordOut;', 'void main(void)', '{', '	gl_Position = pMatrix * vMatrix * mMatrix * vec4(positionIn, 1.0);', '	texCoordOut = texCoordIn;', '}'];var vs = engine.getGLSL(c);
-		c =	[CAMEL_SHADER_FRAGMENT,'precision mediump float;','uniform sampler2D sampler;','uniform float mat_alpha;','varying vec2 texCoordOut;','void main(void)','{','	vec3 color = vec3(texture2D(sampler, texCoordOut));','	gl_FragColor = vec4(color, mat_alpha);','}'];var fs = engine.getGLSL(c);
-		CAMEL_RENDERER_TEXTURE = this.buildRender([vs,fs],{'pMatrix' : CAMEL_UNIFORM,'vMatrix' : CAMEL_UNIFORM,'mMatrix' : CAMEL_UNIFORM,'sampler' : CAMEL_UNIFORM,'mat_alpha' : CAMEL_UNIFORM,'positionIn' : CAMEL_ATTRIB,'texCoordIn' : CAMEL_ATTRIB,});
-		c = [CAMEL_SHADER_VERT, 'attribute vec3 positionIn;', 'attribute vec2 texCoordIn;', 'uniform mat4 pMatrix;', 'uniform mat4 vMatrix;', 'uniform mat4 mMatrix;', 'varying vec2 texCoordOut;',
-		,'uniform vec4 maskart;', 'void main(void)', '{', '	gl_Position = pMatrix * vMatrix * mMatrix * vec4(positionIn, 1.0);', '	texCoordOut = vec2(texCoordIn.s*maskart.x+(maskart.x*maskart.z), texCoordIn.t*maskart.y+(maskart.y*maskart.w));', '}'];vs = engine.getGLSL(c);
-		c =	[CAMEL_SHADER_FRAGMENT,'precision mediump float;','uniform sampler2D sampler;','varying vec2 texCoordOut;','void main(void)','{','	gl_FragColor = texture2D(sampler, texCoordOut);','}'];fs = engine.getGLSL(c);
-		CAMEL_RENDERER_CAREM = this.buildRender([vs,fs],{'pMatrix' : CAMEL_UNIFORM,'vMatrix' : CAMEL_UNIFORM,'mMatrix' : CAMEL_UNIFORM,'sampler' : CAMEL_UNIFORM,'maskart' : CAMEL_UNIFORM,'positionIn' : CAMEL_ATTRIB,'texCoordIn' : CAMEL_ATTRIB,});
-		c = [CAMEL_SHADER_VERT,'attribute vec3 positionIn;','attribute vec3 normalIn;','attribute vec2 texCoordIn;','uniform mat4 pMatrix;','uniform mat4 vMatrix;','uniform mat4 mMatrix;','varying vec2 texCoordOut;','varying vec3 normalOut;','varying vec3 viewOut;','void main(void)','{','	gl_Position = pMatrix * vMatrix * mMatrix * vec4(positionIn, 1.0);','	texCoordOut = texCoordIn;','	normalOut = vec3(mMatrix * vec4(normalIn, 0.0));','	viewOut = vec3(vMatrix * mMatrix * vec4(positionIn, 1.0));','}'];vs = engine.getGLSL(c);
-		c = [CAMEL_SHADER_FRAGMENT,'precision mediump float;','uniform sampler2D sampler;','varying vec2 texCoordOut;','varying vec3 normalOut;','varying vec3 viewOut;','struct PLight ','{','	vec3 ambient_color;','	vec3 diffuse_color;','	vec3 specular_color;','	vec3 position;','};','uniform vec3 dlight_ambient_color;','uniform vec3 dlight_diffuse_color;','uniform vec3 dlight_specular_color;','uniform vec3 dlight_vector;','uniform PLight plight[7];','uniform vec3 mat_ambient_color;','uniform vec3 mat_diffuse_color;','uniform vec3 mat_specular_color;','uniform float mat_shininess;','uniform float mat_alpha;','void main(void)','{','	vec3 color = vec3(texture2D(sampler, texCoordOut));','	vec3 ambient = dlight_ambient_color * mat_ambient_color;','	vec3 diffuse = dlight_diffuse_color * mat_diffuse_color * max(0.0, dot(normalOut, dlight_vector));','	vec3 Eye = normalize(viewOut);','	vec3 N = reflect(dlight_vector, normalOut);','	vec3 specular = dlight_specular_color * mat_specular_color * pow(max(dot(N, Eye), 0.0), mat_shininess);','	vec3 light = ambient + diffuse + specular;','	gl_FragColor = vec4(color*light, mat_alpha);','}'];fs = engine.getGLSL(c);
-		CAMEL_RENDERER_WORLD = this.buildRender([vs,fs],{'pMatrix' : CAMEL_UNIFORM,'vMatrix' : CAMEL_UNIFORM,'mMatrix' : CAMEL_UNIFORM,'sampler' : CAMEL_UNIFORM,'mat_alpha' : CAMEL_UNIFORM,'mat_shininess' : CAMEL_UNIFORM,'mat_diffuse_color' : CAMEL_UNIFORM,'mat_ambient_color' : CAMEL_UNIFORM,'mat_specular_color' : CAMEL_UNIFORM,'dlight_ambient_color' : CAMEL_UNIFORM,'dlight_diffuse_color' : CAMEL_UNIFORM,'dlight_specular_color' : CAMEL_UNIFORM,'dlight_vector' : CAMEL_UNIFORM,'plight[0].ambient_color' : CAMEL_UNIFORM,'plight[0].diffuse_color' : CAMEL_UNIFORM,'plight[0].specular_color' : CAMEL_UNIFORM,'plight[0].position' : CAMEL_UNIFORM,'plight[1].ambient_color' : CAMEL_UNIFORM, 'plight[1].diffuse_color' : CAMEL_UNIFORM,'plight[1].specular_color' : CAMEL_UNIFORM,'plight[1].position' : CAMEL_UNIFORM,'positionIn' : CAMEL_ATTRIB, 'texCoordIn' : CAMEL_ATTRIB,'normalIn' : CAMEL_ATTRIB});
+	var engine = this;
+	var vs = 0;
+	var fs = 0;
+	var c = 0;
+	
+	c = [
+			CAMEL_SHADER_VERT, 
+			'attribute vec3 positionIn;', 
+			'attribute vec2 texCoordIn;', 
+			'uniform mat4 pMatrix;', 
+			'uniform mat4 vMatrix;', 
+			'uniform mat4 mMatrix;', 
+			'varying vec2 texCoordOut;', 
+			'void main(void)', 
+			'{', 
+			'	gl_Position = pMatrix * vMatrix * mMatrix * vec4(positionIn, 1.0);', 
+			'	texCoordOut = texCoordIn;', 
+			'}'
+		];
+	vs = engine.getGLSL(c);
+	c =	[
+			CAMEL_SHADER_FRAGMENT, 
+			'precision mediump float;', 
+			'uniform sampler2D sampler;', 
+			'uniform float mat_alpha;', 
+			'varying vec2 texCoordOut;', 
+			'void main(void)', 
+			'{', 
+			'	vec3 color = vec3(texture2D(sampler, texCoordOut));', 
+			'	gl_FragColor = vec4(color, mat_alpha);', 
+			'}'
+		];
+	fs = engine.getGLSL(c);
+	CAMEL_RENDERER_TEXTURE = this.buildRender( 
+		[vs,fs], 
+		{
+			'pMatrix' : CAMEL_UNIFORM, 
+			'vMatrix' : CAMEL_UNIFORM, 
+			'mMatrix' : CAMEL_UNIFORM, 
+			'sampler' : CAMEL_UNIFORM, 
+			'mat_alpha' : CAMEL_UNIFORM, 
+			'positionIn' : CAMEL_ATTRIB, 
+			'texCoordIn' : CAMEL_ATTRIB,
+		}
+	);
+	
+	c = [
+			CAMEL_SHADER_VERT, 
+			'attribute vec3 positionIn;', 
+			'attribute vec3 normalIn;', 
+			'attribute vec2 texCoordIn;', 
+			'uniform mat4 pMatrix;', 
+			'uniform mat4 vMatrix;', 
+			'uniform mat4 mMatrix;', 
+			'varying vec2 texCoordOut;', 
+			'void main(void)', 
+			'{', 
+			'	gl_Position = pMatrix * vMatrix * mMatrix * vec4(positionIn, 1.0);', 
+			'	texCoordOut = texCoordIn;', 
+			'}'
+		];
+	vs = engine.getGLSL(c);
+	c =	[
+			CAMEL_SHADER_FRAGMENT, 
+			'precision mediump float;', 
+			'uniform sampler2D sampler;', 
+			'uniform float mat_alpha;', 
+			'varying vec2 texCoordOut;', 
+			'void main(void)', 
+			'{', 
+			'	vec3 color = vec3(texture2D(sampler, texCoordOut));', 
+			'	gl_FragColor = vec4(color, mat_alpha);', 
+			'}'
+		];
+	fs = engine.getGLSL(c);
+	CAMEL_RENDERER_STANDARD = this.buildRender( 
+		[vs,fs], 
+		{
+			'pMatrix' : CAMEL_UNIFORM, 
+			'vMatrix' : CAMEL_UNIFORM, 
+			'mMatrix' : CAMEL_UNIFORM, 
+			'sampler' : CAMEL_UNIFORM, 
+			'mat_alpha' : CAMEL_UNIFORM, 
+			'positionIn' : CAMEL_ATTRIB, 
+			'texCoordIn' : CAMEL_ATTRIB, 
+			'normalIn' : CAMEL_ATTRIB
+		}
+	);
+	
+	c = [
+			CAMEL_SHADER_VERT, 
+			'attribute vec3 positionIn;', 
+			'attribute vec2 texCoordIn;', 
+			'uniform mat4 pMatrix;', 
+			'uniform mat4 vMatrix;', 
+			'uniform mat4 mMatrix;', 
+			'varying vec2 texCoordOut;', 
+			'uniform vec4 maskart;', 
+			'void main(void)', 
+			'{', 
+			'	gl_Position = pMatrix * vMatrix * mMatrix * vec4(positionIn, 1.0);', 
+			'	texCoordOut = vec2(texCoordIn.s*maskart.x+(maskart.x*maskart.z), texCoordIn.t*maskart.y+(maskart.y*maskart.w));', 
+			'}'
+		]; 
+	vs = engine.getGLSL(c);
+	c =	[
+			CAMEL_SHADER_FRAGMENT, 
+			'precision mediump float;', 
+			'uniform sampler2D sampler;', 
+			'varying vec2 texCoordOut;', 
+			'void main(void)', 
+			'{', 
+			'	gl_FragColor = texture2D(sampler, texCoordOut);', 
+			'}'
+		];
+	fs = engine.getGLSL(c); 
+	CAMEL_RENDERER_CAREM = this.buildRender( 
+		[vs,fs], 
+		{ 
+			'pMatrix' : CAMEL_UNIFORM, 
+			'vMatrix' : CAMEL_UNIFORM, 
+			'mMatrix' : CAMEL_UNIFORM, 
+			'sampler' : CAMEL_UNIFORM, 
+			'maskart' : CAMEL_UNIFORM, 
+			'positionIn' : CAMEL_ATTRIB, 
+			'texCoordIn' : CAMEL_ATTRIB, 
+		}
+	);
+	
+	if(CAMEL_DEVICE_MOBILE) 
+	{
+		return;
+	}
+	
+	c = [
+			CAMEL_SHADER_VERT, 
+			'attribute vec3 positionIn;', 
+			'attribute vec3 normalIn;', 
+			'attribute vec2 texCoordIn;', 
+			'uniform mat4 pMatrix;', 
+			'uniform mat4 vMatrix;', 
+			'uniform mat4 mMatrix;', 
+			'varying vec2 texCoordOut;', 
+			'varying vec3 normalOut;', 
+			'varying vec3 viewOut;', 
+			'void main(void)', 
+			'{', 
+			'	gl_Position = pMatrix * vMatrix * mMatrix * vec4(positionIn, 1.0);', 
+			'	texCoordOut = texCoordIn;','	normalOut = vec3(mMatrix * vec4(normalIn, 0.0));', 
+			'	viewOut = vec3(vMatrix * mMatrix * vec4(positionIn, 1.0));', 
+			'}'
+		]; 
+	vs = engine.getGLSL(c);
+	c = [
+			CAMEL_SHADER_FRAGMENT, 
+			'precision mediump float;', 
+			'uniform sampler2D sampler;', 
+			'varying vec2 texCoordOut;', 
+			'varying vec3 normalOut;', 
+			'varying vec3 viewOut;', 
+			'struct PLight ', 
+			'{', 
+			'	vec3 ambient_color;', 
+			'	vec3 diffuse_color;', 
+			'	vec3 specular_color;', 
+			'	vec3 position;', 
+			'};', 
+			'uniform vec3 dlight_ambient_color;', 
+			'uniform vec3 dlight_diffuse_color;', 
+			'uniform vec3 dlight_specular_color;', 
+			'uniform vec3 dlight_vector;', 
+			'uniform PLight plight[7];', 
+			'uniform vec3 mat_ambient_color;', 
+			'uniform vec3 mat_diffuse_color;', 
+			'uniform vec3 mat_specular_color;', 
+			'uniform float mat_shininess;', 
+			'uniform float mat_alpha;', 
+			'void main(void)', 
+			'{', 
+			'	vec3 color = vec3(texture2D(sampler, texCoordOut));', 
+			'	vec3 ambient = dlight_ambient_color * mat_ambient_color;', 
+			'	vec3 diffuse = dlight_diffuse_color * mat_diffuse_color * max(0.0, dot(normalOut, dlight_vector));', 
+			'	vec3 Eye = normalize(viewOut);', 
+			'	vec3 N = reflect(dlight_vector, normalOut);', 
+			'	vec3 specular = dlight_specular_color * mat_specular_color * pow(max(dot(N, Eye), 0.0), mat_shininess);', 
+			'	vec3 light = ambient + diffuse + specular;', 
+			'	gl_FragColor = vec4(color*light, mat_alpha);', 
+			'}'
+		]; 
+	fs = engine.getGLSL(c);
+	CAMEL_RENDERER_WORLD = this.buildRender(
+		[vs,fs], 
+		{
+			'pMatrix' : CAMEL_UNIFORM, 
+			'vMatrix' : CAMEL_UNIFORM, 
+			'mMatrix' : CAMEL_UNIFORM, 
+			'sampler' : CAMEL_UNIFORM, 
+			'mat_alpha' : CAMEL_UNIFORM, 
+			'mat_shininess' : CAMEL_UNIFORM, 
+			'mat_diffuse_color' : CAMEL_UNIFORM, 
+			'mat_ambient_color' : CAMEL_UNIFORM, 
+			'mat_specular_color' : CAMEL_UNIFORM, 
+			'dlight_ambient_color' : CAMEL_UNIFORM, 
+			'dlight_diffuse_color' : CAMEL_UNIFORM, 
+			'dlight_specular_color' : CAMEL_UNIFORM, 
+			'dlight_vector' : CAMEL_UNIFORM, 
+			'plight[0].ambient_color' : CAMEL_UNIFORM, 
+			'plight[0].diffuse_color' : CAMEL_UNIFORM, 
+			'plight[0].specular_color' : CAMEL_UNIFORM, 
+			'plight[0].position' : CAMEL_UNIFORM, 
+			'plight[1].ambient_color' : CAMEL_UNIFORM, 
+			'plight[1].diffuse_color' : CAMEL_UNIFORM, 
+			'plight[1].specular_color' : CAMEL_UNIFORM, 
+			'plight[1].position' : CAMEL_UNIFORM, 
+			'positionIn' : CAMEL_ATTRIB, 
+			'texCoordIn' : CAMEL_ATTRIB, 
+			'normalIn' : CAMEL_ATTRIB
+		}
+	);
+	
+	return;
 };
 
 Camel.Alert = function(param) 
@@ -3408,7 +3641,7 @@ Camel.Scene.prototype.addChild = function(particle)
 		}
 		else 
 		{
-			return;
+			continue;
 		}
 	}
 };
