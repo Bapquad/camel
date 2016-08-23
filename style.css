@@ -12,7 +12,7 @@ q, blockquote {quotes:none;}
 q:before, q:after {content:"";}
 caption, legend {display:none ;}
 a {text-decoration:none; color:#09f;}
-a:visited {text-decoration:none; color:#fff;}
+a:visited {text-decoration:none; color:#960;}
 a:active {text-decoration:none; color:#f30;}
 a:hover{text-decoration:none; color:#36f;}
 dfn, em, cite, address {font-style:normal ;}
@@ -152,12 +152,23 @@ h3
 	margin-left: 150px;
 }
 
+#docs h2 
+{
+	font-size: 25px;
+	margin: 18px 0 8px;
+	padding: 5px;
+	background: #06f;
+	border-radius: 5px;
+}
+
 #docs h4 
 {
 	font-weight: bold;
 	margin-top: 35px;
 	border-top: 1px solid #666;
 	padding-top: 5px;
+	font-size: 15px;
+	font-family: "Lucida Console";
 }
 
 body 
