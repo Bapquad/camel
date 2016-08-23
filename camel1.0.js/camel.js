@@ -36,7 +36,8 @@ var CAMEL_IL_FOUR = 4,
 var NULL = null, 
 	TRUE = true, 
 	FALSE = false, 
-	INFINITY = -9999999, 
+	INFINITY = -999999999, 
+	UNFINITY = 999999999, 
 	EMPTY = '', 
 	UNSET = undefined;
 var GL_COLOR_BUFFER_BIT = 16384, 
@@ -57,13 +58,13 @@ var CAMEL_IS_IE = /*@cc_on!@*/false || !!document.documentMode;	// Internet Expl
 var CAMEL_IS_EDGE = !CAMEL_IS_IE && !!window.StyleMedia;	// Edge 20+
 var CAMEL_IS_CHROME = !!window.chrome && !!window.chrome.webstore;		// Chrome 1+
 var CAMEL_IS_BLINK = (CAMEL_IS_CHROME || CAMEL_IS_OPERA) && !!window.CSS;	// Blink engine detection
+var CAMEL_IS_OPERAMINI = navigator.userAgent.match(/Opera Mini/i);
 var CAMEL_DEVICE_ANDROID = /android/i.test(navigator.userAgent.toLowerCase());
 var CAMEL_DEVICE_BLACKBERRY = /blackberry/i.test(navigator.userAgent.toLowerCase());
 var CAMEL_DEVICE_IOS =/ipad|iphone|ipod/i.test(navigator.userAgent.toLowerCase());
 var CAMEL_DEVICE_IPHONE = /iphone/i.test(navigator.userAgent.toLowerCase());
 var CAMEL_DEVICE_IPAD = /ipad/i.test(navigator.userAgent.toLowerCase());
 var CAMEL_DEVICE_IPOD = /ipod/i.test(navigator.userAgent.toLowerCase());
-var CAMEL_IS_OPERAMINI = navigator.userAgent.match(/Opera Mini/i);
 var CAMEL_DEVICE_WINDOWSPHONE = /windows phone/i.test(navigator.userAgent.toLowerCase());
 var CAMEL_DEVICE_WEBOS = /webos/i.test(navigator.userAgent.toLowerCase());
 var CAMEL_DEVICE_MOBILE = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) 
@@ -96,6 +97,7 @@ var Camel = function(CANVASElementID, Settings, Extensions, numberHolder)
 	try 
 	{
 		var engine = this;
+		Settings.preserveDrawingBuffer = true;
 		this.gl = this.element.getContext(CAMEL_WEBGL, Settings);
 		this.gl.engine = this;
 		this.context = this.getWGL();
@@ -636,9 +638,11 @@ Camel.prototype.buildDefault = function()
 			'uniform mat4 vMatrix;', 
 			'uniform mat4 mMatrix;', 
 			'varying vec2 texCoordOut;', 
+			'varying vec3 normalOut;', 
 			'void main(void)', 
 			'{', 
 			'	gl_Position = pMatrix * vMatrix * mMatrix * vec4(positionIn, 1.0);', 
+			'	normalOut = normalIn;', 
 			'	texCoordOut = texCoordIn;', 
 			'}'
 		];
@@ -649,6 +653,7 @@ Camel.prototype.buildDefault = function()
 			'uniform sampler2D sampler;', 
 			'uniform float mat_alpha;', 
 			'varying vec2 texCoordOut;', 
+			'varying vec3 normalOut;', 
 			'void main(void)', 
 			'{', 
 			'	vec3 color = vec3(texture2D(sampler, texCoordOut));', 

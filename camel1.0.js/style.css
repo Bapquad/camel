@@ -11,21 +11,31 @@ h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,li,ol,th,td,p,blockquote,form,fieldset,legend,inpu
 q, blockquote {quotes:none;}
 q:before, q:after {content:"";}
 caption, legend {display:none ;}
-a {text-decoration:none; color:#f30;}
-a:visited {text-decoration:none; color:#f30;}
+a {text-decoration:none; color:#09f;}
+a:visited {text-decoration:none; color:#fff;}
 a:active {text-decoration:none; color:#f30;}
-a:hover{text-decoration:none; color:#f30;}
+a:hover{text-decoration:none; color:#36f;}
 dfn, em, cite, address {font-style:normal ;}
 select,button {vertical-align:middle;}
 button {border:0 none ; padding:0 ; background:none ; cursor:pointer ;}
-body,th,td,input,select,big,button,textarea, li {font-size:12px;font-family:Tahoma, Helvetica, sans-serif;color:#fff;}
+body,th,td,input,select,big,button,textarea,p,div,li {font-size:12px;font-family:Tahoma, Helvetica, sans-serif;color:#fff;}
 
-body.border-col 
+h1, h2 
 {
-	background-image: url("documentations/border-col.gif");
-	background-repeat: repeat-y;
-	background-position: 210px top;
-	background-color: #222;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+h2 
+{
+	font-size: 14px;
+}
+
+
+h3 
+{
+	font-weight: bold;
+	font-size: 14px;
 }
 
 .ml25 
@@ -43,57 +53,6 @@ body.border-col
 	margin-bottom: 5px;
 }
 
-h1, h2 
-{
-	font-size: 18px;
-	font-weight: bold;
-}
-
-h2 
-{
-	font-size: 14px;
-}
-
-.tree-col 
-{
-	float: left;
-	width: 210px;
-	padding: 20px 10px;
-	height: 500px;
-}
-
-.tree-col h1 
-{
-	margin: 10px 0 2px;
-}
-
-.content-col 
-{
-	margin-left: 210px;
-	padding: 20px 50px 20px 30px;
-}
-
-.content-col h3 
-{
-	font-size: 18px;
-	background: #555;
-	padding: 3px 10px 5px;
-}
-
-.content-col h4 
-{
-	border-top: 1px solid #222;
-	padding-top: 5px;
-	font-size: 16px;
-	color: #fff;
-	font-weight: bold;
-}
-
-.inner 
-{
-	margin-bottom: 35px;
-}
-
 .note, .tips , .code
 {
 	margin: 15px 0;
@@ -105,6 +64,7 @@ h2
 	margin-right: 25px;
 	border: 1px solid #777;
 	padding: 10px 20px;
+	display: block;
 }
 
 .code, .code-block 
@@ -118,7 +78,7 @@ h2
 	font-family: "Lucida Console";
 }
 
-.code-keyword
+.code-key
 {
 	color: #06f;
 	font-family: "Lucida Console";
@@ -131,7 +91,7 @@ h2
 	font-family: "Lucida Console";
 }
 
-.code-constant 
+.code-const 
 {
 	color: #7e28d7;
 	font-family: "Lucida Console";
@@ -153,25 +113,51 @@ h2
 	color: #6f0;
 }
 
-.list 
-{
-	margin-left: 25px;
-}
-
-h2.member 
-{
-	border-top: 1px solid #999;
-}
-
 .mark-folder 
 {
 	color: #dc0;
 }
 
-
 .mark-file 
 {
 	color: #6e0;
+}
+
+.list li 
+{
+	margin-bottom: 4px;
+}
+
+#docMain 
+{
+	background: url(img/colbg.gif) repeat-y 150px 0px;
+	border-top: 1px solid #fff;
+	padding: 0 10px 10px;
+	overflow: hidden;
+}
+
+#tree 
+{
+	width: 150px;
+	float: left;
+}
+
+#tree h3 
+{
+	margin-top: 15px;
+}
+
+#docs 
+{
+	margin-left: 150px;
+}
+
+#docs h4 
+{
+	font-weight: bold;
+	margin-top: 35px;
+	border-top: 1px solid #666;
+	padding-top: 5px;
 }
 
 body 
@@ -188,14 +174,15 @@ body
 
 header 
 {
-	padding-bottom: 10px;
+	margin-bottom: 10px;
+	min-width: 320px;
+	background: #171a1f;
 }
 
 header .header 
 {
 	background: url(img/bg_header.png) no-repeat left top;
 	background-size: 100% 100%;
-	margin-top: 20px;
 	position: relative;
 	min-height: 74px;
 }
@@ -203,8 +190,20 @@ header .header
 header #logo 
 {
 	position: absolute;
-	top: 54px;
-	left: 33px;
+	bottom: -5px;
+	left: 3%;
+}
+
+header #menu-btn 
+{
+	float: right;
+	padding: 15px 6px;
+	display: none;
+}
+
+header #menu-btn img 
+{
+	border-radius: 5px;
 }
 
 header nav 
@@ -284,6 +283,21 @@ header nav ul #ctt a
     margin-top: 0.49em;
 }
 
+header nav ul #cll 
+{
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+}
+
+header nav ul #cll a 
+{
+	line-height: 2.5em;
+	height: 2.5em;
+	border-radius: 1px;
+	width: 80px;
+}
+
 header nav ul li a:hover 
 {
 	color: #171a1e;
@@ -292,14 +306,14 @@ header nav ul li a:hover
 
 .container 
 {
-	padding: 30px 0;
+	padding: 64px 0;
 }
 
 .container iframe 
 {
 	display:block; 
 	width: 100%; 
-	height: 480px; 
+	height: 320px; 
 	border: 0 none;
 }
 
@@ -313,10 +327,67 @@ footer #copyright
 	text-align: center;
 }
 
-@media (max-width: 768px) 
+@media screen and (min-width:100px) and (max-width: 960px) 
 {
-	h1 
-	{
-		background:  red;
-	}
+	
+header 
+{
+	position: fixed;
+	width: 100%;
+}
+
+header #menu-btn 
+{
+	display: block;
+	cursor: pointer;
+}
+
+header .header 
+{
+	min-height: 55px;
+}
+
+header nav 
+{
+	position: absolute;
+	right: 7px;
+    top: 50px;
+	width: 180px;
+	display: none;
+}
+
+header nav ul 
+{
+	float: right;
+	width: 100%;
+}
+
+header nav ul li 
+{
+	float: none;
+	margin: 0 0 1px;
+}
+
+header nav ul li a 
+{
+	background: #333!important;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	height: auto!important;
+    line-height: 1.0em;
+	margin-top: 0 !important;
+	width: 100%;
+	display: block;
+}
+
+header nav ul #cll 
+{
+	position: static;
+}
+
+header nav ul #cll a 
+{
+	width: auto;
+}
+
 }

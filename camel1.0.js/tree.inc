@@ -1,41 +1,3 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="user-scalable=no, width=device-width" />
-<link href="style.css" rel="stylesheet" type="text/css" media="all" />
-<script src="jquery-1.12.3.min.js" type="text/javascript"></script>
-<script src="w3data.js" type="text/javascript"></script>
-<script src="script.js" type="text/javascript"></script>
-<title>camelJS | Bapquad Games | bapquadgames.com</title>
-</head>
-
-<body>
-<div class="wrapper">
-<div w3-include-html="header.inc"></div>
-
-<div class="container">
-<div class="layout">
-<div>
-<iframe src="Samples/Model/index.html"></iframe>
-</div>
-</div>
-</div>
-
-<div class="container">
-<div id="docMain">
-<div id="tree">
-<div w3-include-html="tree.inc"></div>
-</div>
-<div id="docs">
-<p class="note">Camel.JS is an open source 3D Javascript based on WebGL.</p>
-<ul class="ml25 list">
-	<li>Easy setup, developer can <a href="https://github.com/bbframework/camelJS/">download at here</a> and include into the page.</li>
-	<li>Quickly, WebGL - Web Graphics Library is a javascript API build-in with any compatible web browser.</li>
-	<li>Smart Shader, It helps developer create out own renderer.</li>
-</ul>
-<p class="note">Camel.JS includes the follow classes and features</p>
-<div class="ml25">
 <h3>Global</h3>
 <ul>
 <li><a href="documentation/camel-variables.html">GLOBALS Variables</a></li>
@@ -75,12 +37,3 @@
 <li><a href="documentation/camel-cell.html">Camel.Cell</a></li>
 <li><a href="documentation/camel-model.html">Camel.Model</a></li>
 </ul>
-</div>
-</div>
-</div>
-</div>
-
-<div w3-include-html="footer.inc"></div>
-</div>
-</body>
-</html>

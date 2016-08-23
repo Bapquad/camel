@@ -29,7 +29,8 @@ function init()
 function progress() 
 {
 	Timer = AssetMgr.getProgress();
-	if(AssetMgr.isComplete()) {
+	if(AssetMgr.isComplete()) 
+	{
 		UnTick();
 		Timer = setTimeout(create, 300);
 		return;
@@ -52,8 +53,8 @@ function create()
 			"OES_element_index_uint", 
 			"WEBKIT_OES_element_index_uint", 
 		], 
-		// Set number of scene which holded with
-		3 
+		// Set number of render which holded with
+		4 
 	);
 	engine.setClearColor(23, 26, 30);
 	engine.sizeFitBrowser();

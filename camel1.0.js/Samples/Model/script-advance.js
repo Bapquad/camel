@@ -52,8 +52,8 @@ function create()
 			"OES_element_index_uint", 
 			"WEBKIT_OES_element_index_uint", 
 		], 
-		// Set number of scene which holded with
-		3 
+		// Set number of renderer which holded with
+		4 
 	);
 	engine.setClearColor(23, 26, 30);
 	engine.sizeFitBrowser();

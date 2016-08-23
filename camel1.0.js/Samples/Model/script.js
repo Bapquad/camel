@@ -53,11 +53,12 @@ function create()
 			"OES_element_index_uint", 
 			"WEBKIT_OES_element_index_uint", 
 		], 
-		// Set number of scene which holded with
-		3 
+		// Set number of render which holded with
+		4 
 	);
 	engine.setClearColor(23, 26, 30);
 	engine.sizeFitBrowser();
+	
 	/**
 	 * Create Projection and Camera
 	 */
@@ -73,8 +74,9 @@ function create()
 								  new Camel.Vec3(0.0, 1.0, 0.0));
 	
 	/** Create scene */
-	var scene = engine.buildScene(
-		function() {
+	var scene = engine.buildScene( 
+		function() 
+		{
 			this.dragon = this.addChild(new Camel.Model(AssetMgr.getAsset('model/dragon.json')));
 			this.dragon.translateY(-6.0);
 			this.dragon.translateZ(-16.0);
