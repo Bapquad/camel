@@ -94,6 +94,7 @@ var Camel = function(CANVASElementID, Settings, Extensions, numberHolder)
 	this.clearColor = new Array(3);
 	
 	this.renderHolder = (numberHolder == UNSET) ? new Array(8) : new Array(numberHolder);
+	
 	try 
 	{
 		var engine = this;

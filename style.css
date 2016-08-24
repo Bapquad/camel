@@ -55,7 +55,7 @@ h3
 
 .note, .tips , .code
 {
-	margin: 15px 0;
+	margin: 15px 0 7px;
 }
 
 .tips, .code-block
@@ -161,6 +161,16 @@ h3
 	border-radius: 5px;
 }
 
+#docs h3 
+{
+	font-size: 18px;
+	background: #f60;
+	padding: 5px;
+	border-radius: 5px;
+	display: inline-block;
+	margin-top: 35px;
+}
+
 #docs h4 
 {
 	font-weight: bold;
@@ -169,6 +179,12 @@ h3
 	padding-top: 5px;
 	font-size: 15px;
 	font-family: "Lucida Console";
+}
+
+#docs h4.st, 
+#docs h3.st 
+{
+	margin-top: 10px;
 }
 
 body 

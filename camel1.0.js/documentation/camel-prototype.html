@@ -20,14 +20,255 @@
 <div w3-include-html="tree.html"></div>
 </div>
 <div id="docs">
-<h2>GLOBAL Variables</h2>
-<p class="note">Camel.JS is an open source 3D Javascript based on WebGL.</p>
-<ul class="ml25 list">
-	<li>Easy setup, developer can <a href="https://github.com/bbframework/camelJS/">download at here</a> and include into the page.</li>
-	<li>Quickly, WebGL - Web Graphics Library is a javascript API build-in with any compatible web browser.</li>
-	<li>Smart Shader, It helps developer create out own renderer.</li>
+<h2>Camel Prototype</h2>
+<p class="note">Camel Prototype is a collection of members and methods in the Camel class.</p>
+
+<h3 class="st">Members</h3>
+
+<h4 id="id" class="st">id</h4>
+<p>Hold the canvas id string.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">console</span>.log(engine.id);
+</p>
+
+<h4 id="element">element</h4>
+<p>Hold the canvas DOM element object.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">console</span>.log(engine.element);
+</p>
+
+<h4 id="gl">gl</h4>
+<p>Hold the canvas context object.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">console</span>.log(engine.gl);
+</p>
+
+<h4 id="context">context</h4>
+<p>Hold the canvas context object.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">console</span>.log(engine.context);
+</p>
+
+<h4 id="lastTime">lastTime</h4>
+<p>Hold the last time Camel used.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">console</span>.log(engine.lastTime);
+</p>
+
+<h4 id="clearColor">clearColor</h4>
+<p>The array holds colors camel use to clear the context. This array has three elements presents for three channel R, G, B.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	engine.setClearColor(<span class="code-param">255</span>, <span class="code-param">0</span>, <span class="code-param">0</span>); <br/>
+	<span class="code-key">console</span>.log(engine.clearColor);
+</p>
+
+<h4 id="renderHolder">renderHolder</h4>
+<p>The array holds renderers camel use to render out from the context. Defaultly, this array has eight elements.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">console</span>.log(engine.renderHolder);
+</p>
+
+<h3>Construct</h3>
+
+<h4 id="construct" class="st">Camel(<span class="code-param">CANVASElementID</span>, <span class="code-param">Settings</span>, <span class="code-param">Extensions</span>, <span class="code-param">numberHolder</span>)</h4>
+<p class="note">The construct of Camel has 4 params:</p>
+<ul>
+	<li><span class="code-param">CANVASElementID</span><span class="code">:string</span> - The id string of canvas developer want to use with Camel.</li>
+	<li><span class="code-param">Settings</span><span class="code">:object</span> - The settings object developer want to config for Camel.</li>
+	<li><span class="code-param">Extensions</span><span class="code">:array</span> - An array collects WebGL extensions.</li>
+	<li><span class="code-param">numberHolder</span><span class="code">:number</span> - Number of renderer. Minimum is 4.</li>
 </ul>
-<p class="note">Camel.JS includes the follow classes and features</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">console</span>.log(engine);
+</p>
+
+<h3>Methods</h3>
+
+<h4 id="getWidth">getWidth()</h4>
+<p>Receive the width of the canvas element.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">console</span>.log(engine.getWidth());
+</p>
+
+<h4 id="getHeight">getHeight()</h4>
+<p>Receive the height of the canvas element.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">console</span>.log(engine.getHeight());
+</p>
+
+<h4 id="getBrowserWidth">getBrowserWidth()</h4>
+<p>Receive the width of the window browser.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">console</span>.log(engine.getBrowserWidth());
+</p>
+
+<h4 id="getBrowserHeight">getBrowserHeight()</h4>
+<p>Receive the height of the window browser.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">console</span>.log(engine.getBrowserHeight());
+</p>
+
+<h4 id="sizeFitBrowser">sizeFitBrowser()</h4>
+<p>Resize the size of context fix to the size of the window browser.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	engine.sizeFitBrowser();
+</p>
+
+<h4 id="setClearColor">setClearColor(<span class="code-param">r</span>, <span class="code-param">b</span>, <span class="code-param">g</span>)</h4>
+<p>Resize the size of context fix to the size of the window browser.</p>
+<p class="note">This method has 3 params:</p>
+<ul>
+	<li><span class="code-param">r</span><span class="code">:number</span> - The number from 0 to 255 for red channel.</li>
+	<li><span class="code-param">g</span><span class="code">:number</span> - The number from 0 to 255 for green channel.</li>
+	<li><span class="code-param">b</span><span class="code">:number</span> - The number from 0 to 255 for blue channel.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	engine.setClearColor(<span class="code-param">255</span>, <span class="code-param">0</span>, <span class="code-param">0</span>);
+</p>
+
+<h4 id="getGLSL">getGLSL(<span class="code-param">shaderID</span>)</h4>
+<p>Receive the compile the shader.</p>
+<p class="note">This method has 1 param:</p>
+<ul>
+	<li><span class="code-param">shaderID</span><span class="code">:object</span> - The object hold shader infos.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	engine.getGLSL(<span class="code-param">c</span>);
+</p>
+
+<h4 id="buildScene">buildScene(<span class="code-param">renderer</span>, <span class="code-param">startCB</span>, <span class="code-param">updateCB</span>, <span class="code-param">renderCB</span>, <span class="code-param">beforeRenderCB</span>)</h4>
+<p>Building the scene.</p>
+<p class="note">This method has 5 params:</p>
+<ul>
+	<li><span class="code-param">renderer</span><span class="code">:object</span> - The renderer used to render the scene.</li>
+	<li><span class="code-param">startCB</span><span class="code">:callback</span> - The start steps the scene.</li>
+	<li><span class="code-param">updateCB</span><span class="code">:callback</span> - The update when the scene has being rendered.</li>
+	<li><span class="code-param">renderCB</span><span class="code">:callback</span> - The render steps.</li>
+	<li><span class="code-param">beforeRenderCB</span><span class="code">:callback</span> - The steps before render.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">var</span> scene = engine.buildScene( <br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-const">CAMEL_RENDERER_TEXTURE</span>, <br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-key">function</span>() <br/> 
+	&nbsp;&nbsp;&nbsp;&nbsp;{ <br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">// Some start code of the scene...</span> <br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;} <br/>
+	);
+</p>
+
+<h4 id="orderRender">orderRender(<span class="code-param">renderer</span>)</h4>
+<p>Registry the renderer into camel render machine.</p>
+<p class="note">This method has 1 param:</p>
+<ul>
+	<li><span class="code-param">renderer</span><span class="code">:object</span> - The renderer need to registry.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	engine.orderRender(<span class="code-const">CAMEL_RENDERER_TEXTURE</span>);
+</p>
+
+<h4 id="buildRender">buildRender(<span class="code-param">shaders</span>, <span class="code-param">constants</span>, <span class="code-param">beforeCB</span>, <span class="code-param">finishCB</span>)</h4>
+<p>Building the renderer.</p>
+<p class="note">This method has 4 params:</p>
+<ul>
+	<li><span class="code-param">shaders</span><span class="code">:object</span> - The shaders used to render the scene.</li>
+	<li><span class="code-param">constants</span><span class="code">:object</span> - The object contains the members are constants buffer of shader.</li>
+	<li><span class="code-param">beforeCB</span><span class="code">:callback</span> - The action has be excuted when the scene has being rendered.</li>
+	<li><span class="code-param">finishCB</span><span class="code">:callback</span> - The action has be excuted when the scene renders completely.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">var</span> scene = engine.buildRender( <br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;[<span class="code-const">vs</span>, <span class="code-const">fs</span>], <br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;{ <br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-param">'positionIn'</span> : <span class="code-const">CAMEL_ATTRIB</span> <br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-param">'texCoordIn'</span> : <span class="code-const">CAMEL_ATTRIB</span> <br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;} <br/>
+	);
+</p>
+
+<h4 id="createVAB">createVAB(<span class="code-param">vArr</span>)</h4>
+<p>Create the vertex array buffer.</p>
+<p class="note">This method has 1 param:</p>
+<ul>
+	<li><span class="code-param">vArr</span><span class="code">:array</span> - The data array holds vertex raw data.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	engine.createVAB(<span class="code-param">vertices</span>);
+</p>
+
+<h4 id="createIAB">createIAB(<span class="code-param">iArr</span>)</h4>
+<p>Create the indice array buffer.</p>
+<p class="note">This method has 1 param:</p>
+<ul>
+	<li><span class="code-param">iArr</span><span class="code">:array</span> - The data array holds indice raw data.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	engine.createIAB(<span class="code-param">indices</span>);
+</p>
+
+<h4 id="createTexture">createTexture(<span class="code-param">texture</span>)</h4>
+<p>Create the texture.</p>
+<p class="note">This method has 1 param:</p>
+<ul>
+	<li><span class="code-param">texture</span><span class="code">:object</span> - The asset object received from asset manager.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	engine.createTexture(<span class="code-param">textureAsset</span>);
+</p>
+
+<h4 id="getTexture">getTexture(<span class="code-param">texture</span>)</h4>
+<p>Create the texture.</p>
+<p class="note">This method has 1 param:</p>
+<ul>
+	<li><span class="code-param">texture</span><span class="code">:object</span> - The asset object received from asset manager.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	engine.getTexture(<span class="code-param">textureAsset</span>);
+</p>
+
 </div>
 </div>
 </div>
