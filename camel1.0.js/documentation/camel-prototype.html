@@ -269,6 +269,91 @@
 	engine.getTexture(<span class="code-param">textureAsset</span>);
 </p>
 
+<h4 id="createRTT">createRTT(<span class="code-param">name</span>, <span class="code-param">width</span>, <span class="code-param">height</span>, <span class="code-param">red</span>, <span class="code-param">green</span>, <span class="code-param">blue</span>, <span class="code-param">alpha</span>, <span class="code-param">render</span>)</h4>
+<p>Create dynamic texture.</p>
+<p class="note">This method has 8 params:</p>
+<ul>
+	<li><span class="code-param">name</span><span class="code">:string</span> - the name of texture.</li>
+	<li><span class="code-param">width</span><span class="code">:number</span> - the width of texture.</li>
+	<li><span class="code-param">height</span><span class="code">:number</span> - the height of texture.</li>
+	<li><span class="code-param">red</span><span class="code">:number</span> - the red channel of swap color.</li>
+	<li><span class="code-param">green</span><span class="code">:number</span> - the green channel of swap color.</li>
+	<li><span class="code-param">blue</span><span class="code">:number</span> - the blue channel of swap color.</li>
+	<li><span class="code-param">alpha</span><span class="code">:number</span> - the alpha channel of swap color.</li>
+	<li><span class="code-param">render</span><span class="code">:object</span> - the renderer used to render the scene.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">var</span> tex = engine.createRTT(<span class="code-param">'texName'</span>, <span class="code-const">256</span>, <span class="code-const">256</span>, <span class="code-const">255</span>, <span class="code-const">0</span>, <span class="code-const">0</span>, <span class="code-const">100</span>, <span class="code-param">renderer</span>);
+</p>
+
+<h4 id="openRTT">openRTT(<span class="code-param">buffer</span>)</h4>
+<p>Begin render to frame buffer.</p>
+<p class="note">This method has 1 param:</p>
+<ul>
+	<li><span class="code-param">buffer</span><span class="code">:object</span> - The frame buffer shown as dynamic texture.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	engine.openRTT(<span class="code-param">frameBuffer</span>);
+</p>
+
+<h4 id="closeRTT">closeRTT()</h4>
+<p>Close render to frame buffer.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	engine.openRTT(<span class="code-param">frameBuffer</span>); <br/><br/>
+	<span class="code-comment">// Render something at here...</span> <br/><br/>
+	engine.closeRTT();
+</p>
+
+<h4 id="closeRTT">getWGL()</h4>
+<p>Receive the context of canvas which renders the current scene.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">var</span> ctx = engine.getWGL();
+</p>
+
+<h4 id="getContext">getContext()</h4>
+<p>Receive the context of canvas which renders the current scene.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">var</span> ctx = engine.getContext();
+</p>
+
+<h4 id="prepare">prepare()</h4>
+<p>The function prepares before cycling.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">var</span> ctx = engine.prepare();
+</p>
+
+<h4 id="openRTT">cycle(<span class="code-param">time</span>)</h4>
+<p>Begin render to frame buffer.</p>
+<p class="note">This method has 1 param:</p>
+<ul>
+	<li><span class="code-param">time</span><span class="code">:number</span> - The number of times.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	engine.cycle(<span class="code-param">10.0</span>);
+</p>
+
+<h4 id="buildDefault">buildDefault()</h4>
+<p>The function prepares renderer.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">var</span> ctx = engine.buildDefault();
+</p>
+
 </div>
 </div>
 </div>
