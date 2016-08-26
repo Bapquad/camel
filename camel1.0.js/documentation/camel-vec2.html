@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no, width=device-width" />
+<link href="../../style.css" rel="stylesheet" type="text/css" media="all" />
+<script src="../../jquery-1.12.3.min.js" type="text/javascript"></script>
+<script src="../../w3data.js" type="text/javascript"></script>
+<script src="../../camel1.0.js/script.js" type="text/javascript"></script>
+<title>Camel.Vec2 | Bapquad Games | bapquadgames.com</title>
+</head>
+
+<body>
+<div class="wrapper">
+<div w3-include-html="header.html"></div>
+
+<div class="container">
+<div id="docMain">
+<div id="tree">
+<div w3-include-html="tree.html"></div>
+</div>
+<div id="docs">
+<h2>Camel.Vec2</h2>
+<p class="note">Camel.Vec2 is the collection .</p>
+
+<h3 class="st">Members</h3>
+
+<h4 id="vec" class="st">vec</h4>
+<p>Hold the <span class="code">Float32Array(2)</span>.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">console</span>.log(vec2.vec);
+</p>
+
+<h3>Construct</h3>
+
+<h4 id="construct" class="st">Camel.Vec2(<span class="code-param">x</span>, <span class="code-param">y</span>)</h4>
+<p class="note">The construct of Camel has 2 params:</p>
+<ul>
+	<li><span class="code-param">x</span><span class="code">:float</span> - The x-coord value of vector2.</li>
+	<li><span class="code-param">y</span><span class="code">:float</span> - The y-coord value of vector2.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">console</span>.log(vec2.vec);
+</p>
+
+<h3>Methods</h3>
+
+<h4 id="loadVecFloat" class="st">loadVecFloat()</h4>
+<p>Receive the vector coord.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">console</span>.log(vec2.loadVecFloat());
+</p>
+
+<h4 id="setVector">setVector(<span class="code-param">x</span>, <span class="code-param">y</span>)</h4>
+<p>Set vector coord.</p>
+<p class="note">This method has two params:</p>
+<ul>
+	<li><span class="code-param">x</span><span class="code">:float</span> - The x-coord value of vector2.</li>
+	<li><span class="code-param">y</span><span class="code">:float</span> - The y-coord value of vector2.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	vec2.setVector(<span class="code-const">4.0</span>, <span class="code-const">10.0</span>);
+</p>
+
+<h4 id="clone">clone(<span class="code-param">v</span>)</h4>
+<p>Duplicate vector.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - The vector has clone by.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(); <br/>
+	vec1.clone(<span class="code-param">vec2</span>);
+</p>
+
+<h4 id="add">add(<span class="code-param">v</span>)</h4>
+<p>Addition vector.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - The vector has added by.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">1.0</span>, <span class="code-const">1.0</span>); <br/>
+	vec1.add(<span class="code-param">vec2</span>);
+</p>
+
+<h4 id="subtract">subtract(<span class="code-param">v</span>)</h4>
+<p>Subtract vector.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - The vector has subtracted by.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">1.0</span>, <span class="code-const">1.0</span>); <br/>
+	vec1.subtract(<span class="code-param">vec2</span>);
+</p>
+
+<h4 id="multiply">multiply(<span class="code-param">v</span>)</h4>
+<p>Multiply vector.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - The vector has multiplied by.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">1.0</span>, <span class="code-const">1.0</span>); <br/>
+	vec1.multiply(<span class="code-param">vec2</span>);
+</p>
+
+<h4 id="divide">divide(<span class="code-param">v</span>)</h4>
+<p>Divide vector.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - The vector has divided by.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">1.0</span>, <span class="code-const">1.0</span>); <br/>
+	vec1.divide(<span class="code-param">vec2</span>);
+</p>
+
+<h4 id="scale">scale(<span class="code-param">value</span>)</h4>
+<p>Scale vector.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">v</span><span class="code">:Number</span> - The number has scaled by.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	vec1.scale(<span class="code-const">2.0</span>);
+</p>
+
+<h4 id="sqrtLen">sqrtLen()</h4>
+<p>The sqrt length.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> nResult = vec1.sqrtLen();
+</p>
+
+<h4 id="length">length()</h4>
+<p>Computing the vector2D to the length.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> nLen = vec1.length();
+</p>
+
+<h4 id="sqrtDist">sqrtDist(<span class="code-param">v</span>)</h4>
+<p>the sqrt distance.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - The vector2D object.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">1.0</span>, <span class="code-const">1.0</span>); <br/>
+	vec1.sqrtDist(<span class="code-const">vec2</span>);
+</p>
+
+</div>
+</div>
+</div>
+
+<div w3-include-html="footer.html"></div>
+</div>
+</body>
+</html>
