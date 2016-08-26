@@ -37,7 +37,7 @@
 
 <h4 id="constructor" class="st">Camel.Vec3(<span class="code-param">x</span>, <span class="code-param">y</span>, <span class="code-param">z</span>)</h4>
 <p class="note">The constructor of Camel.Vec3 has 3 params:</p>
-<ul>
+<ul class="ml25">
 	<li><span class="code-param">x</span><span class="code">:number</span> - x-coord of the 3D vector.</li>
 	<li><span class="code-param">y</span><span class="code">:number</span> - y-coord of the 3D vector.</li>
 	<li><span class="code-param">z</span><span class="code">:number</span> - z-coord of the 3D vector.</li>
@@ -51,17 +51,65 @@
 <h3>Methods</h3>
 
 <h4 id="loadVecFloat" class="st">loadVecFloat()</h4>
-<p class="note">Short description for this code</p>
-<p class="note">Params introduce:</p>
-<ul>
-	<li><span class="code-param">aggr1</span><span class="code">:string</span> - The id string of canvas developer want to use with Camel.</li>
-	<li><span class="code-param">aggr2</span><span class="code">:object</span> - The settings object developer want to config for Camel.</li>
-</ul>
+<p>Receives the <span class="code">Float32Array(3)</span> value.</p>
 <p class="tips">Return <span class="code">Float32Array(3)</span> - the 3D vector value.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
-	<span class="code-key">console</span>.log(engine.getWidth());
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(vec1.loadVecFloat());
+</p>
+
+<h4 id="setVector">setVector(<span class="code-param">x</span>, <span class="code-param">y</span>, <span class="code-param">z</span>)</h4>
+<p>Setup 3D vector value.</p>
+<p class="note">This method has three params:</p>
+<ul class="ml25">
+	<li><span class="code-param">x</span><span class="code">:number</span> - x-coord of the 3D vector.</li>
+	<li><span class="code-param">y</span><span class="code">:number</span> - y-coord of the 3D vector.</li>
+	<li><span class="code-param">z</span><span class="code">:number</span> - z-coord of the 3D vector.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	vec1.setVector(<span class="code-const">1.0</span>, <span class="code-const">0.0</span>, <span class="code-const">-1.0</span>);
+</p>
+
+<h4 id="clone">clone(<span class="code-param">v</span>)</h4>
+<p>Duplicate the Vec3 object.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">v</span><span class="code">:object</span> - if exist, this param is another Vec3 object.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+    <span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">0.0</span>); <br/>
+	vec1.clone(<span class="code-param">vec2</span>);
+</p>
+
+<h4 id="add">add(<span class="code-param">v</span>)</h4>
+<p>Addition the Vec3 value.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">v</span><span class="code">:object</span> - if exist, this value has added.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+    <span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">0.0</span>); <br/>
+	vec1.add(<span class="code-param">vec2</span>);
+</p>
+
+<h4 id="subtract">subtract(<span class="code-param">v</span>)</h4>
+<p>The 3D vector subtraction.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">v</span><span class="code">:object</span> - if exist, this value has subtracted from.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+    <span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">0.0</span>); <br/>
+	vec1.subtract(<span class="code-param">vec2</span>);
 </p>
 
 </div>
