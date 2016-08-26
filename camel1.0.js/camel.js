@@ -941,11 +941,11 @@ Camel.Vec2.prototype.inverse = function()
 	this.vec[1] = 1.0/this.vec[1];
 	return this;
 };
-Camel.Vec2.prototype.normalize = function(out) 
+Camel.Vec2.prototype.normalize = function(vIn) 
 {
 	var v=this;
-	if(out != UNSET)
-		v = out;
+	if(vIn != UNSET)
+		v = vIn;
 	if(v.sqrtLen() > 0) 
 	{
 		var l = 1 / v.length();

@@ -80,7 +80,7 @@
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
 	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(); <br/>
-	vec1.clone(<span class="code-param">vec2</span>);
+	vec1.clone(vec2);
 </p>
 
 <h4 id="add">add(<span class="code-param">v</span>)</h4>
@@ -93,7 +93,7 @@
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
 	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">1.0</span>, <span class="code-const">1.0</span>); <br/>
-	vec1.add(<span class="code-param">vec2</span>);
+	vec1.add(vec2);
 </p>
 
 <h4 id="subtract">subtract(<span class="code-param">v</span>)</h4>
@@ -106,7 +106,7 @@
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
 	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">1.0</span>, <span class="code-const">1.0</span>); <br/>
-	vec1.subtract(<span class="code-param">vec2</span>);
+	vec1.subtract(vec2);
 </p>
 
 <h4 id="multiply">multiply(<span class="code-param">v</span>)</h4>
@@ -119,7 +119,7 @@
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
 	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">1.0</span>, <span class="code-const">1.0</span>); <br/>
-	vec1.multiply(<span class="code-param">vec2</span>);
+	vec1.multiply(vec2);
 </p>
 
 <h4 id="divide">divide(<span class="code-param">v</span>)</h4>
@@ -132,7 +132,7 @@
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
 	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">1.0</span>, <span class="code-const">1.0</span>); <br/>
-	vec1.divide(<span class="code-param">vec2</span>);
+	vec1.divide(vec2);
 </p>
 
 <h4 id="scale">scale(<span class="code-param">value</span>)</h4>
@@ -148,7 +148,7 @@
 </p>
 
 <h4 id="sqrtLen">sqrtLen()</h4>
-<p>The sqrt length.</p>
+<p>The square root of the length.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
@@ -164,7 +164,7 @@
 </p>
 
 <h4 id="sqrtDist">sqrtDist(<span class="code-param">v</span>)</h4>
-<p>the sqrt distance.</p>
+<p>the square root distance.</p>
 <p class="note">This method has one param:</p>
 <ul>
 	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - The vector2D object.</li>
@@ -173,7 +173,154 @@
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
 	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">1.0</span>, <span class="code-const">1.0</span>); <br/>
-	vec1.sqrtDist(<span class="code-const">vec2</span>);
+	vec1.sqrtDist(vec2);
+</p>
+
+<h4 id="distance">distance(<span class="code-param">v</span>)</h4>
+<p>Receives the distance with an another vector.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - The vector2D object.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">1.0</span>, <span class="code-const">1.0</span>); <br/>
+	vec1.distance(vec2);
+</p>
+
+<h4 id="distance">symmetry(<span class="code-param">x</span>, <span class="code-param">y</span>)</h4>
+<p>Symmetry vector via an another.</p>
+<p class="note">This method has two params:</p>
+<ul>
+	<li><span class="code-param">x</span><span class="code">:number</span> - x-coord of center point.</li>
+	<li><span class="code-param">y</span><span class="code">:number</span> - y-coord of center point.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	vec1.symmetry(<span class="code-const">0.0</span>, <span class="code-const">0.0</span>);
+</p>
+
+<h4 id="inverse">inverse()</h4>
+<p>Computing and receives the inverse vector.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> nLen = vec1.inverse();
+</p>
+
+<h4 id="normalize">normalize(<span class="code-param">vIn</span>)</h4>
+<p>Receives the normalize of 2D vector.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">vIn</span><span class="code">:Camel.Vec2</span> - if exist, receives the normalize of <span class="code-param">vIn</span>.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">1.0</span>, <span class="code-const">1.0</span>); <br/>
+	<span class="code-key">var</span> normal_vec3 = vec1.normalize(vec2);
+</p>
+
+<h4 id="dot">dot(<span class="code-param">v</span>)</h4>
+<p>Receives the dot between the <span class="code-param">v</span> and the 2D vector.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - the 2D vector has dotted by.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">1.0</span>, <span class="code-const">1.0</span>); <br/>
+	<span class="code-key">var</span> dotResult = vec1.dot(vec2);
+</p>
+
+<h4 id="cross">cross(<span class="code-param">v</span>)</h4>
+<p>Receives the cross between the <span class="code-param">v</span> and the 2D vector.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - the 2D vector has crossed by.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">1.0</span>, <span class="code-const">1.0</span>); <br/>
+	<span class="code-key">var</span> crossResult = vec1.cross(vec2);
+</p>
+
+<h4 id="lerp">lerp(<span class="code-param">v</span>, <span class="code-param">t</span>)</h4>
+<p>Receives the slurp interpolation between the <span class="code-param">v</span> and the 2D vector.</p>
+<p class="note">This method has two params:</p>
+<ul>
+	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - the 2D vector has lerp by.</li>
+	<li><span class="code-param">t</span><span class="code">:number</span> - the time.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">1.0</span>, <span class="code-const">1.0</span>); <br/>
+	<span class="code-key">var</span> lerpResult = vec1.lerp(vec2, dt);	<span class="code-comment">// dt is deltatime</span>
+</p>
+
+<h4 id="random">random(<span class="code-param">scale</span>)</h4>
+<p>Generates a random vector with the given scale.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">scale</span><span class="code">:number</span> - Length of the resulting vector.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> result = vec1.random(<span class="code-const">2.0</span>);
+</p>
+
+<h4 id="transformMat2">transformMat2(<span class="code-param">m</span>)</h4>
+<p>Transforms with a Camel.Mx22.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">m</span><span class="code">:Camel.Mx22</span> - The matrix 2x2 to transform with.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> result = vec1.transformMat2(mat2);	<span class="code-comment">// mat2 created from</span> <a href="camel-mx22.html#constructor">Camel.Mx22</a>
+</p>
+
+<h4 id="transformMat2d">transformMat2d(<span class="code-param">m</span>)</h4>
+<p>Transforms with a mat2d.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">m</span><span class="code">:Camel.Mx22</span> - The matrix 2x2 to transform with.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> result = vec1.transformMat2d(mat2);	<span class="code-comment">// mat2 created from</span> <a href="camel-mx22.html#constructor">Camel.Mx22</a>
+</p>
+
+<h4 id="transformMat3">transformMat3(<span class="code-param">m</span>)</h4>
+<p>Transforms with a mat2d.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">m</span><span class="code">:Camel.Mx33</span> - The matrix 3x3 to transform with.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> result = vec1.transformMat3(mat3);	<span class="code-comment">// mat3 created from</span> <a href="camel-mx22.html#constructor">Camel.Mx22</a>
+</p>
+
+<h4 id="transformMat4">transformMat4(<span class="code-param">m</span>)</h4>
+<p>Transforms the vec2 with a mat4 3rd vector component is implicitly '0' 4th vector component is implicitly '1'.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">m</span><span class="code">:Camel.Mx44</span> - The matrix to transform with.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">var</span> result = vec1.transformMat4(mat4);	<span class="code-comment">// mat2 created from</span> <a href="camel-mx22.html#constructor">Camel.Mx22</a>
 </p>
 
 </div>
