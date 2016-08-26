@@ -83,7 +83,7 @@
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
     <span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">0.0</span>); <br/>
-	vec1.clone(<span class="code-param">vec2</span>);
+	vec1.clone(vec2);
 </p>
 
 <h4 id="add">add(<span class="code-param">v</span>)</h4>
@@ -96,7 +96,7 @@
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
     <span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">0.0</span>); <br/>
-	vec1.add(<span class="code-param">vec2</span>);
+	vec1.add(vec2);
 </p>
 
 <h4 id="subtract">subtract(<span class="code-param">v</span>)</h4>
@@ -109,7 +109,63 @@
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
     <span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">0.0</span>); <br/>
-	vec1.subtract(<span class="code-param">vec2</span>);
+	vec1.subtract(vec2);
+</p>
+
+<h4 id="multiply">multiply(<span class="code-param">v</span>)</h4>
+<p>The 3D vector multiply.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">v</span><span class="code">:object</span> - if exist, this value has multiplied by.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+    <span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">0.0</span>); <br/>
+	vec1.multiply(vec2);
+</p>
+
+<h4 id="divide">divide(<span class="code-param">v</span>)</h4>
+<p>The 3D vector divide.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">v</span><span class="code">:object</span> - if exist, this value has divided by.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+    <span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">0.0</span>); <br/>
+	vec1.divide(vec2);
+</p>
+
+<h4 id="divide">scale(<span class="code-param">v</span>)</h4>
+<p>Scaling 3D vector.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">v</span><span class="code">:number</span> - this value which 3D vector has scaled by.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	vec1.scale(<span class="code-const">5.0</span>);
+</p>
+
+<h4 id="sqrtLen">sqrtLen()</h4>
+<p>Square root of 3D vector length.</p>
+<p class="tips">Return number presents the squaring root of 3D vector length.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(vec1.sqrtLen());
+</p>
+
+<h4 id="length">length()</h4>
+<p>Receives 3D vector length.</p>
+<p class="tips">Return number presents the 3D vector length.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(vec1.length());
 </p>
 
 </div>
