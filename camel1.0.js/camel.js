@@ -1063,6 +1063,9 @@ Camel.Vec3.prototype.loadVecFloat = function()
 };
 Camel.Vec3.prototype.setVector = function(x, y, z) 
 {
+	x = x || 0.0;
+	y = y || 0.0;
+	z = z || 0.0;
 	this.vec[0] = x;
 	this.vec[1] = y;
 	this.vec[2] = z;
@@ -1224,22 +1227,44 @@ Camel.Vec3.prototype.lerp = function(v, t)
 /**
  * Performs a hermite interpolation with two control points
  */
-Camel.Vec3.prototype.hermite = function (a, b, c, d, t) 
+Camel.Vec3.prototype.hermite = function (a, b, c, d, t, out) 
 {
 	var factorTimes2 = t * t,
 		f1 = factorTimes2 * (2 * t - 3) + 1,
 		f2 = factorTimes2 * (t - 2) + t,
 		f3 = factorTimes2 * (t - 1),
 		f4 = factorTimes2 * (3 - 2 * t);
-	this.vec[0] = a[0] * f1 + b[0] * f2 + c[0] * f3 + d[0] * f4;
-	this.vec[1] = a[1] * f1 + b[1] * f2 + c[1] * f3 + d[1] * f4;
-	this.vec[2] = a[2] * f1 + b[2] * f2 + c[2] * f3 + d[2] * f4;
+	out = out || true;
+	if( out == undefined || out == false ) 
+	{
+		this.vec[0] = a[0] * f1 + b[0] * f2 + c[0] * f3 + d[0] * f4;
+		this.vec[1] = a[1] * f1 + b[1] * f2 + c[1] * f3 + d[1] * f4;
+		this.vec[2] = a[2] * f1 + b[2] * f2 + c[2] * f3 + d[2] * f4;
+	}
+	else 
+	{
+		if( typeof out == 'object' ) 
+		{
+			out.vec[0] = a[0] * f1 + b[0] * f2 + c[0] * f3 + d[0] * f4;
+			out.vec[1] = a[1] * f1 + b[1] * f2 + c[1] * f3 + d[1] * f4;
+			out.vec[2] = a[2] * f1 + b[2] * f2 + c[2] * f3 + d[2] * f4; 
+			return NULL;
+		}
+		else 
+		{
+			var outr = new Camel.Vec3();
+			outr.vec[0] = a[0] * f1 + b[0] * f2 + c[0] * f3 + d[0] * f4;
+			outr.vec[1] = a[1] * f1 + b[1] * f2 + c[1] * f3 + d[1] * f4;
+			outr.vec[2] = a[2] * f1 + b[2] * f2 + c[2] * f3 + d[2] * f4;
+			return outr;
+		}
+	}
 	return this;
 };
 /**
  * Performs a bezier interpolation with two control points
  */
-Camel.Vec3.prototype.bezier = function (a, b, c, d, t) 
+Camel.Vec3.prototype.bezier = function (a, b, c, d, t, out) 
 {
 	var inverseFactor = 1 - t,
 		inverseFactorTimesTwo = inverseFactor * inverseFactor,
@@ -1248,9 +1273,31 @@ Camel.Vec3.prototype.bezier = function (a, b, c, d, t)
 		f2 = 3 * t * inverseFactorTimesTwo,
 		f3 = 3 * factorTimes2 * inverseFactor,
 		f4 = factorTimes2 * t;
-	this.vec[0] = a[0] * f1 + b[0] * f2 + c[0] * f3 + d[0] * f4;
-	this.vec[1] = a[1] * f1 + b[1] * f2 + c[1] * f3 + d[1] * f4;
-	this.vec[2] = a[2] * f1 + b[2] * f2 + c[2] * f3 + d[2] * f4;
+	out = out || true;
+	if( out == undefined || out == false ) 
+	{
+		this.vec[0] = a[0] * f1 + b[0] * f2 + c[0] * f3 + d[0] * f4;
+		this.vec[1] = a[1] * f1 + b[1] * f2 + c[1] * f3 + d[1] * f4;
+		this.vec[2] = a[2] * f1 + b[2] * f2 + c[2] * f3 + d[2] * f4;
+	}
+	else 
+	{
+		if( typeof out == 'object' ) 
+		{
+			out.vec[0] = a[0] * f1 + b[0] * f2 + c[0] * f3 + d[0] * f4;
+			out.vec[1] = a[1] * f1 + b[1] * f2 + c[1] * f3 + d[1] * f4;
+			out.vec[2] = a[2] * f1 + b[2] * f2 + c[2] * f3 + d[2] * f4; 
+			return NULL;
+		}
+		else 
+		{
+			var outr = new Camel.Vec3();
+			outr.vec[0] = a[0] * f1 + b[0] * f2 + c[0] * f3 + d[0] * f4;
+			outr.vec[1] = a[1] * f1 + b[1] * f2 + c[1] * f3 + d[1] * f4;
+			outr.vec[2] = a[2] * f1 + b[2] * f2 + c[2] * f3 + d[2] * f4;
+			return outr;
+		}
+	}
 	return this;
 };
 Camel.Vec3.prototype.random = function(scale) 

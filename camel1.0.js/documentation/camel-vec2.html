@@ -23,7 +23,7 @@
 <h2>Camel.Vec2</h2>
 <p class="note">Camel.Vec2 is the collection .</p>
 
-<h3 class="st">Members</h3>
+<h3>Members</h3>
 
 <h4 id="vec" class="st">vec</h4>
 <p>Hold the <span class="code">Float32Array(2)</span>.</p>
@@ -284,7 +284,7 @@
 <p class="note">How to use:</p>
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
-	<span class="code-key">var</span> result = vec1.transformMat2(mat2);	<span class="code-comment">// mat2 created from</span> <a href="camel-mx22.html#constructor">Camel.Mx22</a>
+	<span class="code-key">var</span> result = vec1.transformMat2(mat2);	<span class="code-comment">// mat2 instanced from</span> <a href="camel-mx22.html#constructor">Camel.Mx22</a>
 </p>
 
 <h4 id="transformMat2d">transformMat2d(<span class="code-param">m</span>)</h4>
@@ -296,7 +296,7 @@
 <p class="note">How to use:</p>
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
-	<span class="code-key">var</span> result = vec1.transformMat2d(mat2);	<span class="code-comment">// mat2 created from</span> <a href="camel-mx22.html#constructor">Camel.Mx22</a>
+	<span class="code-key">var</span> result = vec1.transformMat2d(mat2);	<span class="code-comment">// mat2 instanced from</span> <a href="camel-mx22.html#constructor">Camel.Mx22</a>
 </p>
 
 <h4 id="transformMat3">transformMat3(<span class="code-param">m</span>)</h4>
@@ -308,7 +308,7 @@
 <p class="note">How to use:</p>
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
-	<span class="code-key">var</span> result = vec1.transformMat3(mat3);	<span class="code-comment">// mat3 created from</span> <a href="camel-mx22.html#constructor">Camel.Mx22</a>
+	<span class="code-key">var</span> result = vec1.transformMat3(mat3);	<span class="code-comment">// mat3 created from</span> <a href="camel-mx33.html#constructor">Camel.Mx33</a>
 </p>
 
 <h4 id="transformMat4">transformMat4(<span class="code-param">m</span>)</h4>
@@ -320,7 +320,27 @@
 <p class="note">How to use:</p>
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
-	<span class="code-key">var</span> result = vec1.transformMat4(mat4);	<span class="code-comment">// mat2 created from</span> <a href="camel-mx22.html#constructor">Camel.Mx22</a>
+	<span class="code-key">var</span> result = vec1.transformMat4(mat4);	<span class="code-comment">// mat4 instanced from</span> <a href="camel-mx44.html#constructor">Camel.Mx44</a>
+</p>
+
+<h4 id="toString">toString()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">console</span>.log(vec1.toString()); <br/><br/>
+	<span class="code-comment">// You can use static method.</span> <br/>
+	<span class="code-key">console</span>.log(Camel.Vec2.toString());
+</p>
+
+<h4 id="instanceOf">instanceOf()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>); <br/>
+	<span class="code-key">console</span>.log(vec1.instanceOf());
 </p>
 
 </div>
