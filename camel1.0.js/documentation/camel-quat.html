@@ -21,7 +21,7 @@
 </div>
 <div id="docs">
 <h2>Camel.Quat</h2>
-<p class="note">Camel.Quat is the quaternion math.</p>
+<p class="note"><span class="code">Camel.Quat</span> is the quaternion math.</p>
 
 <h3>Members</h3>
 
@@ -29,40 +29,358 @@
 <p>Hold the <span class="code">Float32Array(4)</span>.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.0</span>, <span class="code-const">2.0</span>, <span class="code-const">5.0</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(vec1.vec);
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.0</span>, <span class="code-const">2.0</span>, <span class="code-const">5.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(q.vec);
+</p>
+
+<h4 id="sqlerp">sqlerp</h4>
+<p>Performs a spherical linear interpolation with two control points.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.0</span>, <span class="code-const">2.0</span>, <span class="code-const">5.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(q.sqlerp);
 </p>
 
 <h3>Constructor</h3>
 
-<h4 id="constructor" class="st">Camel.Quat(<span class="code-param">x</span>, <span class="code-param">y</span>, <span class="code-param">z</span>, <span class="code-param">w</span>)</h4>
-<p class="note">The constructor of Camel.Quat has 4 params:</p>
+<h4 id="constructor" class="st">Camel.Quat(<span class="code-param">i</span>, <span class="code-param">j</span>, <span class="code-param">k</span>, <span class="code-param">q</span>)</h4>
+<p class="note">The constructor of <span class="code">Camel.Quat</span> has 4 params:</p>
 <ul>
-	<li><span class="code-param">x</span><span class="code">:number</span> - x-coord of the vector4.</li>
-	<li><span class="code-param">y</span><span class="code">:number</span> - y-coord of the vector4.</li>
-	<li><span class="code-param">z</span><span class="code">:number</span> - z-coord of the vector4.</li>
-    <li><span class="code-param">w</span><span class="code">:number</span> - w-coord of the vector4.</li>
+	<li><span class="code-param">i</span><span class="code">:number</span> - <span class="code">i</span> value of the quaternion.</li>
+	<li><span class="code-param">j</span><span class="code">:number</span> - <span class="code">j</span> value of the quaternion.</li>
+	<li><span class="code-param">k</span><span class="code">:number</span> - <span class="code">k</span> value of the quaternion.</li>
+    <li><span class="code-param">q</span><span class="code">:number</span> - <span class="code">q</span> value of the quaternion.</li>
 </ul>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(vec1);
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(q);
 </p>
 
 <h3>Methods</h3>
 
 <h4 id="loadVecFloat" class="st">loadVecFloat()</h4>
-<p class="note">Short description for this code</p>
-<p class="note">Params introduce:</p>
-<ul>
-	<li><span class="code-param">aggr1</span><span class="code">:string</span> - The id string of canvas developer want to use with Camel.</li>
-	<li><span class="code-param">aggr2</span><span class="code">:object</span> - The settings object developer want to config for Camel.</li>
-</ul>
-<p class="tips">Return <span class="code">Float32Array(3)</span> - the 3D vector value.</p>
+<p>Receives the <span class="code">Float32Array(4)</span> value.</p>
+<p class="tips">Return <span class="code">Float32Array(4)</span> - the vector value.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
-	<span class="code-key">console</span>.log(engine.getWidth());
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(q.loadVecFloat());
+</p>
+
+<h4 id="setValues">setValues(<span class="code-param">i</span>, <span class="code-param">j</span>, <span class="code-param">k</span>, <span class="code-param">q</span>)</h4>
+<p>Setup the quaternion value.</p>
+<p class="note">This method has four params:</p>
+<ul class="ml25">
+	<li><span class="code-param">i</span><span class="code">:number</span> - i value of the coord.</li>
+	<li><span class="code-param">j</span><span class="code">:number</span> - j value of the coord.</li>
+	<li><span class="code-param">k</span><span class="code">:number</span> - k value of the coord.</li>
+    <li><span class="code-param">q</span><span class="code">:number</span> - q value of the coord.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	q.setValues(<span class="code-const">1.0</span>, <span class="code-const">0.0</span>, <span class="code-const">-1.0</span>, , <span class="code-const">0.0</span>);
+</p>
+
+<h4 id="fromValues">fromValues(<span class="code-param">i</span>, <span class="code-param">j</span>, <span class="code-param">k</span>, <span class="code-param">q</span>)</h4>
+<p>Setup the quaternion value.</p>
+<p class="note">This method has four params:</p>
+<ul class="ml25">
+	<li><span class="code-param">i</span><span class="code">:number</span> - i value of the coord.</li>
+	<li><span class="code-param">j</span><span class="code">:number</span> - j value of the coord.</li>
+	<li><span class="code-param">k</span><span class="code">:number</span> - k value of the coord.</li>
+    <li><span class="code-param">q</span><span class="code">:number</span> - q value of the coord.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	q.fromValues(<span class="code-const">1.0</span>, <span class="code-const">0.0</span>, <span class="code-const">-1.0</span>, , <span class="code-const">0.0</span>);
+</p>
+
+<h4 id="clone">clone(<span class="code-param">q</span>)</h4>
+<p>Duplicate the <span class="code">Camel.Quat</span> object.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">q</span><span class="code">:Camel.Quat|Camel.Vec4</span> - if exist, this param is another <span class="code">Camel.Quat</span> object.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q1 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+    <span class="code-key">var</span> q2 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	q1.clone(q2);
+</p>
+
+<h4 id="add">add(<span class="code-param">q</span>)</h4>
+<p>Addition quaternion.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">q</span><span class="code">:Camel.Quat|Camel.Vec4</span> - if exist, this param is another <span class="code">Camel.Quat</span> object.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q1 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+    <span class="code-key">var</span> q2 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	q1.add(q2); <br/>
+	<span class="code-key">console</span>.log(q1);
+</p>
+
+<h4 id="subtract">subtract(<span class="code-param">q</span>)</h4>
+<p>Subtraction quaternion.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">q</span><span class="code">:Camel.Quat|Camel.Vec4</span> - if exist, this param is another <span class="code">Camel.Quat</span> object.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q1 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+    <span class="code-key">var</span> q2 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	q1.subtract(q2); <br/>
+	<span class="code-key">console</span>.log(q1);
+</p>
+
+<h4 id="multiply">multiply(<span class="code-param">q</span>)</h4>
+<p>Multiply quaternion.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">q</span><span class="code">:Camel.Quat|Camel.Vec4</span> - if exist, this param is another <span class="code">Camel.Quat</span> object.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q1 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+    <span class="code-key">var</span> q2 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	q1.multiply(q2); <br/>
+	<span class="code-key">console</span>.log(q1);
+</p>
+
+<h4 id="divide">divide(<span class="code-param">q</span>)</h4>
+<p>Divide quaternion.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">q</span><span class="code">:Camel.Quat|Camel.Vec4</span> - if exist, this param is another <span class="code">Camel.Quat</span> object.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q1 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+    <span class="code-key">var</span> q2 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	q1.divide(q2); <br/>
+	<span class="code-key">console</span>.log(q1);
+</p> 
+
+<h4 id="scale">scale(<span class="code-param">value</span>)</h4>
+<p>Scaling the length of quaternion.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">value</span><span class="code">:number</span> - if exist, this param is another <span class="code">Camel.Quat</span> object.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q1 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+    <span class="code-key">var</span> q2 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	q1.divide(q2); <br/>
+	<span class="code-key">console</span>.log(q1); 
+</p>
+
+<h4 id="dot">dot(<span class="code-param">q</span>)</h4>
+<p>Receives dot product between two quaternions.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">q</span><span class="code">:Camel.Quat|Camel.Vec4</span> - if exist, this param is another <span class="code">Camel.Quat</span> object.</li>
+</ul>
+<p class="tips">Returns dot product.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q1 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> q2 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(q1.dot(q2)); 
+</p>
+
+<h4 id="lerp">lerp(<span class="code-param">v</span>, <span class="code-param">t</span>)</h4>
+<p>Performs a linear interpolation between two quaternions.</p>
+<p class="note">This method has two params:</p>
+<ul class="ml25">
+	<li><span class="code-param">v</span><span class="code">:Camel.Quat|Camel.Vec4</span> - if exist, this param is another <span class="code">Camel.Quat</span> object.</li>
+	<li><span class="code-param">t</span><span class="code">:number</span> - The time.</li>
+</ul>
+<p class="tips">Returns interpolation quaternion.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q1 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(q1.lerp(vec2, dt));
+</p>
+
+<h4 id="sqrtLen">sqrtLen()</h4>
+<p>Square root of quaternion length.</p>
+<p class="tips">Returns number presents the squaring root of quaternion length.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(q.sqrtLen());
+</p>
+
+<h4 id="length">length()</h4>
+<p>Receives the quaternion length.</p>
+<p class="tips">Returns number presents the length of quaternion.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(q.length());
+</p> 
+
+<h4 id="sqrtDist">sqrtDist(<span class="code-param">q</span>)</h4>
+<p>Square root of distance between two quaternions.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">q</span><span class="code">:Camel.Quat|Camel.Vec4</span> - if exist, this param is another <span class="code">Camel.Vec4</span> object.</li>
+</ul>
+<p class="tips">Returns number presents the squaring root of distance between two quaternions.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(vec1.sqrtDist(vec2));
+</p>
+
+<h4 id="distance">distance(<span class="code-param">q</span>)</h4>
+<p>Receives distance between two quaternions.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">q</span><span class="code">:Camel.Quat|Camel.Vec4</span> - if exist, this param is another <span class="code">Camel.Quat</span> object.</li>
+</ul>
+<p class="tips">Returns number presents the distance between two quaternions.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(vec1.distance(vec2));
+</p>
+
+<h4 id="normalize">normalize(out)</h4>
+<p>Receives normalize quaternion.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">out</span><span class="code">:Camel.Quat|Camel.Vec4</span> - if exist, this param is another <span class="code">Camel.Quat</span> object.</li>
+</ul>
+<p class="tips">Returns normalize quaternion.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(vec1.normalize()); 
+</p>
+
+<h4 id="identity">identity()</h4>
+<p>Set quaternion value to the identity quaternion.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(q.identity());
+</p> 
+
+<h4 id="setAxisAngle">setAxisAngle(<span class="code-param">axis</span>, <span class="code-param">deg</span>)</h4>
+<p>Sets quaternion value from the given angle and rotation axis, then returns it.</p>
+<p class="note">This method has two params:</p>
+<ul class="ml25">
+	<li><span class="code-param">axis</span><span class="code">:Camel.Vec3</span> - if exist, this param is another <span class="code">Camel.Vec3</span> object.</li>
+	<li><span class="code-param">deg</span><span class="code">:number</span> - if exist, this param is a number presents the angle.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	q.setAxisAngle(<span class="code-key">new</span> Camel.Vec3(<span class="code-const">1.0</span>, <span class="code-const">5.0</span>, <span class="code-const">1.5</span>), <span class="code-const">25.0</span>);
+</p> 
+
+<h4 id="rotateX">rotateX(<span class="code-param">deg</span>)</h4>
+<p>Set rotation of quaternion by the given angle about the X axis.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">deg</span><span class="code">:number</span> - if exist, this param is a number presents the angle.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	q.rotateX(<span class="code-const">25.0</span>);
+</p> 
+
+<h4 id="rotateY">rotateY(<span class="code-param">deg</span>)</h4>
+<p>Set rotation of quaternion by the given angle about the Y axis.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">deg</span><span class="code">:number</span> - if exist, this param is a number presents the angle.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	q.rotateY(<span class="code-const">25.0</span>);
+</p> 
+
+<h4 id="rotateZ">rotateZ(<span class="code-param">deg</span>)</h4>
+<p>Set rotation of quaternion by the given angle about the Z axis.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">deg</span><span class="code">:number</span> - if exist, this param is a number presents the angle.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	q.rotateZ(<span class="code-const">25.0</span>);
+</p> 
+
+<h4 id="calculateW">calculateW()</h4>
+<p>Calculates the W component of a quat from the X, Y, and Z components. Assumes that quaternion is 1 unit in length. Any existing W component will be ignored.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(q.calculateW());
+</p> 
+
+<h4 id="invert">invert()</h4>
+<p>Calculates the inverse of the quaternion.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(q.invert());
+</p> 
+
+<h4 id="conjugate">conjugate()</h4>
+<p>Calculates the conjugate of the quaternion If the quaternion is normalized, this function is faster than quaternion.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(q.conjugate());
+</p> 
+
+<h4 id="fromMat3">fromMat3(<span class="code-param">m</span>)</h4>
+<p>Creates a quaternion from the given 3x3 rotation matrix.</p>
+<p class="tips">NOTE: The resultant quaternion is not normalized, so you should be sure to renormalize the quaternion yourself where necessary.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">m</span><span class="code">:Camel.Mx33</span> - if exist, this param is a number presents the rotation matrix.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	q.fromMat3(mat3); <span class="code-comment">// mat3 instanced by </span><a href="camel-mx33.html#constructor">Camel.Mx33</a>
+</p> 
+
+<h4 id="toString">toString()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q1 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(q1.toString()); <br/><br/>
+	<span class="code-comment">// You can use static method.</span> <br/>
+	<span class="code-key">console</span>.log(Camel.Quat.toString());
+</p>
+
+<h4 id="instanceOf">instanceOf()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> q1 = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(q1.instanceOf());
 </p>
 
 </div>

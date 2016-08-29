@@ -1604,20 +1604,23 @@ Camel.Vec4.toString = function()
  * 
  * The Quaternion of Camel
  */
-Camel.Quat = function(x, y, z, w) 
+Camel.Quat = function(i, j, k, q) 
 {
-	x = x || 0.0;
-	y = y || 0.0;
-	z = z || 0.0;
-	w = w || 1.0;
+	i = i || 0.0;
+	j = j || 0.0;
+	k = k || 0.0;
+	q = q || 1.0;
 	this.vec = new Float32Array(4);
-	this.setVector(x, y, z, w);
+	this.setVector(i, j, k, q);
 };
 Camel.Quat.prototype.loadVecFloat = Camel.Vec4.prototype.loadVecFloat;
-Camel.Quat.prototype.setVector = Camel.Vec4.prototype.setVector;
+Camel.Quat.prototype.setValues = Camel.Vec4.prototype.setVector;
+Camel.Quat.prototype.fromValues = Camel.Vec4.prototype.setVector;
 Camel.Quat.prototype.clone = Camel.Vec4.prototype.clone;
 Camel.Quat.prototype.add = Camel.Vec4.prototype.add;
+Camel.Quat.prototype.subtract = Camel.Vec4.prototype.subtract;
 Camel.Quat.prototype.multiply = Camel.Vec4.prototype.multiply;
+Camel.Quat.prototype.divide = Camel.Vec4.prototype.divide;
 Camel.Quat.prototype.scale = Camel.Vec4.prototype.scale;
 Camel.Quat.prototype.dot = Camel.Vec4.prototype.dot;
 Camel.Quat.prototype.lerp = Camel.Vec4.prototype.lerp;
@@ -1634,52 +1637,52 @@ Camel.Quat.prototype.identity = function()
 	this.vec[3] = 1.0;
 	return this;
 };
-Camel.Quat.prototype.setAxisAngle = function(axis, rad) 
+Camel.Quat.prototype.setAxisAngle = function(axis, deg) 
 {
-	rad = rad * 0.5;
-	var s = Math.sin(rad);
+	deg = deg * 0.5;
+	var s = Math.sin(deg);
 	this.vec[0] = s * axis.vec[0];
 	this.vec[1] = s * axis.vec[1];
 	this.vec[2] = s * axis.vec[2];
-	this.vec[3] = Math.cos(rad);
+	this.vec[3] = Math.cos(deg);
 	return this;
 };
-Camel.Quat.prototype.rotateX = function (rad) 
+Camel.Quat.prototype.rotateX = function (deg) 
 {
-	rad *= 0.5; 
+	deg *= 0.5; 
 	var ax = this.vec[0], 
 		ay = this.vec[1], 
 		az = this.vec[2], 
 		aw = this.vec[3],
-		bx = Math.sin(rad), bw = Math.cos(rad);
+		bx = Math.sin(deg), bw = Math.cos(deg);
 	this.vec[0] = ax * bw + aw * bx;
 	this.vec[1] = ay * bw + az * bx;
 	this.vec[2] = az * bw - ay * bx;
 	this.vec[3] = aw * bw - ax * bx;
 	return this;
 };
-Camel.Quat.prototype.rotateY = function (rad) 
+Camel.Quat.prototype.rotateY = function (deg) 
 {
-	rad *= 0.5; 
+	deg *= 0.5; 
 	var ax = this.vec[0], 
 		ay = this.vec[1], 
 		az = this.vec[2], 
 		aw = this.vec[3],
-		by = Math.sin(rad), bw = Math.cos(rad);
+		by = Math.sin(deg), bw = Math.cos(deg);
 	this.vec[0] = ax * bw - az * by;
 	this.vec[1] = ay * bw + aw * by;
 	this.vec[2] = az * bw + ax * by;
 	this.vec[3] = aw * bw - ay * by;
 	return this;
 };
-Camel.Quat.prototype.rotateZ = function (rad) 
+Camel.Quat.prototype.rotateZ = function (deg) 
 {
-	rad *= 0.5; 
+	deg *= 0.5; 
 	var ax = this.vec[0], 
 		ay = this.vec[1], 
 		az = this.vec[2], 
 		aw = this.vec[3],
-		bz = Math.sin(rad), bw = Math.cos(rad);
+		bz = Math.sin(deg), bw = Math.cos(deg);
 	this.vec[0] = ax * bw + ay * bz;
 	this.vec[1] = ay * bw - ax * bz;
 	this.vec[2] = az * bw + aw * bz;

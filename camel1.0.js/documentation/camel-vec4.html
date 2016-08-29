@@ -52,7 +52,7 @@
 <h3>Methods</h3>
 
 <h4 id="loadVecFloat" class="st">loadVecFloat()</h4>
-<p>Receives the Float32Array(3) value.</p>
+<p>Receives the Float32Array(4) value.</p>
 <p class="tips">Return <span class="code">Float32Array(4)</span> - the vector value.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
@@ -145,17 +145,17 @@
 </p>
 
 <h4 id="scale">scale(<span class="code-param">value</span>)</h4>
-<p>Scaling the length of vector.</p>
-<p class="note">This method has one param:</p>
+<p>Scaling the length of vector.</p> 
+<p class="note">This method has one param:</p> 
 <ul class="ml25">
-	<li><span class="code-param">v</span><span class="code">:Camel.Vec4</span> - if exist, this param is another Camel.Vec4 object.</li>
+	<li><span class="code-param">v</span><span class="code">:number</span> - if exist, this param is another Camel.Vec4 object.</li>
 </ul>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
-    <span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
-	vec1.divide(vec2); <br/>
-	<span class="code-key">console</span>.log(vec1);
+	<span class="code-key">var</span> q1 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+    <span class="code-key">var</span> q2 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	q1.divide(q2); <br/>
+	<span class="code-key">console</span>.log(q1);
 </p>
 
 <h4 id="sqrtLen">sqrtLen()</h4>
@@ -168,8 +168,8 @@
 </p>
 
 <h4 id="length">length()</h4>
-<p>Square root of vector length.</p>
-<p class="tips">Returns number presents the squaring root of vector length.</p>
+<p>the vector length.</p>
+<p class="tips">Returns number presents the length of vector.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
@@ -177,12 +177,12 @@
 </p> 
 
 <h4 id="sqrtDist">sqrtDist(<span class="code-param">v</span>)</h4>
-<p>Square root of distance between two vector.</p>
+<p>Square root of distance between two vectors.</p>
 <p class="note">This method has one param:</p>
 <ul class="ml25">
-	<li><span class="code-param">v</span><span class="code">:Camel.Vec4</span> - if exist, this param is another Camel.Vec4 object.</li>
+	<li><span class="code-param">v</span><span class="code">:Camel.Vec4</span> - if exist, this param is another <span class="code">Camel.Vec4</span> object.</li>
 </ul>
-<p class="tips">Returns number presents the squaring root of distance between two vector.</p>
+<p class="tips">Returns number presents the squaring root of distance between two vectors.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
@@ -191,12 +191,12 @@
 </p>
 
 <h4 id="distance">distance(<span class="code-param">v</span>)</h4>
-<p>Receives distance between two vector.</p>
+<p>Receives distance between two vectors.</p>
 <p class="note">This method has one param:</p>
 <ul class="ml25">
 	<li><span class="code-param">v</span><span class="code">:Camel.Vec4</span> - if exist, this param is another Camel.Vec4 object.</li>
 </ul>
-<p class="tips">Returns number presents the distance between two vector.</p>
+<p class="tips">Returns number presents the distance between two vectors.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
@@ -244,7 +244,7 @@
 	<span class="code-key">console</span>.log(vec1.normalize()); 
 </p>
 
-<h4 id="dot">dot(<span class="code-const">v</span>)</h4>
+<h4 id="dot">dot(<span class="code-param">v</span>)</h4>
 <p>Receives dot product of vector.</p>
 <p class="note">This method has one param:</p>
 <ul class="ml25">
@@ -254,11 +254,12 @@
 <p class="note">How to use:</p>
 <p class="code-block">
 	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(vec1.dot()); 
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(vec1.dot(vec2)); 
 </p>
 
-<h4 id="lerp">lerp(<span class="code-const">v</span>, <span class="code-const">t</span>)</h4>
-<p>Performs a linear interpolation between two Camel.Vec3.</p>
+<h4 id="lerp">lerp(<span class="code-param">v</span>, <span class="code-param">t</span>)</h4>
+<p>Performs a linear interpolation between two Camel.Vec4.</p>
 <p class="note">This method has two params:</p>
 <ul class="ml25">
 	<li><span class="code-param">v</span><span class="code">:Camel.Vec4</span> - if exist, this param is another Camel.Vec4 object.</li>
@@ -272,7 +273,7 @@
 	<span class="code-key">console</span>.log(vec1.lerp(vec2, dt));
 </p>
 
-<h4 id="random">random(<span class="code-const">scale</span>)</h4>
+<h4 id="random">random(<span class="code-param">scale</span>)</h4>
 <p>Generates a random vector with the given scale.</p>
 <p class="note">This method has one param:</p>
 <ul class="ml25">
