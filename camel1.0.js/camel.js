@@ -1836,25 +1836,25 @@ Camel.Quat.toString = function()
  * 
  * The Mx22 of Camel
  */
-Camel.Mx22 = function(x, y, z, w) 
+Camel.Mx22 = function(x1, y1, x2, y2) 
 {
-	x = x || 1.0;
-	y = y || 0.0;
-	z = z || 0.0;
-	w = w || 1.0;
 	this.mat = new Float32Array(4);
-	this.setMatrix(x, y, z, w);
+	this.setMatrix(x1, y1, x2, y2);
 };
 Camel.Mx22.prototype.loadMXFloat = function() 
 {
 	return this.mat;
 };
-Camel.Mx22.prototype.setMatrix = function(x, y, z, w) 
+Camel.Mx22.prototype.setMatrix = function(x1, y1, x2, y2) 
 {
-	this.mat[0] = x;
-	this.mat[1] = y;
-	this.mat[2] = z;
-	this.mat[3] = w;
+	x1 = x1 || 1.0; 
+	y1 = y1 || 0.0; 
+	x2 = x2 || 0.0; 
+	y2 = y2 || 1.0; 
+	this.mat[0] = x1;
+	this.mat[1] = y1;
+	this.mat[2] = x2;
+	this.mat[3] = y2;
 	return this;
 };
 Camel.Mx22.prototype.clone = function(m) 
@@ -1927,14 +1927,14 @@ Camel.Mx22.prototype.multiply = function (m)
 	this.mat[3] = a1 * b2 + a3 * b3;
 	return this;
 };
-Camel.Mx22.prototype.rotate = function (rad) 
+Camel.Mx22.prototype.rotate = function (deg) 
 {
 	var a0 = this.mat[0], 
 		a1 = this.mat[1], 
 		a2 = this.mat[2], 
 		a3 = this.mat[3],
-		s = Math.sin(rad),
-		c = Math.cos(rad);
+		s = Math.sin(deg),
+		c = Math.cos(deg);
 	this.mat[0] = a0 *  c + a2 * s;
 	this.mat[1] = a1 *  c + a3 * s;
 	this.mat[2] = a0 * -s + a2 * c;
@@ -1955,10 +1955,10 @@ Camel.Mx22.prototype.scale = function(v)
 	this.mat[3] = a3 * v1;
 	return this;
 };
-Camel.Mx22.prototype.fromRotation = function(rad) 
+Camel.Mx22.prototype.fromRotation = function(deg) 
 {
-	var s = Math.sin(rad),
-		c = Math.cos(rad);
+	var s = Math.sin(deg),
+		c = Math.cos(deg);
 	this.mat[0] = c;
 	this.mat[1] = s;
 	this.mat[2] = -s;
@@ -2005,29 +2005,31 @@ Camel.Mx22.toString = function()
  * 
  * The Mx23 of Camel
  */
-Camel.Mx23 = function(x, y, z, w, p, q) 
+Camel.Mx23 = function(x1, y1, z1, x2, y2, z2) 
 {
-	x = x || 1.0;
-	y = y || 0.0;
-	z = z || 0.0;
-	w = w || 1.0;
-	p = p || 0.0;
-	q = q || 0.0;
 	this.mat = new Float32Array(6);
-	this.setMatrix(x, y, z, w, p, q);
+	this.setMatrix(x1, y1, z1, x2, y2, z2);
 };
 Camel.Mx23.prototype.loadMXFloat = function() 
 {
 	return this.mat;
 };
-Camel.Mx23.prototype.setMatrix = function(x, y, z, w, p, q) 
+Camel.Mx23.prototype.setMatrix = function(x1, y1, z1, x2, y2, z2) 
 {
-	this.mat[0] = x;
-	this.mat[1] = y;
-	this.mat[2] = z;
-	this.mat[3] = w;
-	this.mat[4] = p;
-	this.mat[5] = q;
+	x1 = x1 || 1.0;
+	y1 = y1 || 0.0;
+	z1 = z1 || 0.0;
+	x2 = x2 || 1.0;
+	y2 = y2 || 0.0;
+	z2 = z2 || 0.0;
+	
+	this.mat[0] = x1;
+	this.mat[1] = y1;
+	this.mat[2] = z1;
+	this.mat[3] = x2;
+	this.mat[4] = y2;
+	this.mat[5] = z2;
+	
 	return this;
 };
 Camel.Mx23.prototype.clone = function(m) 
@@ -2095,13 +2097,13 @@ Camel.Mx23.prototype.multiply = function (m)
 	this.mat[5] = a1 * b4 + a3 * b5 + a5;
 	return this;
 };
-Camel.Mx23.prototype.rotate = function(rad) 
+Camel.Mx23.prototype.rotate = function(reg) 
 {
 	var a0 = this.mat[0], a1 = this.mat[1], 
 		a2 = this.mat[2], a3 = this.mat[3], 
 		a4 = this.mat[4], a5 = this.mat[5],
-		s = Math.sin(rad),
-		c = Math.cos(rad);
+		s = Math.sin(reg),
+		c = Math.cos(reg);
 	this.mat[0] = a0 *  c + a2 * s;
 	this.mat[1] = a1 *  c + a3 * s;
 	this.mat[2] = a0 * -s + a2 * c;
@@ -2138,10 +2140,10 @@ Camel.Mx23.prototype.translate = function(v)
 	this.mat[5] = a1 * v0 + a3 * v1 + a5;
 	return this;
 };
-Camel.Mx23.prototype.fromRotation = function(rad) 
+Camel.Mx23.prototype.fromRotation = function(reg) 
 {
-	var s = Math.sin(rad), 
-		c = Math.cos(rad);
+	var s = Math.sin(reg), 
+		c = Math.cos(reg);
 	this.mat[0] = c;
 	this.mat[1] = s;
 	this.mat[2] = -s;
@@ -2195,29 +2197,31 @@ Camel.Mx23.toString = function()
 /**
  * The Mx23 of Camel
  */
-Camel.Mx33 = function(a, b, c, o, p, q, x, y, z) 
+Camel.Mx33 = function(x1, y1, z1, x2, y2, z2, x3, y3, z3) 
 {
-	a = a || 1.0;
-	b = b || 0.0;
-	c = c || 0.0;
-	o = o || 0.0;
-	p = p || 1.0;
-	q = q || 0.0;
-	x = x || 0.0;
-	y = y || 0.0;
-	z = z || 1.0;
 	this.mat = new Float32Array(9);
-	this.setMatrix(a, b, c, o, p, q, x, y, z);
+	this.setMatrix(x1, y1, z1, x2, y2, z2, x3, y3, z3);
 };
 Camel.Mx33.prototype.loadMXFloat = function() 
 {
 	return this.mat;
 };
-Camel.Mx33.prototype.setMatrix = function(a, b, c, o, p, q, x, y, z) 
+Camel.Mx33.prototype.setMatrix = function(x1, y1, z1, x2, y2, z2, x3, y3, z3) 
 {
-	this.mat[0] = a;this.mat[1] = b;this.mat[2] = c;
-	this.mat[3] = o;this.mat[4] = p;this.mat[5] = q;
-	this.mat[6] = z;this.mat[7] = y;this.mat[8] = z;
+	x1 = x1 || 1.0; 
+	y1 = y1 || 0.0; 
+	z1 = z1 || 0.0; 
+	x2 = x2 || 0.0; 
+	y2 = y2 || 1.0; 
+	z2 = z2 || 0.0; 
+	x3 = x3 || 0.0; 
+	y3 = y3 || 0.0; 
+	z3 = z3 || 1.0; 
+	
+	this.mat[0] = x1;this.mat[1] = y1;this.mat[2] = z1;
+	this.mat[3] = x2;this.mat[4] = y2;this.mat[5] = z2;
+	this.mat[6] = x3;this.mat[7] = y3;this.mat[8] = z3;
+
 	return this;
 };
 Camel.Mx33.prototype.clone = function(m) 
@@ -2236,16 +2240,17 @@ Camel.Mx33.prototype.clone = function(m)
 };
 Camel.Mx33.prototype.identity = function() 
 {
-	this.mat[0] = 1.0;
-	this.mat[1] = 0.0;
-	this.mat[2] = 0.0;
-	this.mat[3] = 0.0;
-	this.mat[4] = 1.0;
-	this.mat[5] = 0.0;
-	this.mat[6] = 0.0;
-	this.mat[7] = 0.0;
-	this.mat[8] = 1.0;
-	return this;
+	this.mat[0] = 1.0; 
+	this.mat[1] = 0.0; 
+	this.mat[2] = 0.0; 
+	this.mat[3] = 0.0; 
+	this.mat[4] = 1.0; 
+	this.mat[5] = 0.0; 
+	this.mat[6] = 0.0; 
+	this.mat[7] = 0.0; 
+	this.mat[8] = 1.0; 
+	
+	return this; 
 };
 Camel.Mx33.prototype.transpose = function() 
 {

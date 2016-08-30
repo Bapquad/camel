@@ -21,7 +21,7 @@
 </div>
 <div id="docs">
 <h2>Camel.Mx22</h2>
-<p class="note">Camel.Mx22 is the 2x2 matrix math.</p>
+<p class="note">Camel.Mx22 is the 2x2 matrix mathematics.</p>
 
 <h3>Members</h3>
 
@@ -35,13 +35,13 @@
 
 <h3>Constructor</h3>
 
-<h4 id="constructor" class="st">Camel.Mx22(<span class="code-param">x</span>, <span class="code-param">y</span>, <span class="code-param">z</span>, <span class="code-param">w</span>)</h4>
+<h4 id="constructor" class="st">Camel.Mx22(<span class="code-param">x1</span>, <span class="code-param">y1</span>, <span class="code-param">x2</span>, <span class="code-param">y2</span>)</h4>
 <p class="note">The constructor of Camel.Mx22 has 4 params:</p>
-<ul>
-	<li><span class="code-param">x</span><span class="code">:number</span> - x-coord of the vector4.</li>
-	<li><span class="code-param">y</span><span class="code">:number</span> - y-coord of the vector4.</li>
-	<li><span class="code-param">z</span><span class="code">:number</span> - z-coord of the vector4.</li>
-    <li><span class="code-param">w</span><span class="code">:number</span> - w-coord of the vector4.</li>
+<ul class="ml25">
+	<li><span class="code-param">x1</span><span class="code">:number</span> - x1-coord of the 2x2 matrix.</li>
+	<li><span class="code-param">y1</span><span class="code">:number</span> - y1-coord of the 2x2 matrix.</li>
+	<li><span class="code-param">x2</span><span class="code">:number</span> - x2-coord of the 2x2 matrix.</li>
+    <li><span class="code-param">y2</span><span class="code">:number</span> - y2-coord of the 2x2 matrix.</li>
 </ul>
 <p class="note">How to use:</p>
 <p class="code-block">
@@ -52,17 +52,194 @@
 <h3>Methods</h3>
 
 <h4 id="loadMXFloat" class="st">loadMXFloat()</h4>
-<p class="note">Short description for this code</p>
-<p class="note">Params introduce:</p>
-<ul>
-	<li><span class="code-param">aggr1</span><span class="code">:string</span> - The id string of canvas developer want to use with Camel.</li>
-	<li><span class="code-param">aggr2</span><span class="code">:object</span> - The settings object developer want to config for Camel.</li>
-</ul>
-<p class="tips">Return <span class="code">Float32Array(3)</span> - the 3D vector value.</p>
+<p>Receives the <span class="code">Float32Array(4)</span> value.</p>
+<p class="tips">Return <span class="code">Float32Array(4)</span> - the vector value.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
-	<span class="code-key">console</span>.log(engine.getWidth());
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(q.loadMXFloat());
+</p>
+
+<h4 id="setMatrix">setMatrix(<span class="code-param">x1</span>, <span class="code-param">y1</span>, <span class="code-param">x2</span>, <span class="code-param">y2</span>)</h4>
+<p>Setup matrix value.</p>
+<p class="note">This method has four params:</p>
+<ul class="ml25">
+	<li><span class="code-param">x1</span><span class="code">:number</span> - x1-coord of the 2x2 matrix.</li>
+	<li><span class="code-param">y1</span><span class="code">:number</span> - y1-coord of the 2x2 matrix.</li>
+	<li><span class="code-param">x2</span><span class="code">:number</span> - x2-coord of the 2x2 matrix.</li>
+    <li><span class="code-param">y2</span><span class="code">:number</span> - y2-coord of the 2x2 matrix.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	mat1.setMatrix(<span class="code-const">1.0</span>, <span class="code-const">0.0</span>, <span class="code-const">-1.0</span>, , <span class="code-const">0.0</span>);
+</p> 
+
+<h4 id="clone">clone(<span class="code-param">m</span>)</h4>
+<p>Duplicate the <span class="code">Camel.Mx22</span> object.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">m</span><span class="code">:Camel.Mx22</span> - if exist, this param is another <span class="code">Camel.Mx22</span> object.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+    <span class="code-key">var</span> mat2 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	mat1.clone(mat2);
+</p> 
+
+<h4 id="identity">identity()</h4>
+<p>Set 2x2 matrix value to the identity 2x2 matrix.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(mat1.identity());
+</p> 
+
+<h4 id="transpose">transpose()</h4>
+<p>Transpose the values of a 2x2 matrix.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(mat1.transpose());
+</p> 
+
+<h4 id="invert">invert()</h4>
+<p>Inverts a 2x2 matrix.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(mat1.invert()); 
+</p> 
+
+<h4 id="adjoint">adjoint()</h4>
+<p>Calculates the adjugate of a 2x2 matrix.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(mat1.invert()); 
+</p> 
+
+<h4 id="determinant">determinant()</h4>
+<p>Calculates the determinant of a 2x2 matrix.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(mat1.determinant()); 
+</p> 
+
+<h4 id="multiply">multiply(<span class="code-param">m</span>)</h4>
+<p>Multiplies two <span class="code">Camel.Mx22</span>'s.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">m</span><span class="code">:Camel.Mx22</span> - if exist, this param is another <span class="code">Camel.Mx22</span> object.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+    <span class="code-key">var</span> mat2 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	mat1.multiply(mat2); <br/>
+	<span class="code-key">console</span>.log(mat2); 
+</p> 
+
+<h4 id="rotate">rotate(<span class="code-param">deg</span>)</h4>
+<p>Rotates 2x2 matrix by the given angle.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">deg</span><span class="code">:number</span> - if exist, this param is an angle.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	mat1.rotate(45.0); <br/>
+	<span class="code-key">console</span>.log(mat1); 
+</p> 
+
+<h4 id="scale">scale(<span class="code-param">v</span>)</h4>
+<p>Scales the 2x2 matrix by the dimensions in the given Camel.Vec2.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - if exist, this param is another <span class="code">Camel.Vec2</span> object.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+    <span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>); <br/>
+	mat1.scale(vec2); <br/>
+	<span class="code-key">console</span>.log(mat1); 
+</p> 
+
+<h4 id="fromRotation">fromRotation(<span class="code-param">deg</span>)</h4>
+<p>Rotates 2x2 matrix from a given angle This is equivalent to (but much faster than): mat2.identity(dest); mat2.rotate(dest, dest, rad);</p>
+<p class="note">This method has one param:</p> 
+<ul class="ml25">
+	<li><span class="code-param">deg</span><span class="code">:number</span> - if exist, this param is a angle.</li> 
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	mat1.fromRotation(45.0); <br/>
+	<span class="code-key">console</span>.log(mat1); 
+</p>
+
+<h4 id="fromScaling">fromScaling(<span class="code-param">v</span>)</h4>
+<p>Scaling the 2x2 matrix from a vector scaling This is equivalent to (but much faster than): mat2.identity(dest); mat2.scale(dest, dest, vec);</p>
+<p class="note">This method has one param:</p> 
+<ul class="ml25">
+	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - if exist, this param is another <span class="code">Camel.Vec2</span> object.</li> 
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec2(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>); <br/>
+	mat1.fromScaling(vec2); <br/>
+	<span class="code-key">console</span>.log(mat1); 
+</p>
+
+<h4 id="frob">frob()</h4>
+<p>Returns Frobenius norm of the 2x2 matrix.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(mat1.frob()); 
+</p> 
+
+<h4 id="LDU">LDU(<span class="code-param">L</span>, <span class="code-param">D</span>, <span class="code-param">U</span>)</h4>
+<p>Scaling the 2x2 matrix from a vector scaling This is equivalent to (but much faster than): mat2.identity(dest); mat2.scale(dest, dest, vec);</p>
+<p class="note">This method has three params:</p> 
+<ul class="ml25">
+	<li><span class="code-param">L</span><span class="code">:Camel.Mx22</span> - if exist, this param is another <span class="code">Camel.Mx22</span> object.</li> 
+	<li><span class="code-param">D</span><span class="code">:Camel.Mx22</span> - if exist, this param is another <span class="code">Camel.Mx22</span> object.</li> 
+	<li><span class="code-param">U</span><span class="code">:Camel.Mx22</span> - if exist, this param is another <span class="code">Camel.Mx22</span> object.</li> 
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> l1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">5.1</span>, <span class="code-const">2.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> d1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">4.1</span>, <span class="code-const">3.1</span>, <span class="code-const">8.1</span>, <span class="code-const">3.0</span>); <br/>
+	<span class="code-key">var</span> u1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">2.1</span>, <span class="code-const">6.1</span>, <span class="code-const">9.1</span>, <span class="code-const">1.0</span>); <br/>
+	mat1.LDU(l1, d1, u1); <br/>
+	<span class="code-key">console</span>.log(mat1); 
+</p>
+
+<h4 id="toString">toString()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> m1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(m1.toString()); <br/><br/>
+	<span class="code-comment">// You can use static method.</span> <br/>
+	<span class="code-key">console</span>.log(Camel.Mx22.toString());
+</p>
+
+<h4 id="instanceOf">instanceOf()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> m1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(m1.instanceOf());
 </p>
 
 </div>
