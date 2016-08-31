@@ -2352,13 +2352,13 @@ Camel.Mx33.prototype.translate = function(v)
 	this.mat[8] = x * a02 + y * a12 + a22;
 	return this;
 };
-Camel.Mx33.prototype.rotate = function (rad) 
+Camel.Mx33.prototype.rotate = function (deg) 
 {
 	var a00 = this.mat[0], a01 = this.mat[1], a02 = this.mat[2],
 		a10 = this.mat[3], a11 = this.mat[4], a12 = this.mat[5],
 		a20 = this.mat[6], a21 = this.mat[7], a22 = this.mat[8],
-		s = Math.sin(rad),
-		c = Math.cos(rad);
+		s = Math.sin(deg),
+		c = Math.cos(deg);
 	this.mat[0] = c * a00 + s * a10;
 	this.mat[1] = c * a01 + s * a11;
 	this.mat[2] = c * a02 + s * a12;
@@ -2394,10 +2394,10 @@ Camel.Mx33.prototype.fromTranslation = function(v)
 	this.mat[8] = 1;
 	return this;
 };
-Camel.Mx33.prototype.fromRotation = function(rad) 
+Camel.Mx33.prototype.fromRotation = function(deg) 
 {
-	var s = Math.sin(rad), 
-		c = Math.cos(rad);
+	var s = Math.sin(deg), 
+		c = Math.cos(deg);
 	this.mat[0] = c;
 	this.mat[1] = s;
 	this.mat[2] = 0;
@@ -2439,7 +2439,7 @@ Camel.Mx33.prototype.fromMat2d = function(m)
 };
 Camel.Mx33.prototype.fromQuat = function (q) 
 {
-	var x = q[0], y = q[1], z = q[2], w = q[3],
+	var x = q.vec[0], y = q.vec[1], z = q.vec[2], w = q.vec[3],
 		x2 = x + x, y2 = y + y, z2 = z + z,
 		xx = x * x2, yx = y * x2, yy = y * y2,
 		zx = z * x2, zy = z * y2, zz = z * z2,
