@@ -2518,24 +2518,8 @@ Camel.Mx33.toString = function()
  * The Mx44 of Camel
  * This is a implemental class.
  */
-Camel.Mx44 = function(a, b, c, d, i, j, k, q, m, n, o, p, x, y, z, w) 
+Camel.Mx44 = function(x1, y1, z1, w1, x2, y2, z2, w2, x3, y3, z3, w3, x4, y4, z4, w4) 
 {
-	a = a || 1.0;
-	b = b || 0.0;
-	c = c || 0.0;
-	d = d || 0.0;
-	i = i || 0.0;
-	j = j || 1.0;
-	k = k || 0.0;
-	q = q || 0.0;
-	m = m || 0.0;
-	n = n || 0.0;
-	o = o || 1.0;
-	p = p || 0.0;
-	x = x || 0.0;
-	y = y || 0.0;
-	z = z || 0.0;
-	w = w || 1.0;
 	this.mat = new Float32Array(16);
 	this.setMatrix(a, b, c, d, i, j, k, q, m, n, o, p, x, y, z, w);
 };
@@ -2543,12 +2527,30 @@ Camel.Mx44.prototype.loadMXFloat = function()
 {
 	return this.mat;
 };
-Camel.Mx44.prototype.setMatrix = function(a, b, c, d, i, j, k, q, m, n, o, p, x, y, z, w) 
+Camel.Mx44.prototype.setMatrix = function(x1, y1, z1, w1, x2, y2, z2, w2, x3, y3, z3, w3, x4, y4, z4, w4) 
 {
-	this.mat[0] = a; this.mat[1] = b; this.mat[2] = c; this.mat[3] = d;
-	this.mat[4] = i; this.mat[5] = j; this.mat[6] = k; this.mat[7] = q;
-	this.mat[8] = m; this.mat[9] = n; this.mat[10] = o;this.mat[11] = p;
-	this.mat[12] = x;this.mat[13] = y;this.mat[14] = z;this.mat[15] = w;
+	x1 = x1 || 1.0;
+	y1 = y1 || 0.0;
+	z1 = z1 || 0.0;
+	w1 = w1 || 0.0;
+	x2 = x2 || 0.0;
+	y2 = y2 || 1.0;
+	z2 = z2 || 0.0;
+	w2 = w2 || 0.0;
+	x3 = x3 || 0.0;
+	y3 = y3 || 0.0;
+	z3 = z3 || 1.0;
+	w3 = w3 || 0.0;
+	x4 = x4 || 0.0;
+	y4 = y4 || 0.0;
+	z4 = z4 || 0.0;
+	w4 = w4 || 1.0;
+	
+	this.mat[0] = x1; this.mat[1] = y1; this.mat[2] = z1; this.mat[3] = w1;
+	this.mat[4] = x2; this.mat[5] = y2; this.mat[6] = z2; this.mat[7] = w2;
+	this.mat[8] = x3; this.mat[9] = y3; this.mat[10] = z3;this.mat[11] = w3;
+	this.mat[12] = x4;this.mat[13] = y4;this.mat[14] = z4;this.mat[15] = w4;
+	
 	return this;
 };
 Camel.Mx44.prototype.clone = function(m) 
@@ -2747,7 +2749,7 @@ Camel.Mx44.prototype.scale = function(v)
 	this.mat[11] = this.mat[11] * z;
 	return out;
 };
-Camel.Mx44.prototype.rotate = function (rad, axis) 
+Camel.Mx44.prototype.rotate = function (deg, axis) 
 {
 	var x = axis.vec[0], 
 		y = axis.vec[1], 
@@ -2768,8 +2770,8 @@ Camel.Mx44.prototype.rotate = function (rad, axis)
 	y *= len;
 	z *= len;
 
-	s = Math.sin(rad);
-	c = Math.cos(rad);
+	s = Math.sin(deg);
+	c = Math.cos(deg);
 	t = 1 - c;
 
 	a00 = this.mat[0]; a01 = this.mat[1]; a02 = this.mat[2]; a03 = this.mat[3];
@@ -2794,10 +2796,10 @@ Camel.Mx44.prototype.rotate = function (rad, axis)
 	this.mat[11] = a03 * b20 + a13 * b21 + a23 * b22;
 	return this;
 };
-Camel.Mx44.prototype.rotateX = function(rad) 
+Camel.Mx44.prototype.rotateX = function(deg) 
 {
-	var s = Math.sin(rad),
-		c = Math.cos(rad),
+	var s = Math.sin(deg),
+		c = Math.cos(deg),
 		a10 = this.mat[4],
 		a11 = this.mat[5],
 		a12 = this.mat[6],
