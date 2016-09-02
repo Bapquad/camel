@@ -1364,7 +1364,7 @@ Camel.Vec3.prototype.angle = function(v)
 };
 Camel.Vec3.prototype.toString = function() 
 {
-	return 'vec3('+this.vec[0]+', '+this.vec[1]+', '+this.vec[2]+')';
+	return 'vec3('+this.vec[0].toString()+', '+this.vec[1].toString()+', '+this.vec[2].toString()+')';
 };
 Camel.Vec3.prototype.instanceOf = function() 
 {
@@ -1589,7 +1589,7 @@ Camel.Vec4.prototype.transformQuat = function(q)
 };
 Camel.Vec4.prototype.toString = function() 
 {
-	return 'vec4('+this.vec[0]+', '+this.vec[1]+', '+this.vec[2]+', '+this.vec[3]+')';
+	return 'vec4('+this.vec[0].toString()+', '+this.vec[1].toString()+', '+this.vec[2].toString()+', '+this.vec[3].toString()+')';
 };
 Camel.Vec4.prototype.instanceOf = function() 
 {
@@ -1611,7 +1611,7 @@ Camel.Quat = function(i, j, k, q)
 	k = k || 0.0;
 	q = q || 1.0;
 	this.vec = new Float32Array(4);
-	this.setVector(i, j, k, q);
+	this.setValues(i, j, k, q);
 };
 Camel.Quat.prototype.loadVecFloat = Camel.Vec4.prototype.loadVecFloat;
 Camel.Quat.prototype.setValues = Camel.Vec4.prototype.setVector;
@@ -1821,7 +1821,7 @@ Camel.Quat.prototype.fromMat3 = function(m)
 };
 Camel.Quat.prototype.toString = function() 
 {
-	return 'quat('+this.vec[0]+', '+this.vec[1]+', '+this.vec[2]+', '+this.vec[3]+')';
+	return 'quat('+this.vec[0].toString()+', '+this.vec[1].toString()+', '+this.vec[2].toString()+', '+this.vec[3].toString()+')';
 };
 Camel.Quat.prototype.instanceOf = function() 
 {
@@ -1990,7 +1990,7 @@ Camel.Mx22.prototype.LDU = function(L, D, U)
 }; 
 Camel.Mx22.prototype.toString = function() 
 {
-	return 'mat2('+this.vec[0]+', '+this.vec[1]+', '+this.vec[2]+', '+this.vec[3]+')';
+	return 'mat2('+this.mat[0].toString()+', '+this.mat[1].toString()+', '+this.mat[2].toString()+', '+this.mat[3].toString()+')';
 };
 Camel.Mx22.prototype.instanceOf = function() 
 {
@@ -2183,7 +2183,7 @@ Camel.Mx23.prototype.frob = function()
 };
 Camel.Mx23.prototype.toString = function() 
 {
-	return 'mat2d('+this.vec[0]+', '+this.vec[1]+', '+this.vec[2]+', '+this.vec[3]+', '+this.vec[4]+', '+this.vec[5]+')';
+	return 'mat2d('+this.mat[0].toString()+', '+this.mat[1].toString()+', '+this.mat[2].toString()+', '+this.mat[3].toString()+', '+this.mat[4].toString()+', '+this.mat[5].toString()+')';
 };
 Camel.Mx23.prototype.instanceOf = function() 
 {
@@ -2503,7 +2503,7 @@ Camel.Mx33.prototype.frob = function()
 };
 Camel.Mx33.prototype.toString = function() 
 {
-	return 'mat3('+this.vec[0]+', '+this.vec[1]+', '+this.vec[2]+', '+this.vec[3]+', '+this.vec[4]+', '+this.vec[5]+', '+this.vec[6]+', '+this.vec[7]+', '+this.vec[8]+')';
+	return 'mat3('+this.mat[0].toString()+', '+this.mat[1].toString()+', '+this.mat[2].toString()+', '+this.mat[3].toString()+', '+this.mat[4].toString()+', '+this.mat[5].toString()+', '+this.mat[6].toString()+', '+this.mat[7].toString()+', '+this.mat[8].toString()+')';
 };
 Camel.Mx33.prototype.instanceOf = function() 
 {
@@ -2521,7 +2521,7 @@ Camel.Mx33.toString = function()
 Camel.Mx44 = function(x1, y1, z1, w1, x2, y2, z2, w2, x3, y3, z3, w3, x4, y4, z4, w4) 
 {
 	this.mat = new Float32Array(16);
-	this.setMatrix(a, b, c, d, i, j, k, q, m, n, o, p, x, y, z, w);
+	this.setMatrix(x1, y1, z1, w1, x2, y2, z2, w2, x3, y3, z3, w3, x4, y4, z4, w4);
 };
 Camel.Mx44.prototype.loadMXFloat = function() 
 {
@@ -2905,7 +2905,7 @@ Camel.Mx44.prototype.fromScaling = function(v)
 	this.mat[15] = 1.0;
 	return this;
 };
-Camel.Mx44.prototype.fromRotation = function(rad, axis) 
+Camel.Mx44.prototype.fromRotation = function(deg, axis) 
 {
 	var x = axis.vec[0],
 		y = axis.vec[1], 
@@ -2920,8 +2920,8 @@ Camel.Mx44.prototype.fromRotation = function(rad, axis)
 	y *= len;
 	z *= len;
 
-	s = Math.sin(rad);
-	c = Math.cos(rad);
+	s = Math.sin(deg);
+	c = Math.cos(deg);
 	t = 1 - c;
 	// Perform rotation-specific matrix multiplication
 	this.mat[0] = x * x * t + c;
@@ -2942,10 +2942,10 @@ Camel.Mx44.prototype.fromRotation = function(rad, axis)
 	this.mat[15] = 1.0;
 	return this;
 };
-Camel.Mx44.prototype.fromXRotation = function(rad) 
+Camel.Mx44.prototype.fromXRotation = function(deg) 
 {
-	var s = Math.sin(rad),
-		c = Math.cos(rad);
+	var s = Math.sin(deg),
+		c = Math.cos(deg);
 	// Perform axis-specific matrix multiplication
 	this.mat[0]  = 1.0;
 	this.mat[1]  = 0.0;
@@ -2965,10 +2965,10 @@ Camel.Mx44.prototype.fromXRotation = function(rad)
 	this.mat[15] = 1.0;
 	return this;
 };
-Camel.Mx44.prototype.fromYRotation = function(rad) 
+Camel.Mx44.prototype.fromYRotation = function(deg) 
 {
-	var s = Math.sin(rad),
-		c = Math.cos(rad);
+	var s = Math.sin(deg),
+		c = Math.cos(deg);
 	// Perform axis-specific matrix multiplication
 	this.mat[0]  = c;
 	this.mat[1]  = 0.0;
@@ -2988,10 +2988,10 @@ Camel.Mx44.prototype.fromYRotation = function(rad)
 	this.mat[15] = 1.0;
 	return this;
 };
-Camel.Mx44.prototype.fromZRotation = function(rad) 
+Camel.Mx44.prototype.fromZRotation = function(deg) 
 {
-	var s = Math.sin(rad),
-		c = Math.cos(rad);
+	var s = Math.sin(deg),
+		c = Math.cos(deg);
 	// Perform axis-specific matrix multiplication
 	this.mat[0]  = c;
 	this.mat[1]  = s;
@@ -3130,7 +3130,7 @@ Camel.Mx44.prototype.toFrustum = function(left, right, bottom, top, near, far)
 {
 	var rl = 1 / (right - left),
 		tb = 1 / (top - bottom),
-		nf = 1 / (near - far);
+		nf = 1 / (near - far); 
 	this.mat[0] = (near * 2) * rl;
 	this.mat[1] = 0.0;
 	this.mat[2] = 0.0;
@@ -3170,7 +3170,7 @@ Camel.Mx44.prototype.frob = function()
 };
 Camel.Mx44.prototype.toString = function() 
 {
-	return 'mat4('+this.vec[0]+', '+this.vec[1]+', '+this.vec[2]+', '+this.vec[3]+', '+this.vec[4]+', '+this.vec[5]+', '+this.vec[6]+', '+this.vec[7]+', '+this.vec[8]+', '+this.vec[9]+', '+this.vec[10]+', '+this.vec[11]+', '+this.vec[12]+', '+this.vec[13]+', '+this.vec[14]+', '+this.vec[15]+')';
+	return 'mat4('+this.mat[0].toString()+', '+this.mat[1].toString()+', '+this.mat[2].toString()+', '+this.mat[3].toString()+', '+this.mat[4].toString()+', '+this.mat[5].toString()+', '+this.mat[6].toString()+', '+this.mat[7].toString()+', '+this.mat[8].toString()+', '+this.mat[9].toString()+', '+this.mat[10].toString()+', '+this.mat[11].toString()+', '+this.mat[12].toString()+', '+this.mat[13].toString()+', '+this.mat[14].toString()+', '+this.mat[15].toString()+')';
 };
 Camel.Mx44.prototype.instanceOf = function() 
 {
@@ -3186,7 +3186,11 @@ Camel.Mx44.toString = function()
  */
 Camel.Perspective = function(angle, aspect, near, far)
 {
-	this.mat = new Float32Array(16);
+	this.mat = new Float32Array(16); 
+	this.angle = 0;
+	this.aspect = 0;
+	this.near = 0;
+	this.far = 0;
 	this.initialize(angle, aspect, near, far);
 };
 Camel.Perspective.prototype.loadMXFloat = function() 
@@ -3195,6 +3199,11 @@ Camel.Perspective.prototype.loadMXFloat = function()
 };
 Camel.Perspective.prototype.integrate = function(angle, aspect, near, far) 
 {
+	this.angle = angle || 45.0;
+	this.aspect = aspect || 1.0;
+	this.near = near || 1.0;
+	this.far = far || 1000.0;
+	
 	var tan = Math.tan(Math.degToRad(0.5*angle)) , 
 		A = -(far+near)/(far-near) , 
 		B = (-2*far*near)/(far-near);
@@ -3209,13 +3218,31 @@ Camel.Perspective.prototype.integrate = function(angle, aspect, near, far)
 };
 Camel.Perspective.prototype.initialize = Camel.Perspective.prototype.integrate;
 Camel.Perspective.prototype.set = Camel.Perspective.prototype.integrate;
+Camel.Perspective.prototype.toString = function() 
+{
+	return 'perspective('+this.angle.toString()+', '+this.aspect.toString()+', '+this.near.toString()+', '+this.far.toString()+')';
+};
+Camel.Perspective.prototype.instanceOf = function() 
+{
+	return Camel.Perspective.toString();
+};
+Camel.Perspective.toString = function() 
+{
+	return 'Camel.Perspective';
+};
 
 /**
  * The Orthographic of Camel
  */
 Camel.Orthographic = function(left, top, right, bottom, near, far) 
 {
-	this.mat = new Float32Array(16);
+	this.mat = new Float32Array(16); 
+	this.left = 0;
+	this.top = 0;
+	this.right = 0;
+	this.bottom = 0;
+	this.near = 0;
+	this.far = 0;
 	this.integrate(left, top, right, bottom, near, far);
 };
 Camel.Orthographic.prototype.loadMXFloat = function() 
@@ -3224,6 +3251,13 @@ Camel.Orthographic.prototype.loadMXFloat = function()
 };
 Camel.Orthographic.prototype.integrate = function(left, top, right, bottom, near, far) 
 {
+	left =
+	this.left = left;
+	this.top = top;
+	this.right = right;
+	this.bottom = bottom;
+	this.near = near;
+	this.far = far;
 	for(var i=0;i<16;i++)
 		if(i==0) this.mat[i] = 1 / (right-left);
 		else if(i==5) this.mat[i] = 1 / (bottom-top);	

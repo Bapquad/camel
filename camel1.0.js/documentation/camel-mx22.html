@@ -170,7 +170,7 @@
 </p> 
 
 <h4 id="fromRotation">fromRotation(<span class="code-param">deg</span>)</h4>
-<p>Rotates 2x2 matrix from a given angle This is equivalent to (but much faster than): mat2.identity(dest); mat2.rotate(dest, dest, rad);</p>
+<p>Rotates 2x2 matrix from a given angle This is equivalent to (but much faster than): mat2.identity(); mat2.rotate(deg);</p>
 <p class="note">This method has one param:</p> 
 <ul class="ml25">
 	<li><span class="code-param">deg</span><span class="code">:number</span> - if exist, this param is a angle.</li> 
@@ -183,7 +183,7 @@
 </p>
 
 <h4 id="fromScaling">fromScaling(<span class="code-param">v</span>)</h4>
-<p>Scaling the 2x2 matrix from a vector scaling This is equivalent to (but much faster than): mat2.identity(dest); mat2.scale(dest, dest, vec);</p>
+<p>Scaling the 2x2 matrix from a vector scaling This is equivalent to (but much faster than): mat2.identity(); mat2.scale(vec);</p>
 <p class="note">This method has one param:</p> 
 <ul class="ml25">
 	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - if exist, this param is another <span class="code">Camel.Vec2</span> object.</li> 

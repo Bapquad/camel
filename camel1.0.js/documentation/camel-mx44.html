@@ -227,7 +227,7 @@
 </p> 
 
 <h4 id="fromTranslation">fromTranslation(<span class="code-param">v</span>)</h4>
-<p>Translates the 4x4 matrix from a vector translation This is equivalent to (but much faster than): <span class="code">mat.identity(dest)</span>; <span class="code">mat.translate(dest, dest, vec)</span>;</p>
+<p>Translates the 4x4 matrix from a vector translation. This is equivalent to (but much faster than): <span class="code">mat.identity()</span>; <span class="code">mat.translate(vec)</span>;</p>
 <p class="note">This method has one param:</p> 
 <ul class="ml25">
 	<li><span class="code-param">v</span><span class="code">:Camel.Vec3</span> - if exist, this param is another <span class="code">Camel.Vec3</span> object.</li> 
@@ -241,7 +241,7 @@
 </p> 
 
 <h4 id="fromScaling">fromScaling(<span class="code-param">v</span>)</h4>
-<p>Scaling the 4x4 matrix from a vector scaling This is equivalent to (but much faster than): <span class="code">mat.identity(dest)</span>; <span class="code">mat.scale(dest, dest, vec)</span>;</p>
+<p>Scaling the 4x4 matrix from a vector scaling. This is equivalent to (but much faster than): <span class="code">mat.identity()</span>; <span class="code">mat.scale(vec)</span>;</p>
 <p class="note">This method has one param:</p> 
 <ul class="ml25">
 	<li><span class="code-param">v</span><span class="code">:Camel.Vec3</span> - if exist, this param is another <span class="code">Camel.Vec3</span> object.</li> 
@@ -253,6 +253,191 @@
 	mat1.fromScaling(vec2); <br/>
 	<span class="code-key">console</span>.log(mat1); 
 </p> 
+
+<h4 id="fromRotation">fromRotation(<span class="code-param">deg</span>, <span class="code-param">axis</span>)</h4>
+<p>Rotates 4x4 matrix from a given angle. This is equivalent to (but much faster than): <span class="code">mat.identity()</span>; <span class="code">mat.rotate(deg, vec)</span>;</p>
+<p class="note">This method has two params:</p>
+<ul class="ml25">
+	<li><span class="code-param">deg</span>:<span class="code">number</span> - if exist, this param is an angle.</li>
+	<li><span class="code-param">axis</span>:<span class="code">Camel.Vec3</span> - if exist, this param is another <span class="code">Camel.Vec3</span> object.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx44(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>); <br/>
+    <span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">3.0</span>, <span class="code-const">-1.0</span>); <br/>
+	mat1.fromRotation(<span class="code-const">45.0</span>, vec2); <br/>
+	<span class="code-key">console</span>.log(mat1); 
+</p> 
+
+<h4 id="fromXRotation">fromXRotation(<span class="code-param">deg</span>)</h4>
+<p>Rotates 4x4 matrix on X axis from a given angle. This is equivalent to (but much faster than): <span class="code">mat.identity()</span>; <span class="code">mat.rotateX(deg)</span>;</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">deg</span>:<span class="code">number</span> - if exist, this param is an angle.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx44(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>); <br/>
+	mat1.fromXRotation(<span class="code-const">45.0</span>); <br/>
+	<span class="code-key">console</span>.log(mat1); 
+</p> 
+
+<h4 id="fromYRotation">fromYRotation(<span class="code-param">deg</span>)</h4>
+<p>Rotates 4x4 matrix on Y axis from a given angle. This is equivalent to (but much faster than): <span class="code">mat.identity()</span>; <span class="code">mat.rotateY(deg)</span>;</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">deg</span>:<span class="code">number</span> - if exist, this param is an angle.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx44(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>); <br/>
+	mat1.fromYRotation(<span class="code-const">45.0</span>); <br/>
+	<span class="code-key">console</span>.log(mat1); 
+</p> 
+
+<h4 id="fromZRotation">fromZRotation(<span class="code-param">deg</span>)</h4>
+<p>Rotates 4x4 matrix on Z axis from a given angle. This is equivalent to (but much faster than): <span class="code">mat.identity()</span>; <span class="code">mat.rotateZ(deg)</span>;</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">deg</span>:<span class="code">number</span> - if exist, this param is an angle.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx44(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>); <br/>
+	mat1.fromZRotation(<span class="code-const">45.0</span>); <br/>
+	<span class="code-key">console</span>.log(mat1); 
+</p> 
+
+<h4 id="fromRotationTranslation">fromRotationTranslation(<span class="code-param">q</span>, <span class="code-param">v</span>)</h4>
+<p>Transform a matrix from a quaternion rotation and vector translation.</p>
+<p class="note">This method has two params:</p>
+<ul class="ml25">
+	<li><span class="code-param">q</span>:<span class="code">Camel.Quat</span> - if exist, this param is a quaternion.</li>
+	<li><span class="code-param">v</span>:<span class="code">Camel.Vec3</span> - if exist, this param is a 3D vector.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx44(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>); <br/>
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>, <span class="code-const">2.0</span>); <br/>
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	mat1.fromRotationTranslation(q, vec1); <br/>
+	<span class="code-key">console</span>.log(mat1); 
+</p> 
+
+<h4 id="fromRotationTranslationScale">fromRotationTranslationScale(<span class="code-param">q</span>, <span class="code-param">v</span>, <span class="code-param">s</span>)</h4>
+<p>Transform a matrix from a quaternion rotation with vector translation and vector scaling.</p>
+<p class="note">This method has three params:</p>
+<ul class="ml25">
+	<li><span class="code-param">q</span>:<span class="code">Camel.Quat</span> - if exist, this param is a quaternion.</li>
+	<li><span class="code-param">v</span>:<span class="code">Camel.Vec3</span> - if exist, this param is a 3D vector. Transition vector.</li>
+	<li><span class="code-param">s</span>:<span class="code">Camel.Vec3</span> - if exist, this param is a 3D vector. Scaling vector.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx44(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>); <br/>
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>, <span class="code-const">2.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">2.0</span>, <span class="code-const">2.0</span>, <span class="code-const">2.0</span>); <br/>
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	mat1.fromRotationTranslationScale(q, vec1, vec2); <br/>
+	<span class="code-key">console</span>.log(mat1); 
+</p> 
+
+<h4 id="fromRotationTranslationScaleOrigin">fromRotationTranslationScaleOrigin(<span class="code-param">q</span>, <span class="code-param">v</span>, <span class="code-param">s</span>)</h4>
+<p>Transform a matrix from a quaternion rotation with vector translation and vector scaling.</p>
+<p class="note">This method has four params:</p>
+<ul class="ml25">
+	<li><span class="code-param">q</span>:<span class="code">Camel.Quat</span> - if exist, this param is a quaternion.</li>
+	<li><span class="code-param">v</span>:<span class="code">Camel.Vec3</span> - if exist, this param is a 3D vector. Transition vector.</li>
+	<li><span class="code-param">s</span>:<span class="code">Camel.Vec3</span> - if exist, this param is a 3D vector. Scaling vector.</li>
+	<li><span class="code-param">o</span>:<span class="code">Camel.Vec3</span> - if exist, this param is a 3D vector. The origin vector around which to scale and rotate.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx44(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>); <br/>
+	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">10.0</span>, <span class="code-const">4.0</span>, <span class="code-const">2.0</span>); <br/>
+	<span class="code-key">var</span> vec2 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">2.0</span>, <span class="code-const">2.0</span>, <span class="code-const">2.0</span>); <br/>
+	<span class="code-key">var</span> vec3 = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">3.0</span>, <span class="code-const">4.0</span>, <span class="code-const">1.0</span>); <br/>
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	mat1.fromRotationTranslationScale(q, vec1, vec2, vec3); <br/>
+	<span class="code-key">console</span>.log(mat1); 
+</p> 
+
+<h4 id="fromQuat">fromQuat(<span class="code-param">q</span>)</h4>
+<p>Calculates the matrix from the given quaternion.</p>
+<p class="note">This method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">q</span>:<span class="code">Camel.Quat</span> - if exist, this param is a quaternion.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx44(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>); <br/>
+	<span class="code-key">var</span> q = <span class="code-key">new</span> Camel.Quat(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">console</span>.log(mat1); 
+</p> 
+
+<h4 id="frustum">frustum(<span class="code">left</span>, <span class="code">right</span>, <span class="code">bottom</span>, <span class="code">top</span>, <span class="code">near</span>, <span class="code">far</span>)</h4>
+<p>Generates a frustum matrix with the given bounds.</p>
+<p class="note">This method has six params:</p>
+<ul class="ml25">
+	<li><span class="code-param">left</span>:<span class="code">number</span> - Left bound of the frustum.</li>
+	<li><span class="code-param">right</span>:<span class="code">number</span> - Right bound of the frustum.</li>
+	<li><span class="code-param">bottom</span>:<span class="code">number</span> - Bottom bound of the frustum.</li>
+	<li><span class="code-param">top</span>:<span class="code">number</span> - Top bound of the frustum.</li>
+	<li><span class="code-param">near</span>:<span class="code">number</span> - Near bound of the frustum.</li>
+	<li><span class="code-param">far</span>:<span class="code">number</span> - Far bound of the frustum.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx44(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>); <br/>
+	<span class="code-key">var</span> mat2 = mat1.frustum(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>); <br/>
+	<span class="code-key">console</span>.log(mat2); 
+</p> 
+
+<h4 id="toFrustum">toFrustum(<span class="code">left</span>, <span class="code">right</span>, <span class="code">bottom</span>, <span class="code">top</span>, <span class="code">near</span>, <span class="code">far</span>)</h4>
+<p>Calculate the matrix to a frustum matrix with the given bounds.</p>
+<p class="note">This method has six params:</p>
+<ul class="ml25">
+	<li><span class="code-param">left</span>:<span class="code">number</span> - Left bound of the frustum.</li>
+	<li><span class="code-param">right</span>:<span class="code">number</span> - Right bound of the frustum.</li>
+	<li><span class="code-param">bottom</span>:<span class="code">number</span> - Bottom bound of the frustum.</li>
+	<li><span class="code-param">top</span>:<span class="code">number</span> - Top bound of the frustum.</li>
+	<li><span class="code-param">near</span>:<span class="code">number</span> - Near bound of the frustum.</li>
+	<li><span class="code-param">far</span>:<span class="code">number</span> - Far bound of the frustum.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx44(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>); <br/>
+	mat1.toFrustum(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>); <br/>
+	<span class="code-key">console</span>.log(mat1); 
+</p> 
+
+<h4 id="frob">frob()</h4>
+<p>Returns Frobenius norm of the 4x4 matrix.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx44(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>); <br/>
+	<span class="code-key">console</span>.log(mat1.frob()); 
+</p> 
+
+<h4 id="toString">toString()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx44(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>); <br/>
+	<span class="code-key">console</span>.log(mat1.toString()); <br/><br/>
+	<span class="code-comment">// You can use static method.</span> <br/>
+	<span class="code-key">console</span>.log(Camel.Mx44.toString()); 
+</p>
+
+<h4 id="instanceOf">instanceOf()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx44(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>, <span class="code-const">4.1</span>); <br/>
+	<span class="code-key">console</span>.log(mat1.instanceOf()); 
+</p>
 
 </div>
 </div>

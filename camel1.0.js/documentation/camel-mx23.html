@@ -173,7 +173,7 @@
 </p> 
 
 <h4 id="fromRotation">fromRotation(<span class="code-param">deg</span>)</h4>
-<p>Rotates 2x3 matrix from a given angle This is equivalent to (but much faster than): <span class="code">mat.identity(dest)</span>; <span class="code">mat.rotate(dest, dest, rad)</span>;</p>
+<p>Rotates 2x3 matrix from a given angle This is equivalent to (but much faster than): <span class="code">mat.identity()</span>; <span class="code">mat.rotate(deg)</span>;</p>
 <p class="note">This method has one param:</p> 
 <ul class="ml25">
 	<li><span class="code-param">deg</span><span class="code">:number</span> - if exist, this param is a angle.</li> 
@@ -186,7 +186,7 @@
 </p>
 
 <h4 id="fromScaling">fromScaling(<span class="code-param">v</span>)</h4>
-<p>Scaling the 2x3 matrix from a vector scaling This is equivalent to (but much faster than): <span class="code">mat.identity(dest)</span>; <span class="code">mat.scale(dest, dest, vec)</span>;</p>
+<p>Scaling the 2x3 matrix from a vector scaling This is equivalent to (but much faster than): <span class="code">mat.identity()</span>; <span class="code">mat.scale(vec)</span>;</p>
 <p class="note">This method has one param:</p> 
 <ul class="ml25">
 	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - if exist, this param is another <span class="code">Camel.Vec2</span> object.</li> 
@@ -200,7 +200,7 @@
 </p>
 
 <h4 id="fromTranslation">fromTranslation(<span class="code-param">v</span>)</h4>
-<p>Scaling the 2x3 matrix from a vector translation This is equivalent to (but much faster than): mat.identity(dest); mat.translate(dest, dest, vec);</p>
+<p>Scaling the 2x3 matrix from a vector translation This is equivalent to (but much faster than): mat.identity(); mat.translate(vec);</p>
 <p class="note">This method has one param:</p> 
 <ul class="ml25">
 	<li><span class="code-param">v</span><span class="code">:Camel.Vec2</span> - if exist, this param is another <span class="code">Camel.Vec2</span> object.</li> 

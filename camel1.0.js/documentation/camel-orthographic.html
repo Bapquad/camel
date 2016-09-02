@@ -26,43 +26,91 @@
 <h3>Members</h3>
 
 <h4 id="mat" class="st">mat</h4>
-<p>Hold the <span class="code">Float32Array(9)</span>.</p>
+<p>Hold the <span class="code">Float32Array(16)</span>.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Mx44(<span class="code-const">1.0</span>, <span class="code-const">2.0</span>, <span class="code-const">5.0</span>, <span class="code-const">0.0</span>, <span class="code-const">5.0</span>, <span class="code-const">0.0</span>, <span class="code-const">5.0</span>, <span class="code-const">0.0</span>, <span class="code-const">5.0</span>, <span class="code-const">5.0</span>, <span class="code-const">0.0</span>, <span class="code-const">5.0</span>, <span class="code-const">5.0</span>, <span class="code-const">0.0</span>, <span class="code-const">5.0</span>, <span class="code-const">5.0</span>); <br/>
-	<span class="code-key">console</span>.log(vec1.mat);
+	<span class="code-key">var</span> orthographic = <span class="code-key">new</span> Camel.Orthographic(<span class="code-const">0.0</span>, <span class="code-const">0.0</span>, <span class="code-const">640.0</span>, <span class="code-const">480.0</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br/>
+	<span class="code-key">console</span>.log(orthographic.mat);
 </p>
 
 <h3>Constructor</h3>
 
-<h4 id="constructor" class="st">Camel.Orthographic(<span class="code-param">angle</span>, <span class="code-param">aspect</span>, <span class="code-param">near</span>, <span class="code-param">far</span>)</h4>
-<p class="note">The constructor of Camel.Orthographic has 4 params:</p>
+<h4 id="constructor" class="st">Camel.Orthographic(<span class="code-param">left</span>, <span class="code-param">top</span>, <span class="code-param">right</span>, <span class="code-param">bottom</span>, <span class="code-param">near</span>, <span class="code-param">far</span>)</h4>
+<p class="note">The constructor of Camel.Orthographic has six params:</p>
 <ul>
-	<li><span class="code-param">angle</span><span class="code">:number</span> - x-coord of the vector4.</li>
-	<li><span class="code-param">aspect</span><span class="code">:number</span> - y-coord of the vector4.</li>
-	<li><span class="code-param">near</span><span class="code">:number</span> - z-coord of the vector4.</li>
-    <li><span class="code-param">far</span><span class="code">:number</span> - w-coord of the vector4.</li>
+	<li><span class="code-param">left</span><span class="code">:number</span> - The left of the othorgraphic.</li>
+	<li><span class="code-param">top</span><span class="code">:number</span> - The top of the othorgraphic.</li>
+	<li><span class="code-param">right</span><span class="code">:number</span> - The right of the othorgraphic.</li>
+	<li><span class="code-param">bottom</span><span class="code">:number</span> - The bottom of the othorgraphic.</li>
+    <li><span class="code-param">near</span><span class="code">:number</span> - The nearest of the othorgraphic.</li>
+    <li><span class="code-param">far</span><span class="code">:number</span> - The farest of the othorgraphic.</li>
 </ul>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> Orthographic = <span class="code-key">new</span> Camel.Orthographic(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(Orthographic);
+	<span class="code-key">var</span> orthographic = <span class="code-key">new</span> Camel.Orthographic(<span class="code-const">0.0</span>, <span class="code-const">0.0</span>, <span class="code-const">640.0</span>, <span class="code-const">480.0</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br/>
+	<span class="code-key">console</span>.log(orthographic);
 </p>
 
 <h3>Methods</h3>
 
 <h4 id="loadMXFloat" class="st">loadMXFloat()</h4>
-<p class="note">Short description for this code</p>
-<p class="note">Params introduce:</p>
-<ul>
-	<li><span class="code-param">aggr1</span><span class="code">:string</span> - The id string of canvas developer want to use with Camel.</li>
-	<li><span class="code-param">aggr2</span><span class="code">:object</span> - The settings object developer want to config for Camel.</li>
-</ul>
-<p class="tips">Return <span class="code">Float32Array(3)</span> - the 3D vector value.</p>
+<p>Receives the <span class="code">Float32Array(16)</span> value.</p>
+<p class="tips">Return <span class="code">Float32Array(16)</span> - the value.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
-	<span class="code-key">console</span>.log(engine.getWidth());
+	<span class="code-key">var</span> orthographic = <span class="code-key">new</span> Camel.Orthographic(<span class="code-const">0.0</span>, <span class="code-const">0.0</span>, <span class="code-const">640.0</span>, <span class="code-const">480.0</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br/>
+	<span class="code-key">console</span>.log(orthographic.loadMXFloat());
+</p> 
+
+<h4 id="integrate">integrate(<span class="code-param">left</span>, <span class="code-param">top</span>, <span class="code-param">right</span>, <span class="code-param">bottom</span>, <span class="code-param">near</span>, <span class="code-param">far</span>)</h4>
+<p class="note">The integrate method has six params:</p>
+<ul>
+	<li><span class="code-param">left</span><span class="code">:number</span> - The left of the othorgraphic.</li>
+	<li><span class="code-param">top</span><span class="code">:number</span> - The top of the othorgraphic.</li>
+	<li><span class="code-param">right</span><span class="code">:number</span> - The right of the othorgraphic.</li>
+	<li><span class="code-param">bottom</span><span class="code">:number</span> - The bottom of the othorgraphic.</li>
+    <li><span class="code-param">near</span><span class="code">:number</span> - The nearest of the othorgraphic.</li>
+    <li><span class="code-param">far</span><span class="code">:number</span> - The farest of the othorgraphic.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> orthographic = <span class="code-key">new</span> Camel.Orthographic(<span class="code-const">0.0</span>, <span class="code-const">0.0</span>, <span class="code-const">640.0</span>, <span class="code-const">480.0</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br/>
+	orthographic.integrate(<span class="code-const">0.0</span>, <span class="code-const">0.0</span>, <span class="code-const">640.0</span>, <span class="code-const">480.0</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br />
+	<span class="code-key">console</span>.log(orthographic);
+</p> 
+
+<h4 id="initialize">initialize(<span class="code-param">left</span>, <span class="code-param">top</span>, <span class="code-param">right</span>, <span class="code-param">bottom</span>, <span class="code-param">near</span>, <span class="code-param">far</span>)</h4>
+<p class="note">The initialize method has six params:</p>
+<ul>
+	<li><span class="code-param">left</span><span class="code">:number</span> - The left of the othorgraphic.</li>
+	<li><span class="code-param">top</span><span class="code">:number</span> - The top of the othorgraphic.</li>
+	<li><span class="code-param">right</span><span class="code">:number</span> - The right of the othorgraphic.</li>
+	<li><span class="code-param">bottom</span><span class="code">:number</span> - The bottom of the othorgraphic.</li>
+    <li><span class="code-param">near</span><span class="code">:number</span> - The nearest of the othorgraphic.</li>
+    <li><span class="code-param">far</span><span class="code">:number</span> - The farest of the othorgraphic.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> perspective = <span class="code-key">new</span> Camel.Perspective(<span class="code-const">45.0</span>, <span class="code-const">2.1</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br/>
+	perspective.initialize(<span class="code-const">45.0</span>, <span class="code-const">2.1</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br />
+	<span class="code-key">console</span>.log(perspective);
+</p> 
+
+<h4 id="set">set(<span class="code-param">left</span>, <span class="code-param">top</span>, <span class="code-param">right</span>, <span class="code-param">bottom</span>, <span class="code-param">near</span>, <span class="code-param">far</span>)</h4>
+<p class="note">The set method has six params:</p>
+<ul>
+	<li><span class="code-param">left</span><span class="code">:number</span> - The left of the othorgraphic.</li>
+	<li><span class="code-param">top</span><span class="code">:number</span> - The top of the othorgraphic.</li>
+	<li><span class="code-param">right</span><span class="code">:number</span> - The right of the othorgraphic.</li>
+	<li><span class="code-param">bottom</span><span class="code">:number</span> - The bottom of the othorgraphic.</li>
+    <li><span class="code-param">near</span><span class="code">:number</span> - The nearest of the othorgraphic.</li>
+    <li><span class="code-param">far</span><span class="code">:number</span> - The farest of the othorgraphic.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> perspective = <span class="code-key">new</span> Camel.Perspective(<span class="code-const">45.0</span>, <span class="code-const">2.1</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br/>
+	perspective.set(<span class="code-const">45.0</span>, <span class="code-const">2.1</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br />
+	<span class="code-key">console</span>.log(perspective);
 </p>
 
 </div>
