@@ -21,48 +21,108 @@
 </div>
 <div id="docs">
 <h2>Camel.Particle</h2>
-<p class="note">Camel.Particle is the 2x2 matrix math.</p>
+<p class="note">Camel.Particle class collects methods and members about particle.</p>
 
-<h3>Members</h3>
+<p class="tips">Extended by <a href="camel-transform.html" class="code">Camel.Transform</a>, <a href="camel-geometry.html" class="code">Camel.Geometry</a>, and <a href="camel-material.html" class="code">Camel.Material</a>.</p>
 
-<h4 id="mat" class="st">mat</h4>
-<p>Hold the <span class="code">Float32Array(4)</span>.</p>
+<h3 id="member">Members</h3>
+
+<p class="note">You can see members of <a href="camel-material.html#member" class="code">Camel.Material</a>, <a href="camel-geometry.html#member" class="code">Camel.Geometry</a>, and <a href="camel-transform.html#member" class="code">Camel.Transform</a> for more information.</p>
+
+<h4 id="visible">visible</h4>
+<p>Hold the visible which specifies whether this particle is enable or disable.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">1.0</span>, <span class="code-const">2.0</span>, <span class="code-const">5.0</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(vec1.mat);
+	<span class="code-key">var</span> particle = <span class="code-key">new</span> Camel.Particle(); <br/>
+	<span class="code-key">console</span>.log(particle.visible);
+</p> 
+
+<h4 id="disable">disable</h4>
+<p>Hold the disable which specifies whether this particle is enable or disable.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> particle = <span class="code-key">new</span> Camel.Particle(); <br/>
+	<span class="code-key">console</span>.log(particle.disable);
+</p> 
+
+<h4 id="freezed">freezed</h4>
+<p>Hold the freezed which specifies whether this particle is freezed or free.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> particle = <span class="code-key">new</span> Camel.Particle(); <br/>
+	<span class="code-key">console</span>.log(particle.freezed);
 </p>
 
 <h3>Constructor</h3>
 
-<h4 id="constructor" class="st">Camel.Mx22(<span class="code-param">x</span>, <span class="code-param">y</span>, <span class="code-param">z</span>, <span class="code-param">w</span>)</h4>
-<p class="note">The constructor of Camel.Mx22 has 4 params:</p>
-<ul>
-	<li><span class="code-param">x</span><span class="code">:number</span> - x-coord of the vector4.</li>
-	<li><span class="code-param">y</span><span class="code">:number</span> - y-coord of the vector4.</li>
-	<li><span class="code-param">z</span><span class="code">:number</span> - z-coord of the vector4.</li>
-    <li><span class="code-param">w</span><span class="code">:number</span> - w-coord of the vector4.</li>
-</ul>
+<h4 id="constructor" class="st">Camel.Particle()</h4>
+<p>A particle instance created by Camel.Particle class.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(mat1);
+	<span class="code-key">var</span> particle = <span class="code-key">new</span> Camel.Particle(); <br/>
+	<span class="code-key">console</span>.log(particle);
 </p>
 
-<h3>Methods</h3>
+<h3 id="method">Methods</h3>
 
-<h4 id="loadMXFloat" class="st">loadMXFloat()</h4>
-<p class="note">Short description for this code</p>
-<p class="note">Params introduce:</p>
-<ul>
-	<li><span class="code-param">aggr1</span><span class="code">:string</span> - The id string of canvas developer want to use with Camel.</li>
-	<li><span class="code-param">aggr2</span><span class="code">:object</span> - The settings object developer want to config for Camel.</li>
-</ul>
-<p class="tips">Return <span class="code">Float32Array(3)</span> - the 3D vector value.</p>
+<p class="note">You can see methods of <a href="camel-material.html#method" class="code">Camel.Material</a>, <a href="camel-geometry.html#method" class="code">Camel.Geometry</a>, and <a href="camel-transform.html#method" class="code">Camel.Transform</a> for more information.</p>
+
+<h4 id="hide">hide()</h4>
+<p>Hide the particle.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
-	<span class="code-key">console</span>.log(engine.getWidth());
+	<span class="code-key">var</span> particle = <span class="code-key">new</span> Camel.Particle(); <br/>
+	particle.hide();
+</p>
+
+<h4 id="show">show()</h4>
+<p>Show the particle.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> particle = <span class="code-key">new</span> Camel.Particle(); <br/>
+	particle.show();
+</p>
+
+<h4 id="live">live()</h4>
+<p>Enable the particle.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> particle = <span class="code-key">new</span> Camel.Particle(); <br/>
+	particle.live();
+</p>
+
+<h4 id="dead">dead()</h4>
+<p>Dead the particle.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> particle = <span class="code-key">new</span> Camel.Particle(); <br/>
+	particle.dead();
+</p>
+
+<h4 id="lock">lock()</h4>
+<p>Lock the particle.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> particle = <span class="code-key">new</span> Camel.Particle(); <br/>
+	particle.lock();
+</p>
+
+<h4 id="free">free()</h4>
+<p>Unlock the particle.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> particle = <span class="code-key">new</span> Camel.Particle(); <br/>
+	particle.free();
+</p>
+
+<h4 id="onTick">onTick()</h4>
+<p>onTick event function used to add callback into the update flow.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> particle = <span class="code-key">new</span> Camel.Particle(); <br/>
+	particle.onTick(<span class="code=key">function</span>() { <br /> 
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-key">console</span>.log(<span class="">'OK'</span>); <br /> 
+	});
 </p>
 
 </div>

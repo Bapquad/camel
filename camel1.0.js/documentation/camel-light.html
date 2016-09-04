@@ -21,49 +21,31 @@
 </div>
 <div id="docs">
 <h2>Camel.Light</h2>
-<p class="note">Camel.Light is the 2x2 matrix math.</p>
+<p class="note">Camel.Light class collects methods and members about basic lighting.</p>
+<p class="tips">Extended by <a href="camel-vec3.html" class="code">Camel.Vec3</a>, <a href="camel-color.html" class="code">Camel.Color</a>.</p>
 
-<h3>Members</h3>
+<h3 id="member">Members</h3>
 
-<h4 id="mat" class="st">mat</h4>
-<p>Hold the <span class="code">Float32Array(4)</span>.</p>
-<p class="note">How to use:</p>
-<p class="code-block">
-	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">1.0</span>, <span class="code-const">2.0</span>, <span class="code-const">5.0</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(vec1.mat);
-</p>
+<p class="note">Can you see members of <a href="camel-vec3.html#member" class="code">Camel.Vec3</a> and <a href="camel-color.html#member" class="code">Camel.Color</a> for more information.</p>
 
 <h3>Constructor</h3>
 
-<h4 id="constructor" class="st">Camel.Mx22(<span class="code-param">x</span>, <span class="code-param">y</span>, <span class="code-param">z</span>, <span class="code-param">w</span>)</h4>
-<p class="note">The constructor of Camel.Mx22 has 4 params:</p>
-<ul>
-	<li><span class="code-param">x</span><span class="code">:number</span> - x-coord of the vector4.</li>
-	<li><span class="code-param">y</span><span class="code">:number</span> - y-coord of the vector4.</li>
-	<li><span class="code-param">z</span><span class="code">:number</span> - z-coord of the vector4.</li>
-    <li><span class="code-param">w</span><span class="code">:number</span> - w-coord of the vector4.</li>
+<h4 id="constructor" class="st">Camel.Light(<span class="code-param">x</span>, <span class="code-param">y</span>, <span class="code-param">z</span>)</h4>
+<p class="note">The constructor of Camel.Light has three params:</p>
+<ul class="ml25">
+	<li><span class="code-param">x</span><span class="code">:number</span> - x-coord of the position.</li>
+	<li><span class="code-param">y</span><span class="code">:number</span> - y-coord of the position.</li>
+	<li><span class="code-param">z</span><span class="code">:number</span> - z-coord of the position.</li>
 </ul>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(mat1);
+	<span class="code-key">var</span> light = <span class="code-key">new</span> Camel.Light(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>); <br/>
+	<span class="code-key">console</span>.log(light);
 </p>
 
-<h3>Methods</h3>
+<h3 id="method">Methods</h3>
 
-<h4 id="loadMXFloat" class="st">loadMXFloat()</h4>
-<p class="note">Short description for this code</p>
-<p class="note">Params introduce:</p>
-<ul>
-	<li><span class="code-param">aggr1</span><span class="code">:string</span> - The id string of canvas developer want to use with Camel.</li>
-	<li><span class="code-param">aggr2</span><span class="code">:object</span> - The settings object developer want to config for Camel.</li>
-</ul>
-<p class="tips">Return <span class="code">Float32Array(3)</span> - the 3D vector value.</p>
-<p class="note">How to use:</p>
-<p class="code-block">
-	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
-	<span class="code-key">console</span>.log(engine.getWidth());
-</p>
+<p class="note">Can you see methods of <a href="camel-vec3.html#method" class="code">Camel.Vec3</a> and <a href="camel-color.html#method" class="code">Camel.Color</a> for more information.</p>
 
 </div>
 </div>
