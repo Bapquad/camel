@@ -21,49 +21,115 @@
 </div>
 <div id="docs">
 <h2>Camel.Scene</h2>
-<p class="note">Camel.Scene is the 2x2 matrix math.</p>
+<p class="note">Camel.Scene is the 3D scene.</p>
 
 <h3>Members</h3>
 
-<h4 id="mat" class="st">mat</h4>
-<p>Hold the <span class="code">Float32Array(4)</span>.</p>
+<h4 id="visible" class="st">visible</h4>
+<p>Hold the flag specify whether the scene invisible or visible. Default, it is visible.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">1.0</span>, <span class="code-const">2.0</span>, <span class="code-const">5.0</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(vec1.mat);
-</p>
+	<span class="code-key">var</span> scene = <span class="code-key">new</span> Camel.Scene(); <br/>
+	<span class="code-key">console</span>.log(scene.visible); 
+</p> 
+
+<h4 id="disable">disable</h4>
+<p>Hold the flag specify whether the scene enable or disable. Default, it is enable.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> scene = <span class="code-key">new</span> Camel.Scene(); <br/>
+	<span class="code-key">console</span>.log(scene.disable); 
+</p> 
+
+<h4 id="particleHolder">particleHolder</h4>
+<p>The array hold the particle items. Default, it has 32 slots.</p> 
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> scene = <span class="code-key">new</span> Camel.Scene(); <br/>
+	<span class="code-key">console</span>.log(scene.particleHolder.length); 
+</p> 
 
 <h3>Constructor</h3>
 
-<h4 id="constructor" class="st">Camel.Mx22(<span class="code-param">x</span>, <span class="code-param">y</span>, <span class="code-param">z</span>, <span class="code-param">w</span>)</h4>
-<p class="note">The constructor of Camel.Mx22 has 4 params:</p>
-<ul>
-	<li><span class="code-param">x</span><span class="code">:number</span> - x-coord of the vector4.</li>
-	<li><span class="code-param">y</span><span class="code">:number</span> - y-coord of the vector4.</li>
-	<li><span class="code-param">z</span><span class="code">:number</span> - z-coord of the vector4.</li>
-    <li><span class="code-param">w</span><span class="code">:number</span> - w-coord of the vector4.</li>
+<h4 id="constructor" class="st">Camel.Scene(<span class="code-param">startCB</span>, <span class="code-param">updateCB</span>, <span class="code-param">renderCB</span>, <span class="code-param">beforeRenderCB</span>)</h4>
+<p class="note">The constructor has four params:</p>
+<ul class="ml25">
+	<li><span class="code-param">startCB</span><span class="code">:function</span> - Initialize the scene function.</li>
+	<li><span class="code-param">updateCB</span><span class="code">:function</span> - Update the scene function.</li>
+	<li><span class="code-param">renderCB</span><span class="code">:function</span> - Render the scene function.</li>
+    <li><span class="code-param">beforeRenderCB</span><span class="code">:function</span> - Before render function.</li>
 </ul>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(mat1);
+	<span class="code-key">var</span> scene = <span class="code-key">new</span> Camel.Scene(); <br/>
+	<span class="code-key">console</span>.log(scene);
 </p>
 
 <h3>Methods</h3>
 
-<h4 id="loadMXFloat" class="st">loadMXFloat()</h4>
-<p class="note">Short description for this code</p>
-<p class="note">Params introduce:</p>
-<ul>
-	<li><span class="code-param">aggr1</span><span class="code">:string</span> - The id string of canvas developer want to use with Camel.</li>
-	<li><span class="code-param">aggr2</span><span class="code">:object</span> - The settings object developer want to config for Camel.</li>
-</ul>
-<p class="tips">Return <span class="code">Float32Array(3)</span> - the 3D vector value.</p>
+<h4 id="Enable" class="st">Enable()</h4>
+<p>Enable the scene.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
-	<span class="code-key">console</span>.log(engine.getWidth());
+	<span class="code-key">var</span> scene = <span class="code-key">new</span> Camel.Scene(); <br/> 
+	scene.Enable();
 </p>
+
+<h4 id="Disable">Disable()</h4>
+<p>Disable the scene.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> scene = <span class="code-key">new</span> Camel.Scene(); <br/> 
+	scene.Disable();
+</p> 
+
+<h4 id="addRenderer">addRenderer(<span class="code-param">renderer</span>)</h4>
+<p>Add renderer to renderer list.</p>
+<p class="note">The method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">renderer</span><span class="code">:object</span> - The renderer used to render the scene.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> scene = <span class="code-key">new</span> Camel.Scene(); <br/>
+	scene.addRenderer(<span class="code-const">CAMEL_RENDERER_TEXTURE</span>); 
+</p> 
+
+<h4 id="pass">pass(<span class="code-param">renderer</span>)</h4>
+<p>Rendering the scene.</p>
+<p class="note">The method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">renderer</span><span class="code">:object</span> - The renderer used to render the scene.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> scene = <span class="code-key">new</span> Camel.Scene(); <br/>
+	scene.pass(<span class="code-const">CAMEL_RENDERER_TEXTURE</span>); 
+</p> 
+
+<h4 id="addChild">addChild(<span class="code-param">particle</span>)</h4>
+<p>Add particle to the scene.</p>
+<p class="note">The method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">particle</span><span class="code">:object</span> - The object has be rendered by the scene.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> scene = <span class="code-key">new</span> Camel.Scene(); <br/>
+	scene.addChild(children); 
+</p> 
+
+<h4 id="addLight">addLight(<span class="code-param">light</span>)</h4>
+<p>Add the light to the scene.</p>
+<p class="note">The method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">light</span><span class="code">:object</span> - The light object has be rendered by the scene.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> scene = <span class="code-key">new</span> Camel.Scene(); <br/>
+	scene.addLight(sunLight); 
+</p> 
 
 </div>
 </div>

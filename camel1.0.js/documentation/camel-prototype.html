@@ -82,9 +82,9 @@
 	<span class="code-key">console</span>.log(engine.renderHolder);
 </p>
 
-<h3>Construct</h3>
+<h3>Constructor</h3>
 
-<h4 id="construct" class="st">Camel(<span class="code-param">CANVASElementID</span>, <span class="code-param">Settings</span>, <span class="code-param">Extensions</span>, <span class="code-param">numberHolder</span>)</h4>
+<h4 id="constructor" class="st">Camel(<span class="code-param">CANVASElementID</span>, <span class="code-param">Settings</span>, <span class="code-param">Extensions</span>, <span class="code-param">numberHolder</span>)</h4>
 <p class="note">The construct of Camel has 4 params:</p>
 <ul>
 	<li><span class="code-param">CANVASElementID</span><span class="code">:string</span> - The id string of canvas developer want to use with Camel.</li>
@@ -352,6 +352,22 @@
 <p class="code-block">
 	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
 	<span class="code-key">var</span> ctx = engine.buildDefault();
+</p>
+
+<h4 id="toString">toString()</h4>
+<p>Receives the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">console</span>.log(engine.toString());
+</p>
+
+<h4 id="instanceOf">instanceOf()</h4>
+<p>Receives the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
+	<span class="code-key">console</span>.log(engine.instanceOf());
 </p>
 
 </div>

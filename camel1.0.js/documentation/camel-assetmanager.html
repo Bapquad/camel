@@ -21,48 +21,211 @@
 </div>
 <div id="docs">
 <h2>Camel.AssetManager</h2>
-<p class="note">Camel.AssetManager is the 2x2 matrix math.</p>
+<p class="note">Camel.AssetManager loads and manages the assets.</p>
 
 <h3>Members</h3>
 
-<h4 id="mat" class="st">mat</h4>
-<p>Hold the <span class="code">Float32Array(4)</span>.</p>
+<h4 id="QueueType" class="st">QueueType</h4>
+<p>Hold the array which manage the asset type.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">1.0</span>, <span class="code-const">2.0</span>, <span class="code-const">5.0</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(vec1.mat);
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	<span class="code-key">console</span>.log(assetMgr.QueueType); 
 </p>
+
+<h4 id="errorCount">errorCount</h4>
+<p>Hold the number of error meeting.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	<span class="code-key">console</span>.log(assetMgr.errorCount); 
+</p> 
+
+<h4 id="successCount">successCount</h4>
+<p>Hold the number of success meeting.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	<span class="code-key">console</span>.log(assetMgr.successCount); 
+</p> 
+
+<h4 id="AssetList">AssetList</h4>
+<p>Hold the array which manages asset completely loaded.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	<span class="code-key">console</span>.log(assetMgr.AssetList); 
+</p> 
 
 <h3>Constructor</h3>
 
-<h4 id="constructor" class="st">Camel.Mx22(<span class="code-param">x</span>, <span class="code-param">y</span>, <span class="code-param">z</span>, <span class="code-param">w</span>)</h4>
-<p class="note">The constructor of Camel.Mx22 has 4 params:</p>
-<ul>
-	<li><span class="code-param">x</span><span class="code">:number</span> - x-coord of the vector4.</li>
-	<li><span class="code-param">y</span><span class="code">:number</span> - y-coord of the vector4.</li>
-	<li><span class="code-param">z</span><span class="code">:number</span> - z-coord of the vector4.</li>
-    <li><span class="code-param">w</span><span class="code">:number</span> - w-coord of the vector4.</li>
+<h4 id="constructor" class="st">Camel.AssetManager(<span class="code-param">ImageExt</span>, <span class="code-param">SoundExt</span>, <span class="code-param">XhttpExt</span>, <span class="code-param">VideoExt</span>)</h4>
+<p class="note">The constructor of Camel.AssetManager has four params:</p>
+<ul class="ml25">
+	<li><span class="code-param">ImageExt</span><span class="code">:string</span> - The string presents for list of image type.</li>
+	<li><span class="code-param">SoundExt</span><span class="code">:string</span> - The string presents for list of sound type.</li>
+	<li><span class="code-param">XhttpExt</span><span class="code">:string</span> - The string presents for list of xhttp type.</li>
+    <li><span class="code-param">VideoExt</span><span class="code">:string</span> - The string presents for list of video type.</li>
 </ul>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(mat1);
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	<span class="code-key">console</span>.log(assetMgr);
 </p>
 
 <h3>Methods</h3>
 
-<h4 id="loadMXFloat" class="st">loadMXFloat()</h4>
-<p class="note">Short description for this code</p>
-<p class="note">Params introduce:</p>
-<ul>
-	<li><span class="code-param">aggr1</span><span class="code">:string</span> - The id string of canvas developer want to use with Camel.</li>
-	<li><span class="code-param">aggr2</span><span class="code">:object</span> - The settings object developer want to config for Camel.</li>
-</ul>
-<p class="tips">Return <span class="code">Float32Array(3)</span> - the 3D vector value.</p>
+<h4 id="getErrorNumber" class="st">getErrorNumber()</h4>
+<p>Receives the number of error loading progress.</p>
+<p class="tips">Return <span class="code">number</span> - the error count.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
-	<span class="code-key">console</span>.log(engine.getWidth());
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	<span class="code-key">console</span>.log(assetMgr.getErrorNumber()); 
+</p>
+
+<h4 id="getSuccessNumber">getSuccessNumber()</h4>
+<p>Receives the number of success loading progress.</p>
+<p class="tips">Return <span class="code">number</span> - the success count.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	<span class="code-key">console</span>.log(assetMgr.getSuccessNumber()); 
+</p>
+
+<h4 id="getAssetList">getAssetList()</h4>
+<p>Receives the asset list.</p>
+<p class="tips">Return <span class="code">array</span> - A array hold assets.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	<span class="code-key">console</span>.log(assetMgr.getAssetList()); 
+</p> 
+
+<h4 id="isComplete">isComplete()</h4>
+<p>Receives the flag which specify whether the progress had completed.</p>
+<p class="tips">Return <span class="code">boolean</span> - How about the load progress.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	<span class="code-key">console</span>.log(assetMgr.isComplete()); 
+</p> 
+
+<h4 id="getProgress">getProgress()</h4>
+<p>Receives the number specify the loading progress.</p>
+<p class="tips">Return <span class="code">number</span> - How about the load progress.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	<span class="code-key">console</span>.log(assetMgr.getProgress()); 
+</p> 
+
+<h4 id="parseExt">parseExt(<span class="code-param">Path</span>)</h4>
+<p>Receives the string present the extension of the asset.</p>
+<p class="note">The method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">Path</span><span class="code">:string</span> - The string presents for the path of asset.</li>
+</ul>
+<p class="tips">Return <span class="code">string</span> - The string present the file url.</p> 
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	<span class="code-key">console</span>.log(assetMgr.parseExt(<span class="code-param">'Path/Asset.jpg'</span>)); 
+</p> 
+
+<h4 id="getType">getType(<span class="code-param">Path</span>)</h4>
+<p>Receives the number present the type of the asset.</p>
+<p class="note">The method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">Path</span><span class="code">:string</span> - The string presents for the path of asset.</li>
+</ul>
+<p class="tips">Return <span class="code">number</span> - The string present the file url.</p> 
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	<span class="code-key">console</span>.log(assetMgr.getType(<span class="code-param">'Path/Asset.jpg'</span>)); 
+</p> 
+
+<h4 id="isQueued">isQueued(<span class="code-param">Path</span>)</h4>
+<p>Receives the boolean specify whether the asset had setuped.</p>
+<p class="note">The method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">Path</span><span class="code">:string</span> - The string presents for the path of asset.</li>
+</ul>
+<p class="tips">Return <span class="code">Path</span> - The boolean.</p> 
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	<span class="code-key">console</span>.log(assetMgr.isQueued(<span class="code-param">'Path/Asset.jpg'</span>)); 
+</p> 
+
+<h4 id="QueueFile">QueueFile(<span class="code-param">Path</span>)</h4>
+<p>Queues the file path into Asset Manager.</p>
+<p class="note">The method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">Path</span><span class="code">:string</span> - The string presents for the path of asset.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	assetMgr.QueueFile(<span class="code-param">'Path/Asset.jpg'</span>); 
+</p> 
+
+<h4 id="QueueDownloadFile">QueueDownloadFile(<span class="code-param">Index</span>, <span class="code-param">Type</span>)</h4>
+<p>Download a file to Asset Manager.</p>
+<p class="note">The method has two params:</p>
+<ul class="ml25">
+	<li><span class="code-param">Index</span><span class="code">:number</span> - Index of asset in the list.</li>
+	<li><span class="code-param">Type</span><span class="code">:string</span> - Type of asset.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	assetMgr.QueueFile(<span class="code-param">'Path/Asset.jpg'</span>); <br />
+	assetMgr.QueueDownloadFile(<span class="code-const">0</span>, <span class="code-const">CAMEL_QUEUE_IMAGE</span>); 
+</p> 
+
+<h4 id="QueueDownloadAll">QueueDownloadAll()</h4>
+<p>Download all asset.</p>
+
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	assetMgr.QueueFile(<span class="code-param">'Path/Asset-01.jpg'</span>); <br />
+	assetMgr.QueueFile(<span class="code-param">'Path/Asset-02.jpg'</span>); <br />
+	assetMgr.QueueDownloadAll(); 
+</p> 
+
+<h4 id="getAsset">getAsset(<span class="code-param">Path</span>)</h4>
+<p>Get the asset from Asset Manager. If the asset is not exist, it is be downloaded to Asset Manager.</p>
+<p class="note">The method has one param:</p>
+<ul class="ml25">
+	<li><span class="code-param">Path</span><span class="code">:string</span> - The string presents for the path of asset.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	assetMgr.getAsset(<span class="code-param">'Path/Asset.jpg'</span>); 
+</p> 
+
+<h4 id="toString">toString()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	<span class="code-key">console</span>.log(assetMgr.toString()); <br /> <br />
+	<span class="code-comment">// You can use static function.</span> <br /> 
+	<span class="code-key">console</span>.log(Camel.AssetManager.toString()); 
+</p> 
+
+<h4 id="instanceOf">instanceOf()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> assetMgr = <span class="code-key">new</span> Camel.AssetManager(<span class="code-param">'jpg|png|gif'</span>); <br/>
+	<span class="code-key">console</span>.log(assetMgr.instanceOf()); 
 </p>
 
 </div>

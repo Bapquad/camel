@@ -21,49 +21,98 @@
 </div>
 <div id="docs">
 <h2>Camel.GetHttpRequest</h2>
-<p class="note">Camel.GetHttpRequest is the 2x2 matrix math.</p>
+<p class="note">Camel.GetHttpRequest .</p>
 
 <h3>Members</h3>
 
-<h4 id="mat" class="st">mat</h4>
-<p>Hold the <span class="code">Float32Array(4)</span>.</p>
+<h4 id="_suc" class="st">_suc</h4>
+<p>Hold the success callback.</p> 
+<p class="note">How to use:</p> 
+<p class="code-block">
+	<span class="code-key">var</span> request = <span class="code-key">new</span> Camel.GetHttpRequest(); <br/> 
+	request.addEventListener(<span class="code-param">'ready'</span>, function() { <br />
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-key">alert</span>(<span class="code-param">"OK"</span>); <br />
+	}, <span class="code-key">false</span>); <br />
+	<span class="code-key">console</span>.log(request._suc);
+</p>
+
+<h4 id="_err">_err</h4>
+<p>Hold the error callback.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">1.0</span>, <span class="code-const">2.0</span>, <span class="code-const">5.0</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(vec1.mat);
+	<span class="code-key">var</span> request = <span class="code-key">new</span> Camel.GetHttpRequest(); <br/> 
+	request.addEventListener(<span class="code-param">'error'</span>, function() { <br />
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-key">alert</span>(<span class="code-param">"false"</span>); <br />
+	}, <span class="code-key">false</span>); <br />
+	<span class="code-key">console</span>.log(request._err);
+</p> 
+
+<h4 id="_xhr">_xhr</h4>
+<p>Hold the XMLHttpRequest object.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> request = <span class="code-key">new</span> Camel.GetHttpRequest(); <br/> 
+	request.Url(<span class="code-param">'http://example.com/asset.json'</span>); <br />
+	<span class="code-key">console</span>.log(request._xhr);
+</p> 
+
+<h4 id="_m">_m</h4>
+<p>Hold the request type. Default, it is given <span class="code-param">"GET"</span></p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> request = <span class="code-key">new</span> Camel.GetHttpRequest(); <br/> 
+	<span class="code-key">console</span>.log(request._m);
 </p>
 
 <h3>Constructor</h3>
 
-<h4 id="constructor" class="st">Camel.Mx22(<span class="code-param">x</span>, <span class="code-param">y</span>, <span class="code-param">z</span>, <span class="code-param">w</span>)</h4>
-<p class="note">The constructor of Camel.Mx22 has 4 params:</p>
-<ul>
-	<li><span class="code-param">x</span><span class="code">:number</span> - x-coord of the vector4.</li>
-	<li><span class="code-param">y</span><span class="code">:number</span> - y-coord of the vector4.</li>
-	<li><span class="code-param">z</span><span class="code">:number</span> - z-coord of the vector4.</li>
-    <li><span class="code-param">w</span><span class="code">:number</span> - w-coord of the vector4.</li>
-</ul>
+<h4 id="constructor" class="st">Camel.GetHttpRequest()</h4>
+<p class="note">The constructor of Camel.GetHttpRequest.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(mat1);
+	<span class="code-key">var</span> request = <span class="code-key">new</span> Camel.GetHttpRequest(); <br/>
+	<span class="code-key">console</span>.log(request);
 </p>
 
 <h3>Methods</h3>
 
-<h4 id="loadMXFloat" class="st">loadMXFloat()</h4>
-<p class="note">Short description for this code</p>
-<p class="note">Params introduce:</p>
-<ul>
-	<li><span class="code-param">aggr1</span><span class="code">:string</span> - The id string of canvas developer want to use with Camel.</li>
-	<li><span class="code-param">aggr2</span><span class="code">:object</span> - The settings object developer want to config for Camel.</li>
+<h4 id="addEventListener" class="st">addEventListener(<span class="code-param">e</span>, <span class="code-param">callback</span>, <span class="code-param">t</span>)</h4>
+<p class="note">This method add the event callback. It has two events: <span class="code-const">ready</span> and <span class="code-const">error</span></p>
+<p class="note">This method has three params:</p>
+<ul class="ml25">
+	<li><span class="code-param">e</span><span class="code">:string</span> - The id string presents event type.</li>
+	<li><span class="code-param">callback</span><span class="code">:function</span> - The function executed when event orcurs.</li>
+	<li><span class="code-param">t</span><span class="code">:boolean</li>
 </ul>
-<p class="tips">Return <span class="code">Float32Array(3)</span> - the 3D vector value.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
-	<span class="code-key">console</span>.log(engine.getWidth());
+	<span class="code-key">var</span> request = <span class="code-key">new</span> Camel.GetHttpRequest(); <br/> 
+	request.addEventListener(<span class="code-param">'error'</span>, function() { <br />
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-key">alert</span>(<span class="code-param">"false"</span>); <br />
+	}, <span class="code-key">false</span>); <br />
+	<span class="code-key">console</span>.log(request._err);
+</p> 
+
+<h4 id="getXHR">Camel.getXHR()</h4>
+<p class="note">The mothod is return xhr object.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> request = <span class="code-key">new</span> Camel.GetHttpRequest(); <br/>
+	<span class="code-key">console</span>.log(request.getXHR());
 </p>
+
+<h4 id="Url">Url(<span class="code-param">UrlRequest</span>)</h4>
+<p class="note">This method used to setup the request url.</p>
+<p class="note">This method has three params:</p>
+<ul class="ml25">
+	<li><span class="code-param">UrlRequest</span><span class="code">:string</span> - The string presents for request url.</li> 
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> request = <span class="code-key">new</span> Camel.GetHttpRequest(); <br/> 
+	request.Url(<span class="code-param">'http://example.com/asset.json'</span>); <br />
+	<span class="code-key">console</span>.log(request._xhr);
+</p> 
 
 </div>
 </div>

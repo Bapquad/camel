@@ -21,48 +21,101 @@
 </div>
 <div id="docs">
 <h2>Camel.Camera</h2>
-<p class="note">Camel.Camera is the 2x2 matrix math.</p>
+<p class="note">Camel.Camera is the 4x4 matrix math.</p>
 
 <h3>Members</h3>
 
 <h4 id="mat" class="st">mat</h4>
-<p>Hold the <span class="code">Float32Array(4)</span>.</p>
+<p>Hold the <span class="code">Float32Array(16)</span>.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">1.0</span>, <span class="code-const">2.0</span>, <span class="code-const">5.0</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(vec1.mat);
+	<span class="code-key">var</span> eye = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">2.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> look = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">2.0</span>, <span class="code-const">6.0</span>); <br/>
+	<span class="code-key">var</span> up = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> cam = <span class="code-key">new</span> Camel.Camera(eye, look, up); <br/>
+	<span class="code-key">console</span>.log(cam.mat);
 </p>
 
 <h3>Constructor</h3>
 
-<h4 id="constructor" class="st">Camel.Mx22(<span class="code-param">x</span>, <span class="code-param">y</span>, <span class="code-param">z</span>, <span class="code-param">w</span>)</h4>
-<p class="note">The constructor of Camel.Mx22 has 4 params:</p>
-<ul>
-	<li><span class="code-param">x</span><span class="code">:number</span> - x-coord of the vector4.</li>
-	<li><span class="code-param">y</span><span class="code">:number</span> - y-coord of the vector4.</li>
-	<li><span class="code-param">z</span><span class="code">:number</span> - z-coord of the vector4.</li>
-    <li><span class="code-param">w</span><span class="code">:number</span> - w-coord of the vector4.</li>
+<h4 id="constructor" class="st">Camel.Camera(<span class="code-param">eye</span>, <span class="code-param">look</span>, <span class="code-param">up</span>)</h4>
+<p class="note">The constructor of Camel.Camera has three params:</p>
+<ul class="ml25">
+	<li><span class="code-param">eye</span><span class="code">:Camel.Vec3</span> - The position of the Camera.</li>
+	<li><span class="code-param">look</span><span class="code">:Camel.Vec3</span> - The target looking of the camera.</li>
+	<li><span class="code-param">up</span><span class="code">:Camel.Vec3</span> - The up vector of the camera.</li> 
 </ul>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(mat1);
+	<span class="code-key">var</span> eye = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">2.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> look = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">2.0</span>, <span class="code-const">6.0</span>); <br/>
+	<span class="code-key">var</span> up = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> cam = <span class="code-key">new</span> Camel.Camera(eye, look, up); <br/>
+	<span class="code-key">console</span>.log(cam);
 </p>
 
 <h3>Methods</h3>
 
 <h4 id="loadMXFloat" class="st">loadMXFloat()</h4>
-<p class="note">Short description for this code</p>
-<p class="note">Params introduce:</p>
-<ul>
-	<li><span class="code-param">aggr1</span><span class="code">:string</span> - The id string of canvas developer want to use with Camel.</li>
-	<li><span class="code-param">aggr2</span><span class="code">:object</span> - The settings object developer want to config for Camel.</li>
-</ul>
-<p class="tips">Return <span class="code">Float32Array(3)</span> - the 3D vector value.</p>
+<p>Receives the <span class="code">Float32Array(16)</span> value.</p>
+<p class="tips">Return <span class="code">Float32Array(16)</span> - the vector value.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
-	<span class="code-key">console</span>.log(engine.getWidth());
+	<span class="code-key">var</span> eye = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">2.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> look = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">2.0</span>, <span class="code-const">6.0</span>); <br/>
+	<span class="code-key">var</span> up = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> cam = <span class="code-key">new</span> Camel.Camera(eye, look, up); <br/>
+	<span class="code-key">console</span>.log(cam.loadMXFloat());
+</p>  
+
+<h4 id="identity">identity()</h4>
+<p>Identity the <span class="code">Float32Array(16)</span> value.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> eye = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">2.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> look = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">2.0</span>, <span class="code-const">6.0</span>); <br/>
+	<span class="code-key">var</span> up = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> cam = <span class="code-key">new</span> Camel.Camera(eye, look, up); <br/>
+	mat1.identity(); <br />
+	<span class="code-key">console</span>.log(mat1);
+</p> 
+
+<h4 id="integrate">integrate()</h4>
+<p>Integrate to the <span class="code">Float32Array(16)</span> value.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> eye = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">2.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> look = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">2.0</span>, <span class="code-const">6.0</span>); <br/>
+	<span class="code-key">var</span> up = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> cam = <span class="code-key">new</span> Camel.Camera(eye, look, up); <br/>
+	mat1.integrate(); <br />
+	<span class="code-key">console</span>.log(mat1); 
+</p> 
+
+<h4 id="toString">toString()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> eye = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">2.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> look = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">2.0</span>, <span class="code-const">6.0</span>); <br/>
+	<span class="code-key">var</span> up = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> cam = <span class="code-key">new</span> Camel.Camera(eye, look, up); <br/>
+	<span class="code-key">console</span>.log(cam.toString()); <br/><br/>
+	<span class="code-comment">// You can use static method.</span> <br/>
+	<span class="code-key">console</span>.log(Camel.Camera.toString()); 
+</p>
+
+<h4 id="instanceOf">instanceOf()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p> 
+<p class="note">How to use:</p> 
+<p class="code-block">
+	<span class="code-key">var</span> eye = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">2.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> look = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">2.0</span>, <span class="code-const">6.0</span>); <br/>
+	<span class="code-key">var</span> up = <span class="code-key">new</span> Camel.Vec3(<span class="code-const">0.0</span>, <span class="code-const">1.0</span>, <span class="code-const">0.0</span>); <br/>
+	<span class="code-key">var</span> cam = <span class="code-key">new</span> Camel.Camera(eye, look, up); <br/>
+	<span class="code-key">console</span>.log(cam.instanceOf()); 
 </p>
 
 </div>

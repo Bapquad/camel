@@ -810,6 +810,16 @@ Camel.prototype.buildDefault = function()
 	return;
 };
 
+Camel.prototype.toString = function() 
+{
+	return Camel.toString(); 
+}; 
+
+Camel.prototype.instanceOf = function() 
+{
+	return Camel.toString(); 
+};
+
 Camel.Alert = function(param) 
 {
 	alert(param);
@@ -820,6 +830,11 @@ Camel.Log = function(param)
 {
 	console.log(param);
 	return param;
+}; 
+
+Camel.toString = function() 
+{
+	return 'Camel';
 };
 
 /**________________________________________________________________________
@@ -828,11 +843,7 @@ Camel.Log = function(param)
  */
 Camel.Vec2 = function(x, y) 
 { 
-	x = x || 0.0;
-	y = y || 0.0;
-
 	this.vec = new Float32Array(2);
-
 	this.setVector(x, y);
 };
 Camel.Vec2.prototype.loadVecFloat = function() 
@@ -841,8 +852,8 @@ Camel.Vec2.prototype.loadVecFloat = function()
 };
 Camel.Vec2.prototype.setVector = function(x, y) 
 {
-	this.vec[0] = x;
-	this.vec[1] = y;
+	this.vec[0] = x || 0.0;
+	this.vec[1] = y || 0.0;
 	return this;
 };
 Camel.Vec2.prototype.clone = function(v) 
@@ -1063,12 +1074,9 @@ Camel.Vec3.prototype.loadVecFloat = function()
 };
 Camel.Vec3.prototype.setVector = function(x, y, z) 
 {
-	x = x || 0.0;
-	y = y || 0.0;
-	z = z || 0.0;
-	this.vec[0] = x;
-	this.vec[1] = y;
-	this.vec[2] = z;
+	this.vec[0] = x || 0.0;
+	this.vec[1] = y || 0.0;
+	this.vec[2] = z || 0.0;
 	return this;
 };
 Camel.Vec3.prototype.clone = function(v) 
@@ -1390,10 +1398,10 @@ Camel.Vec4.prototype.loadVecFloat = function()
 };
 Camel.Vec4.prototype.setVector = function(x, y, z, w) 
 {
-	this.vec[0] = x;
-	this.vec[1] = y;
-	this.vec[2] = z;
-	this.vec[3] = w;
+	this.vec[0] = x || 0.0;
+	this.vec[1] = y || 0.0;
+	this.vec[2] = z || 0.0;
+	this.vec[3] = w || 0.0;
 	return this;
 };
 Camel.Vec4.prototype.clone = function(v) 
@@ -1606,10 +1614,6 @@ Camel.Vec4.toString = function()
  */
 Camel.Quat = function(i, j, k, q) 
 {
-	i = i || 0.0;
-	j = j || 0.0;
-	k = k || 0.0;
-	q = q || 1.0;
 	this.vec = new Float32Array(4);
 	this.setValues(i, j, k, q);
 };
@@ -1847,14 +1851,10 @@ Camel.Mx22.prototype.loadMXFloat = function()
 };
 Camel.Mx22.prototype.setMatrix = function(x1, y1, x2, y2) 
 {
-	x1 = x1 || 1.0; 
-	y1 = y1 || 0.0; 
-	x2 = x2 || 0.0; 
-	y2 = y2 || 1.0; 
-	this.mat[0] = x1;
-	this.mat[1] = y1;
-	this.mat[2] = x2;
-	this.mat[3] = y2;
+	this.mat[0] = x1 || 1.0;
+	this.mat[1] = y1 || 0.0;
+	this.mat[2] = x2 || 0.0;
+	this.mat[3] = y2 || 1.0;
 	return this;
 };
 Camel.Mx22.prototype.clone = function(m) 
@@ -2015,20 +2015,13 @@ Camel.Mx23.prototype.loadMXFloat = function()
 	return this.mat;
 };
 Camel.Mx23.prototype.setMatrix = function(x1, y1, z1, x2, y2, z2) 
-{
-	x1 = x1 || 1.0;
-	y1 = y1 || 0.0;
-	z1 = z1 || 0.0;
-	x2 = x2 || 1.0;
-	y2 = y2 || 0.0;
-	z2 = z2 || 0.0;
-	
-	this.mat[0] = x1;
-	this.mat[1] = y1;
-	this.mat[2] = z1;
-	this.mat[3] = x2;
-	this.mat[4] = y2;
-	this.mat[5] = z2;
+{	
+	this.mat[0] = x1 || 1.0;
+	this.mat[1] = y1 || 0.0;
+	this.mat[2] = z1 || 0.0;
+	this.mat[3] = x2 || 1.0;
+	this.mat[4] = y2 || 0.0;
+	this.mat[5] = z2 || 0.0;
 	
 	return this;
 };
@@ -2208,19 +2201,9 @@ Camel.Mx33.prototype.loadMXFloat = function()
 };
 Camel.Mx33.prototype.setMatrix = function(x1, y1, z1, x2, y2, z2, x3, y3, z3) 
 {
-	x1 = x1 || 1.0; 
-	y1 = y1 || 0.0; 
-	z1 = z1 || 0.0; 
-	x2 = x2 || 0.0; 
-	y2 = y2 || 1.0; 
-	z2 = z2 || 0.0; 
-	x3 = x3 || 0.0; 
-	y3 = y3 || 0.0; 
-	z3 = z3 || 1.0; 
-	
-	this.mat[0] = x1;this.mat[1] = y1;this.mat[2] = z1;
-	this.mat[3] = x2;this.mat[4] = y2;this.mat[5] = z2;
-	this.mat[6] = x3;this.mat[7] = y3;this.mat[8] = z3;
+	this.mat[0] = x1 || 1.0;this.mat[1] = y1 || 0.0;this.mat[2] = z1 || 0.0;
+	this.mat[3] = x2 || 0.0;this.mat[4] = y2 || 1.0;this.mat[5] = z2 || 0.0;
+	this.mat[6] = x3 || 0.0;this.mat[7] = y3 || 0.0;this.mat[8] = z3 || 1.0;
 
 	return this;
 };
@@ -2529,27 +2512,10 @@ Camel.Mx44.prototype.loadMXFloat = function()
 };
 Camel.Mx44.prototype.setMatrix = function(x1, y1, z1, w1, x2, y2, z2, w2, x3, y3, z3, w3, x4, y4, z4, w4) 
 {
-	x1 = x1 || 1.0;
-	y1 = y1 || 0.0;
-	z1 = z1 || 0.0;
-	w1 = w1 || 0.0;
-	x2 = x2 || 0.0;
-	y2 = y2 || 1.0;
-	z2 = z2 || 0.0;
-	w2 = w2 || 0.0;
-	x3 = x3 || 0.0;
-	y3 = y3 || 0.0;
-	z3 = z3 || 1.0;
-	w3 = w3 || 0.0;
-	x4 = x4 || 0.0;
-	y4 = y4 || 0.0;
-	z4 = z4 || 0.0;
-	w4 = w4 || 1.0;
-	
-	this.mat[0] = x1; this.mat[1] = y1; this.mat[2] = z1; this.mat[3] = w1;
-	this.mat[4] = x2; this.mat[5] = y2; this.mat[6] = z2; this.mat[7] = w2;
-	this.mat[8] = x3; this.mat[9] = y3; this.mat[10] = z3;this.mat[11] = w3;
-	this.mat[12] = x4;this.mat[13] = y4;this.mat[14] = z4;this.mat[15] = w4;
+	this.mat[0] = x1 || 1.0; this.mat[1] = y1 || 0.0; this.mat[2] = z1 || 0.0; this.mat[3] = w1 || 0.0;
+	this.mat[4] = x2 || 0.0; this.mat[5] = y2 || 1.0; this.mat[6] = z2 || 0.0; this.mat[7] = w2 || 0.0;
+	this.mat[8] = x3 || 0.0; this.mat[9] = y3 || 0.0; this.mat[10]= z3 || 1.0; this.mat[11]= w3 || 0.0;
+	this.mat[12]= x4 || 0.0; this.mat[13]= y4 || 0.0; this.mat[14]= z4 || 0.0; this.mat[15]= w4 || 1.0;
 	
 	return this;
 };
@@ -3251,13 +3217,12 @@ Camel.Orthographic.prototype.loadMXFloat = function()
 };
 Camel.Orthographic.prototype.integrate = function(left, top, right, bottom, near, far) 
 {
-	left =
-	this.left = left;
-	this.top = top;
-	this.right = right;
-	this.bottom = bottom;
-	this.near = near;
-	this.far = far;
+	this.left = left || 0.0;
+	this.top = top || 0.0;
+	this.right = right || 320.0;
+	this.bottom = bottom || 240.0;
+	this.near = near || 1.0;
+	this.far = far || 1000.0;
 	for(var i=0;i<16;i++)
 		if(i==0) this.mat[i] = 1 / (right-left);
 		else if(i==5) this.mat[i] = 1 / (bottom-top);	
@@ -3268,7 +3233,19 @@ Camel.Orthographic.prototype.integrate = function(left, top, right, bottom, near
 	return this;
 };
 Camel.Orthographic.prototype.initialize = Camel.Orthographic.prototype.integrate;
-Camel.Orthographic.prototype.set = Camel.Orthographic.prototype.integrate;
+Camel.Orthographic.prototype.set = Camel.Orthographic.prototype.integrate; 
+Camel.Orthographic.prototype.toString = function() 
+{
+	return 'orthographic('+this.left.toString()+', '+this.top.toString()+', '+this.right.toString()+', '+this.bottom.toString()+', '+this.near.toString()+', '+this.far.toString()+')';
+};
+Camel.Orthographic.prototype.instanceOf = function() 
+{
+	return Camel.Orthographic.toString();
+};
+Camel.Orthographic.toString = function() 
+{
+	return 'Camel.Orthographic';
+};
 
 /**
  * The Camera of Camel
@@ -3287,9 +3264,9 @@ Camel.Camera.prototype.loadMXFloat = function()
 };
 Camel.Camera.prototype.identity = function() 
 {
-	this.mat[0]=1.0;	this.mat[1]=0.0; this.mat[2]=0.0; this.mat[3]=0.0;
-	this.mat[4]=0.0;	this.mat[5]=1.0; this.mat[6]=0.0; this.mat[7]=0.0;
-	this.mat[8]=0.0;	this.mat[9]=0.0; this.mat[10]=1.0; this.mat[11]=0.0;
+	this.mat[0] =1.0; this.mat[1] =0.0; this.mat[2] =0.0; this.mat[3] =0.0;
+	this.mat[4] =0.0; this.mat[5] =1.0; this.mat[6] =0.0; this.mat[7] =0.0;
+	this.mat[8] =0.0; this.mat[9] =0.0; this.mat[10]=1.0; this.mat[11]=0.0;
 	this.mat[12]=0.0; this.mat[13]=0.0; this.mat[14]=0.0; this.mat[15]=1.0;
 	return this;
 };
@@ -3363,6 +3340,18 @@ Camel.Camera.prototype.integrate = function()
 	this.mat[14] = -(z0 * eyex + z1 * eyey + z2 * eyez);
 	this.mat[15] = 1;
 	return this;
+}; 
+Camel.Camera.prototype.toString = function() 
+{
+	return 'camera';
+};
+Camel.Camera.prototype.instanceOf = function() 
+{
+	return Camel.Camera.toString();
+};
+Camel.Camera.toString = function() 
+{
+	return 'Camel.Camera';
 };
 
 /**
@@ -3370,10 +3359,10 @@ Camel.Camera.prototype.integrate = function()
  */
 Camel.GetHttpRequest = function() 
 {
-	this._suc = NULL;
-	this._err = NULL;
-	this._xhr = NULL;
-	this._m = 'GET';
+	this._suc = NULL; 
+	this._err = NULL; 
+	this._xhr = NULL; 
+	this._m = 'GET'; 
 };
 
 Camel.GetHttpRequest.prototype.addEventListener = function(e, callback, t) 
@@ -3416,8 +3405,12 @@ Camel.GetHttpRequest.prototype.Url = function(URLRequest)
 	return;
 };
 
+/**
+ * The Asset Manager class.
+ */
 Camel.AssetManager = function(ImageExt, SoundExt, XhttpExt, VideoExt) {
-	this.QueueType = [
+	this.QueueType = 
+	[
 		ImageExt, 
 		SoundExt,
 		XhttpExt,
@@ -3578,8 +3571,26 @@ Camel.AssetManager.prototype.getAsset = function(Path)
 		this.QueueDownloadFile(this.AssetList.length-1, Type);
 		return this.getAsset(Path);
 	}
+}; 
+
+Camel.AssetManager.prototype.toString = function() 
+{
+	return Camel.AssetManager.toString();
 };
 
+Camel.AssetManager.prototype.instanceOf = function() 
+{
+	return Camel.AssetManager.toString();
+};
+
+Camel.AssetManager.toString = function() 
+{
+	return 'Camel.AssetManager';
+};
+
+/**
+ * The Camel.Scene class.
+ */
 Camel.Scene = function(startCB, updateCB, renderCB, beforeRenderCB) 
 {
 	this.visible	= true;
@@ -3766,21 +3777,60 @@ Camel.Scene.prototype.addLight = function(light)
 	}
 };
 
+/**
+ * The Camel.Transform class 
+ */
 Camel.Transform = function() 
 {
 	this.mx = new Float32Array(16);
 	
-	this.loadMXFloat = function() {	return this.mx;	};
+	this.loadMXFloat = function() 
+	{
+		return this.mx;
+	};
 	
-	this.translate = function(x, y, z) { this.mx[12]+=x;	this.mx[13]+=y;	this.mx[14]+=z; };
-	this.translateX = function(d) {	this.mx[12]+=d; };
-	this.translateY = function(d) {	this.mx[13]+=d; };
-	this.translateZ = function(d) {	this.mx[14]+=d;	};
+	this.translate = function(x, y, z) 
+	{
+		this.mx[12]+=x;
+		this.mx[13]+=y;
+		this.mx[14]+=z;
+	};
 	
-	this.scale = function(x, y, z) { this.mx[0]=x; this.mx[5]=y; this.mx[10]=z;	};
-	this.scaleX = function(value) {	this.mx[0]=value; };
-	this.scaleY = function(value) {	this.mx[5]=value; };
-	this.scaleZ = function(value) {	this.mx[10]=value;};
+	this.translateX = function(d) 
+	{
+		this.mx[12]+=d;
+	};
+	
+	this.translateY = function(d) 
+	{
+		this.mx[13]+=d;
+	};
+	
+	this.translateZ = function(d) {
+		this.mx[14]+=d;
+	};
+	
+	this.scale = function(x, y, z) 
+	{
+		this.mx[0]=x;
+		this.mx[5]=y;
+		this.mx[10]=z;
+	};
+	
+	this.scaleX = function(value) 
+	{
+		this.mx[0]=value;
+	};
+	
+	this.scaleY = function(value) 
+	{
+		this.mx[5]=value;
+	};
+	
+	this.scaleZ = function(value) 
+	{
+		this.mx[10]=value;
+	};
 	
 	this.rotateX = function(angle) 
 	{
@@ -3836,6 +3886,9 @@ Camel.Transform = function()
 	this.identity();
 };
 
+/**
+ * The Camel.Geometry class.
+ */
 Camel.Geometry = function() 
 {
 	this.vertexBuffer = NULL;
@@ -3870,6 +3923,9 @@ Camel.Geometry = function()
 	};
 };
 
+/**
+ * The Camel.Color class.
+ */
 Camel.Color = function() 
 {
 	this.cull = true;
@@ -3966,26 +4022,78 @@ Camel.Color = function()
 	};
 };
 
+/**
+ * The Camel.Color class.
+ */
 Camel.Light = function(x, y, z) 
 {
 	this.__proto__ = new Camel.Color();	
-	this.__proto__.__proto__ =  new Camel.Vec3(x, y, z);
+	this.__proto__.__proto__ =  new Camel.Vec3(x, y, z); 
+	
+	this.toString = function() 
+	{
+		return Camel.Light.toString(); 
+	}; 
+	
+	this.instanceOf = function() 
+	{
+		return Camel.Light.toString();
+	};
+}; 
+Camel.Light.toString = function() 
+{
+	return 'Camel.Light';
 };
 
+/**
+ * The Camel.PointLight class.
+ */
 Camel.PointLight = function(x, y, z) 
 {
 	this.__proto__ = new Camel.Light(x, y, z);
-	
 	this.type = CAMEL_LIGHT_POINT;
+	
+	this.toString = function() 
+	{
+		return Camel.PointLight.toString(); 
+	};
+	
+	this.instanceOf = function() 
+	{
+		return Camel.PointLight.toString(); 
+	};
+};
+Camel.PointLight.toString = function() 
+{
+	return 'Camel.PointLight';
 };
 
+/**
+ * The Camel.DirectLight class.
+ */
 Camel.DirectLight = function(x, y, z) 
 {
-	this.__proto__ = new Camel.Light(x, y, z);
+	this.__proto__ = new Camel.Light(x, y, z); 
+	this.type = CAMEL_LIGHT_DIRECT; 
+
+	this.toString = function() 
+	{
+		return Camel.DirectLight.toString(); 
+	};
 	
-	this.type = CAMEL_LIGHT_DIRECT;
+	this.instanceOf = function() 
+	{
+		return Camel.DirectLight.toString();
+	};
+};
+Camel.DirectLight.toString = function() 
+{
+	return 'Camel.DirectLight';
 };
 
+/**
+ * The Camel.Material class.
+ */
 Camel.Material = function() 
 {
 	this.__proto__ = new Camel.Color();
@@ -4013,8 +4121,25 @@ Camel.Material = function()
 		this.map.specular = map;
 		return this;
 	};
+	
+	this.toString = function() 
+	{
+		return Camel.Material.toString();
+	};
+	
+	this.instanceOf = function() 
+	{
+		return Camel.Material.toString();
+	};
+}; 
+Camel.Material.toString = function() 
+{
+	return 'Camel.Material';
 };
 
+/**
+ * The Camel.Particle class
+ */
 Camel.Particle = function() 
 {
 	this.__proto__ = new Camel.Transform();	
@@ -4065,18 +4190,64 @@ Camel.Particle = function()
 	{
 		this.ontick = callback;
 	};
+	
+	this.toString = function() 
+	{
+		return Camel.Particle.toString(); 
+	};
+	
+	this.instanceOf = function() 
+	{
+		return Camel.Particle.toString(); 
+	};
+};
+Camel.Particle.toString = function() 
+{
+	return 'Camel.Particle'; 
 };
 
+/**
+ * The Cell class.
+ */
 Camel.Cell = function(size) 
 {
-	this.__proto__ = new Camel.Particle();
-
-	this.createCell(size);
+	this.__proto__ = new Camel.Particle(); 
+	this.createCell(size); 
+	
+	this.toString = function() 
+	{
+		return Camel.Cell.toString();
+	};
+	
+	this.instanceOf = function() 
+	{
+		return Camel.Cell.toString(); 
+	}; 
+};
+Camel.Cell.toString = function() 
+{
+	return 'Camel.Cell';
 };
 
+/**
+ * The Model class.
+ */
 Camel.Model = function(assetModel) 
 {
-	this.__proto__ = new Camel.Particle();
+	this.__proto__ = new Camel.Particle(); 
+	this.setModel(assetModel); 
 	
-	this.setModel(assetModel);
+	this.toString = function() 
+	{
+		return Camel.Model.toString(); 
+	}; 
+	
+	this.instanceOf = function() 
+	{
+		return Camel.Model.toString();
+	};
+};
+Camel.Model.toString = function() 
+{
+	return 'Camel.Model';
 };

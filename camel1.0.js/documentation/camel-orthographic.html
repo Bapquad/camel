@@ -37,7 +37,7 @@
 
 <h4 id="constructor" class="st">Camel.Orthographic(<span class="code-param">left</span>, <span class="code-param">top</span>, <span class="code-param">right</span>, <span class="code-param">bottom</span>, <span class="code-param">near</span>, <span class="code-param">far</span>)</h4>
 <p class="note">The constructor of Camel.Orthographic has six params:</p>
-<ul>
+<ul class="ml25">
 	<li><span class="code-param">left</span><span class="code">:number</span> - The left of the othorgraphic.</li>
 	<li><span class="code-param">top</span><span class="code">:number</span> - The top of the othorgraphic.</li>
 	<li><span class="code-param">right</span><span class="code">:number</span> - The right of the othorgraphic.</li>
@@ -64,7 +64,7 @@
 
 <h4 id="integrate">integrate(<span class="code-param">left</span>, <span class="code-param">top</span>, <span class="code-param">right</span>, <span class="code-param">bottom</span>, <span class="code-param">near</span>, <span class="code-param">far</span>)</h4>
 <p class="note">The integrate method has six params:</p>
-<ul>
+<ul class="ml25">
 	<li><span class="code-param">left</span><span class="code">:number</span> - The left of the othorgraphic.</li>
 	<li><span class="code-param">top</span><span class="code">:number</span> - The top of the othorgraphic.</li>
 	<li><span class="code-param">right</span><span class="code">:number</span> - The right of the othorgraphic.</li>
@@ -81,7 +81,7 @@
 
 <h4 id="initialize">initialize(<span class="code-param">left</span>, <span class="code-param">top</span>, <span class="code-param">right</span>, <span class="code-param">bottom</span>, <span class="code-param">near</span>, <span class="code-param">far</span>)</h4>
 <p class="note">The initialize method has six params:</p>
-<ul>
+<ul class="ml25">
 	<li><span class="code-param">left</span><span class="code">:number</span> - The left of the othorgraphic.</li>
 	<li><span class="code-param">top</span><span class="code">:number</span> - The top of the othorgraphic.</li>
 	<li><span class="code-param">right</span><span class="code">:number</span> - The right of the othorgraphic.</li>
@@ -91,14 +91,14 @@
 </ul>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> perspective = <span class="code-key">new</span> Camel.Perspective(<span class="code-const">45.0</span>, <span class="code-const">2.1</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br/>
-	perspective.initialize(<span class="code-const">45.0</span>, <span class="code-const">2.1</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br />
-	<span class="code-key">console</span>.log(perspective);
+	<span class="code-key">var</span> orthographic = <span class="code-key">new</span> Camel.Orthographic(<span class="code-const">0.0</span>, <span class="code-const">0.0</span>, <span class="code-const">640.0</span>, <span class="code-const">480.0</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br/>
+	orthographic.initialize(<span class="code-const">0.0</span>, <span class="code-const">0.0</span>, <span class="code-const">640.0</span>, <span class="code-const">480.0</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br />
+	<span class="code-key">console</span>.log(orthographic); 
 </p> 
 
 <h4 id="set">set(<span class="code-param">left</span>, <span class="code-param">top</span>, <span class="code-param">right</span>, <span class="code-param">bottom</span>, <span class="code-param">near</span>, <span class="code-param">far</span>)</h4>
 <p class="note">The set method has six params:</p>
-<ul>
+<ul class="ml25">
 	<li><span class="code-param">left</span><span class="code">:number</span> - The left of the othorgraphic.</li>
 	<li><span class="code-param">top</span><span class="code">:number</span> - The top of the othorgraphic.</li>
 	<li><span class="code-param">right</span><span class="code">:number</span> - The right of the othorgraphic.</li>
@@ -108,9 +108,29 @@
 </ul>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> perspective = <span class="code-key">new</span> Camel.Perspective(<span class="code-const">45.0</span>, <span class="code-const">2.1</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br/>
-	perspective.set(<span class="code-const">45.0</span>, <span class="code-const">2.1</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br />
-	<span class="code-key">console</span>.log(perspective);
+	<span class="code-key">var</span> orthographic = <span class="code-key">new</span> Camel.Orthographic(<span class="code-const">0.0</span>, <span class="code-const">0.0</span>, <span class="code-const">640.0</span>, <span class="code-const">480.0</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br/>
+	orthographic.set(<span class="code-const">0.0</span>, <span class="code-const">0.0</span>, <span class="code-const">640.0</span>, <span class="code-const">480.0</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br />
+	<span class="code-key">console</span>.log(orthographic); 
+</p> 
+
+<h4 id="toString">toString()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> orthographic = <span class="code-key">new</span> Camel.Orthographic(<span class="code-const">0.0</span>, <span class="code-const">0.0</span>, <span class="code-const">640.0</span>, <span class="code-const">480.0</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br/>
+	<span class="code-key">console</span>.log(orthographic.toString()); <br/><br/>
+	<span class="code-comment">// You can use static method.</span> <br/>
+	<span class="code-key">console</span>.log(Camel.Orthographic.toString()); 
+</p>
+
+<h4 id="instanceOf">instanceOf()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> orthographic = <span class="code-key">new</span> Camel.Orthographic(<span class="code-const">0.0</span>, <span class="code-const">0.0</span>, <span class="code-const">640.0</span>, <span class="code-const">480.0</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br/>
+	<span class="code-key">console</span>.log(orthographic.instanceOf()); 
 </p>
 
 </div>

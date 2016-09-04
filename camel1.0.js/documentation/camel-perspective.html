@@ -37,7 +37,7 @@
 
 <h4 id="constructor" class="st">Camel.Perspective(<span class="code-param">angle</span>, <span class="code-param">aspect</span>, <span class="code-param">near</span>, <span class="code-param">far</span>)</h4>
 <p class="note">The constructor of Camel.Perspective has four params:</p>
-<ul>
+<ul class="ml25">
 	<li><span class="code-param">angle</span><span class="code">:number</span> - The field of view.</li>
 	<li><span class="code-param">aspect</span><span class="code">:number</span> - The aspest ratio.</li>
 	<li><span class="code-param">near</span><span class="code">:number</span> - The nearest of view.</li>
@@ -62,7 +62,7 @@
 
 <h4 id="integrate">integrate(<span class="code-param">angle</span>, <span class="code-param">aspect</span>, <span class="code-param">near</span>, <span class="code-param">far</span>)</h4>
 <p class="note">The integrate method of Camel.Perspective has 4 params:</p>
-<ul>
+<ul class="ml25">
 	<li><span class="code-param">angle</span><span class="code">:number</span> - The field of view.</li>
 	<li><span class="code-param">aspect</span><span class="code">:number</span> - The aspest ratio.</li>
 	<li><span class="code-param">near</span><span class="code">:number</span> - The nearest of view.</li>
@@ -77,7 +77,7 @@
 
 <h4 id="initialize">initialize(<span class="code-param">angle</span>, <span class="code-param">aspect</span>, <span class="code-param">near</span>, <span class="code-param">far</span>)</h4>
 <p class="note">The initialize method of Camel.Perspective has 4 params:</p>
-<ul>
+<ul class="ml25">
 	<li><span class="code-param">angle</span><span class="code">:number</span> - The field of view.</li>
 	<li><span class="code-param">aspect</span><span class="code">:number</span> - The aspest ratio.</li>
 	<li><span class="code-param">near</span><span class="code">:number</span> - The nearest of view.</li>
@@ -92,7 +92,7 @@
 
 <h4 id="set">set(<span class="code-param">angle</span>, <span class="code-param">aspect</span>, <span class="code-param">near</span>, <span class="code-param">far</span>)</h4>
 <p class="note">The set method of Camel.Perspective has 4 params:</p>
-<ul>
+<ul class="ml25">
 	<li><span class="code-param">angle</span><span class="code">:number</span> - The field of view.</li>
 	<li><span class="code-param">aspect</span><span class="code">:number</span> - The aspest ratio.</li>
 	<li><span class="code-param">near</span><span class="code">:number</span> - The nearest of view.</li>
@@ -103,6 +103,26 @@
 	<span class="code-key">var</span> perspective = <span class="code-key">new</span> Camel.Perspective(<span class="code-const">45.0</span>, <span class="code-const">2.1</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br/>
 	perspective.set(<span class="code-const">45.0</span>, <span class="code-const">2.1</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br />
 	<span class="code-key">console</span>.log(perspective);
+</p>
+
+<h4 id="toString">toString()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> perspective = <span class="code-key">new</span> Camel.Perspective(<span class="code-const">45.0</span>, <span class="code-const">2.1</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br/>
+	<span class="code-key">console</span>.log(perspective.toString()); <br/><br/>
+	<span class="code-comment">// You can use static method.</span> <br/>
+	<span class="code-key">console</span>.log(Camel.Perspective.toString()); 
+</p>
+
+<h4 id="instanceOf">instanceOf()</h4>
+<p>Receives the class name string.</p>
+<p class="tips">Returns the string presents the class name.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> perspective = <span class="code-key">new</span> Camel.Perspective(<span class="code-const">45.0</span>, <span class="code-const">2.1</span>, <span class="code-const">1.0</span>, <span class="code-const">1000.0</span>); <br/>
+	<span class="code-key">console</span>.log(perspective.instanceOf()); 
 </p>
 
 </div>

@@ -21,48 +21,71 @@
 </div>
 <div id="docs">
 <h2>Camel.Geometry</h2>
-<p class="note">Camel.Geometry is the 2x2 matrix math.</p>
+<p class="note">Camel.Geometry about geometry in camel.</p>
 
 <h3>Members</h3>
 
-<h4 id="mat" class="st">mat</h4>
-<p>Hold the <span class="code">Float32Array(4)</span>.</p>
+<h4 id="vertexBuffer" class="st">vertexBuffer</h4>
+<p>Hold the buffer of vertex.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> vec1 = <span class="code-key">new</span> Camel.Vec4(<span class="code-const">1.0</span>, <span class="code-const">2.0</span>, <span class="code-const">5.0</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(vec1.mat);
+	<span class="code-key">var</span> geo1 = <span class="code-key">new</span> Camel.Geometry(); <br/>
+	geo1.createCell(<span class="code-const">10.0</span>); <br />
+	<span class="code-key">console</span>.log(geo1.vertexBuffer);
+</p>
+
+<h4 id="indicesBuffer">indicesBuffer</h4>
+<p>Hold the buffer of indice.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> geo1 = <span class="code-key">new</span> Camel.Geometry(); <br/>
+	geo1.createCell(<span class="code-const">10.0</span>); <br />
+	<span class="code-key">console</span>.log(geo1.indicesBuffer);
+</p> 
+
+<h4 id="numberOfIndices">numberOfIndices</h4>
+<p>Hold the number of indice.</p>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> geo1 = <span class="code-key">new</span> Camel.Geometry(); <br/>
+	geo1.createCell(<span class="code-const">10.0</span>); <br />
+	<span class="code-key">console</span>.log(geo1.numberOfIndices);
 </p>
 
 <h3>Constructor</h3>
 
-<h4 id="constructor" class="st">Camel.Mx22(<span class="code-param">x</span>, <span class="code-param">y</span>, <span class="code-param">z</span>, <span class="code-param">w</span>)</h4>
-<p class="note">The constructor of Camel.Mx22 has 4 params:</p>
-<ul>
-	<li><span class="code-param">x</span><span class="code">:number</span> - x-coord of the vector4.</li>
-	<li><span class="code-param">y</span><span class="code">:number</span> - y-coord of the vector4.</li>
-	<li><span class="code-param">z</span><span class="code">:number</span> - z-coord of the vector4.</li>
-    <li><span class="code-param">w</span><span class="code">:number</span> - w-coord of the vector4.</li>
-</ul>
+<h4 id="numberOfIndices" class="st">Camel.numberOfIndices()</h4>
+<p>This class holds methods and members which allow user make geometry</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> mat1 = <span class="code-key">new</span> Camel.Mx22(<span class="code-const">1.1</span>, <span class="code-const">2.1</span>, <span class="code-const">4.1</span>, <span class="code-const">0.0</span>); <br/>
-	<span class="code-key">console</span>.log(mat1);
+	<span class="code-key">var</span> geo1 = <span class="code-key">new</span> Camel.Geometry(); <br/>
+	<span class="code-key">console</span>.log(geo1);
 </p>
 
 <h3>Methods</h3>
 
-<h4 id="loadMXFloat" class="st">loadMXFloat()</h4>
-<p class="note">Short description for this code</p>
-<p class="note">Params introduce:</p>
+<h4 id="createCell" class="st">createCell(<span class="code-param">size</span>)</h4>
+<p>This method creates the cell for quad rendering.</p>
+<p class="note">This method has one param:</p>
 <ul>
-	<li><span class="code-param">aggr1</span><span class="code">:string</span> - The id string of canvas developer want to use with Camel.</li>
-	<li><span class="code-param">aggr2</span><span class="code">:object</span> - The settings object developer want to config for Camel.</li>
+	<li><span class="code-param">size</span><span class="code">:number</span> - The number presents for size of quad.</li>
 </ul>
-<p class="tips">Return <span class="code">Float32Array(3)</span> - the 3D vector value.</p>
 <p class="note">How to use:</p>
 <p class="code-block">
-	<span class="code-key">var</span> engine = <span class="code-key">new</span> Camel(<span class="code-param">'canvas_id'</span>, {antialias:<span class="code-key">false</span>}, [], <span class="code-param">4</span>); <br/>
-	<span class="code-key">console</span>.log(engine.getWidth());
+	<span class="code-key">var</span> geo1 = <span class="code-key">new</span> Camel.Geometry(); <br/>
+	<span class="code-key">console</span>.log(geo1.createCell(<span class="code-const">10.0</span>));
+</p>
+
+<h4 id="setModel">setModel(<span class="code-param">model</span>)</h4>
+<p>This method set model from JSON to buffers.</p>
+<p class="note">This method has one param:</p>
+<ul>
+	<li><span class="code-param">model</span><span class="code">:object</span> - The model data JSON.</li>
+</ul>
+<p class="note">How to use:</p>
+<p class="code-block">
+	<span class="code-key">var</span> geo1 = <span class="code-key">new</span> Camel.Geometry(); <br/>
+	<span class="code-key">console</span>.log(geo1.setModel(<span class="code-param">"http://json.com/object-model.json"</span>));
 </p>
 
 </div>
