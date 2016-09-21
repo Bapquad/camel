@@ -81,6 +81,46 @@ var CAMEL_DEVICE_MOBILE = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackber
 Math.degToRad = function(angle) 
 {
 	return angle*Math.PI/180;
+}; 
+
+/**
+ * Object Functions.
+ */
+Object.appendChain = function( oChain, oProto ) 
+{
+	if( arguments.length < 2 ) 
+	{ 
+		throw new TypeError( 'Object.appendChain - Not enough arguments' );
+	} 
+	
+	if(typeof oProto === 'number' || typeof oProto === 'boolean') 
+	{
+		return;
+	}
+
+	var oNewProto = oProto,
+		oReturn = o2nd = oLast = oChain instanceof this ? oChain : new oChain.constructor(oChain);
+
+	for(var o1st = this.getPrototypeOf( o2nd ); o1st !== Object.prototype && o1st !== Function.prototype; o1st = this.getPrototypeOf( o2nd ) ) 
+	{
+		o2nd = o1st;
+	}
+
+	if(oProto.constructor === String) 
+	{
+		oNewProto = Function.prototype;
+		oReturn = Function.apply( null, Array.prototype.slice.call( arguments, 1 ) );
+		this.setPrototypeOf( oReturn, oLast );
+	}
+
+	this.setPrototypeOf( o2nd, oNewProto );
+	return oReturn;
+}; 
+
+Object.prototype.extends = function( proto ) 
+{
+	Object.appendChain( this, proto );
+	return;
 };
 
 var Camel = function(CANVASElementID, Settings, Extensions, numberHolder) 
