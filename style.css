@@ -12,7 +12,7 @@ q, blockquote {quotes:none;}
 q:before, q:after {content:"";}
 caption, legend {display:none ;}
 a {text-decoration:none; color:#09f;}
-a:visited {text-decoration:none; color:#960;}
+a:visited {text-decoration:none; color:#8aa1b1;}
 a:active {text-decoration:none; color:#f30;}
 a:hover{text-decoration:none; color:#36f;}
 dfn, em, cite, address {font-style:normal ;}

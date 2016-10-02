@@ -48,21 +48,37 @@ function Export(modules)
 
 function Factory() 
 {
-	return (function(modules) {Export(modules)}) (
+	return (function(modules) {return Export(modules)}) (
 		[
 			function(module, __webpack_require__) 
 			{
-
+				// TODO require webpack here. 
+				// module.exports.classname1 = __webpack_require__( 1 ); 
+				// module.exports.classname2 = __webpack_require__( 2 ); 
+				// module.exports.classname3 = __webpack_require__( 3 ); 
+				// module.exports.classname4 = __webpack_require__( 4 ); 
+			}, 
+			
+			function(module) 							// pack require ( 1 ) 
+			{ 
+				// var classname1 = {}; 
+				// module.exports = classname1; 
+			}, 
+			
+			function(module, __webpack_require__) 		// pack require ( 2 ) 
+			{
+				
+			}, 
+			
+			function(module, __webpack_require__) 		// pack require ( 3 ) 
+			{
+				
+			}, 
+			
+			function(module, __webpack_require__) 		// pack require ( 4 ) 
+			{
+				
 			},
-			function(module) {},
-			function(module, __webpack_require__) {},
-			function(module, __webpack_require__) {},
-			function(module, __webpack_require__) {},
-			function(module, __webpack_require__) {},
-			function(module, __webpack_require__) {},
-			function(module, __webpack_require__) {},
-			function(module, __webpack_require__) {},
-			function(module, __webpack_require__) {}
 		]
 	);
 }
