@@ -1,10 +1,10 @@
 // Javascript Document.
 
-var menuButton = '';
-var topPage = '';
-var mainMenu = '';
-var cllLink = '';
-var htmlBody = '';
+var menuButton = 0;
+var topPage = 0;
+var mainMenu = 0;
+var cllLink = 0;
+var htmlBody = 0;
 var headerReady = false; 
 
 solution5.SetMutationEvent( document, function( e ) 
@@ -59,24 +59,3 @@ window.addEventListener( 'load', function( e )
 	}
 		
 }, false );
-
-// $( document ).ready( function() { w3IncludeHTML( function() {
-	
-	// menuBtn = $("#menu-btn");
-	// headerNav = element5("#mainmenu");
-	// cllLink = $("#cll");
-	// htmlBody = $("html, body");
-	
-	// menuBtn.click(function() {
-		// headerNav.toggle();
-	// });
-	
-	// cllLink.click(function() {
-		// htmlBody.animate({scrollTop: 0});
-		// if(window.innerWidth <= 959) 
-		// {
-			// headerNav.toggle();	
-		// }
-	// });
-	
-// } );} );
