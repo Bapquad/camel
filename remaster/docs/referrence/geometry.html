@@ -1,0 +1,121 @@
+<h1>Camel.Geometry</h1>
+<h2>Introduction</h2>
+<p class="note"><span class="code">Camel.Geometry</span> contains some methods and members about the geometry.</p>
+
+<h3>Members</h3>
+
+<div class="entire" id="vertexBuffer">
+	<h4 class="code">vertexBuffer</h4>
+	<div class="explain">
+		<p class="note">Holds the buffer which contains the vertexs.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> geo = <span class="word">new</span> Camel.Geometry();</li>
+				<li>geo.CreateCell( <span class="code-decimal">10.0</span> );</li>
+				<li>console.log( geo.vertexBuffer );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="indiceBuffer">
+	<h4 class="code">indiceBuffer</h4>
+	<div class="explain">
+		<p class="note">Holds the buffer which contains the indices.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> geo = <span class="word">new</span> Camel.Geometry();</li>
+				<li>geo.CreateCell( <span class="code-decimal">10.0</span> );</li>
+				<li>console.log( geo.indiceBuffer );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="numberOfIndices">
+	<h4 class="code">numberOfIndices</h4>
+	<div class="explain">
+		<p class="note">Holds the number of indices.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> geo = <span class="word">new</span> Camel.Geometry();</li>
+				<li>geo.CreateCell( <span class="code-decimal">10.0</span> );</li>
+				<li>console.log( geo.numberOfIndices );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<h3>Constructor</h3>
+
+<div class="entire" id="Camel.Geometry">
+	<h4 class="code">Camel.Geometry()</h4>
+	<div class="explain">
+		<p class="note">Creates new <span class="code">Camel.Geometry</span> instance object.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> geo = <span class="word">new</span> Camel.Geometry();</li>
+				<li>console.log( geo );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The new <span class="code">Camel.Geometry</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<h3>Methods</h3>
+
+<div class="entire" id="CreateCell">
+	<h4 class="code">CreateCell( <span class="param">size</span> )</h4>
+	<div class="explain">
+		<p class="note">Creates the cell for quad square rendering.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">size</span>:<span class="code">number</span> the number presents for size of quad square.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> geo = <span class="word">new</span> Camel.Geometry();</li>
+				<li>geo.CreateCell( <span class="code-decimal">10.0</span> );</li>
+				<li>console.log( geo );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Geometry</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="SetModel">
+	<h4 class="code">SetModel( <span class="param">path</span> )</h4>
+	<div class="explain">
+		<p class="note">Sets model from JSON file path to buffer.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">path</span>:<span class="code">string</span> the string presents for the path of the model file.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> geo = <span class="word">new</span> Camel.Geometry();</li>
+				<li>geo.SetModel( <span class="code-char">'http://json.com/object-model.json'</span> );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Geometry</span> instance object.</p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,179 @@
+<h1>Camel.Camera</h1>
+<h2>Introduction</h2>
+<p class="note"><span class="code">Camel.Camera</span> is a class holds members and methods about camera in Camel.</p>
+
+<h3>Members</h3>
+
+<div class="entire" id="mat">
+	<h4 class="code">mat</h4>
+	<div class="explain">
+		<p class="note">Hold the <span class="code">Float32Array( 16 )</span> value.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> eye = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">2.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> look = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">2.0</span>, <span class="decimal">6.0</span> );</li>
+				<li><span class="word">var</span> up = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">1.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> cam = <span class="word">new</span> Camel.Camera( eye, look, up );</li>
+				<li>console.log( cam.mat );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<h3>Constructor</h3>
+
+<div class="entire" id="Camel.Camera">
+	<h4 class="code">Camel.Camera( <span class="param">eye</span>, <span class="param">look</span>, <span class="param">up</span> )</h4>
+	<div class="explain">
+		<p class="note">Creates a new camera instance object.</p>
+		<div class="note">
+			<p class="bold">The params</p>
+			<ul class="param">
+				<li><span class="code-param">eye</span>:<span class="code">Camel.Vec3</span> the 3d vector presents eye position.</li>
+				<li><span class="code-param">look</span>:<span class="code">Camel.Vec3</span> the 3d vector presents looking direction.</li>
+				<li><span class="code-param">up</span>:<span class="code">Camel.Vec3</span> the 3d vector presents up direction.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> eye = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">2.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> look = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">2.0</span>, <span class="decimal">6.0</span> );</li>
+				<li><span class="word">var</span> up = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">1.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> cam = <span class="word">new</span> Camel.Camera( eye, look, up );</li>
+				<li>console.log( cam.mat );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The new <span class="code">Camel.Camera</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<h3>Methods</h3>
+
+<div class="entire" id="LoadMXFloat">
+	<h4 class="code">LoadMXFloat()</h4>
+	<div class="explain">
+		<p class="note">Receives the <span class="code">Float32Array( 16 )</span> value.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> eye = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">2.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> look = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">2.0</span>, <span class="decimal">6.0</span> );</li>
+				<li><span class="word">var</span> up = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">1.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> cam = <span class="word">new</span> Camel.Camera( eye, look, up );</li>
+				<li>console.log( cam.LoadMXFloat() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">Float32Array( 16 )</span> value.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Identity">
+	<h4 class="code">Identity()</h4>
+	<div class="explain">
+		<p class="note">Receives the <span class="code">Float32Array( 16 )</span> value.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> eye = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">2.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> look = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">2.0</span>, <span class="decimal">6.0</span> );</li>
+				<li><span class="word">var</span> up = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">1.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> cam = <span class="word">new</span> Camel.Camera( eye, look, up );</li>
+				<li>cam.Identity();</li>
+				<li>console.log( cam.mat );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Camera</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Integrate">
+	<h4 class="code">Integrate()</h4>
+	<div class="explain">
+		<p class="note">Computes and generates the <span class="code">Float32Array( 16 )</span> value for camera instance object.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> eye = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">2.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> look = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">2.0</span>, <span class="decimal">6.0</span> );</li>
+				<li><span class="word">var</span> up = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">1.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> cam = <span class="word">new</span> Camel.Camera( eye, look, up );</li>
+				<li>cam.Integrate();</li>
+				<li>console.log( cam.mat );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Camera</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="ToString">
+	<h4 class="code">ToString()</h4>
+	<div class="explain">
+		<p class="note">Receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> eye = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">2.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> look = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">2.0</span>, <span class="decimal">6.0</span> );</li>
+				<li><span class="word">var</span> up = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">1.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> cam = <span class="word">new</span> Camel.Camera( eye, look, up );</li>
+				<li>console.log( cam.ToString() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">string</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="InstanceOf">
+	<h4 class="code">InstanceOf()</h4>
+	<div class="explain">
+		<p class="note">Receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> eye = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">2.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> look = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">2.0</span>, <span class="decimal">6.0</span> );</li>
+				<li><span class="word">var</span> up = <span class="word">new</span> Camel.Vec3( <span class="decimal">0.0</span>, <span class="decimal">1.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> cam = <span class="word">new</span> Camel.Camera( eye, look, up );</li>
+				<li>console.log( cam.InstanceOf() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">string</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Camel.Camera.ToString">
+	<h4 class="code">Camel.Camera.ToString()</h4>
+	<div class="explain">
+		<p class="note">The static method, receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li>console.log( Camel.Camera.ToString() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">string</span>.</p>
+		</div>
+	</div>
+</div>

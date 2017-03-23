@@ -1,0 +1,669 @@
+<h1>Camel Prototype</h1>
+<h2>Introduction</h2>
+<p class="note">Camel Prototype is a collection of members and methods in the Camel class.</p>
+
+<h3>Members</h3>
+
+<div class="entire" id="id">
+	<h4 class="code">id</h4>
+	<div class="explain">
+		<p class="note">Hold the canvas id.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>console.log( engine.id );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="element">
+	<h4 class="code">element</h4>
+	<div class="explain">
+		<p class="note">Hold the canvas DOM element object.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>console.log( engine.element );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="gl">
+	<h4 class="code">gl</h4>
+	<div class="explain">
+		<p class="note">Hold the canvas context object.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>console.log( engine.gl );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="context">
+	<h4 class="code">context</h4>
+	<div class="explain">
+		<p class="note">Hold the canvas context object.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>console.log( engine.context );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="lastTime">
+	<h4 class="code">lastTime</h4>
+	<div class="explain">
+		<p class="note">Hold the last time Camel used.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>console.log( engine.lastTime );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="clearColor">
+	<h4 class="code">clearColor</h4>
+	<div class="explain">
+		<p class="note">The array holds color which camel use to clear the context. This array has three elements presents for three channels such as R, G, B.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>engine.SetClearColor( <span class="decimal">255</span>, <span class="decimal">0</span>, <span class="decimal">0</span> );</li>
+				<li>console.log( engine.clearColor );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="renderHolder">
+	<h4 class="code">renderHolder</h4>
+	<div class="explain">
+		<p class="note">The array holds renderers camel use to render out from the context. Defaultly, this array has eight elements.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>console.log( engine.renderHolder );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<h3>Constructor</h3>
+
+<div class="entire" id="Camel">
+	<h4 class="code">Camel( <span class="param">CANVASElementID</span>, <span class="param">settings</span>, <span class="param">extensions</span>, <span class="param">numberHolder</span> )</h4>
+	<div class="explain">
+		<p class="note">The construct of Camel has 4 params.</p>
+		<div class="note">
+			<p class="bold">The params</p>
+			<ul class="param">
+				<li><span class="code-param">CANVASElementID</span>:<span class="code">string</span>  the id string of canvas developer want to use with Camel.</li>
+				<li><span class="code-param">settings</span>:<span class="code">object</span> the settings object developer want to config for Camel.</li>
+				<li><span class="code-param">extensions</span>:<span class="code">array</span> an array collects WebGL extensions.</li>
+				<li><span class="code-param">numberHolder</span>:<span class="code">number</span> number of render. Maximum is <span class="code-decimal">4</span> value</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>console.log( engine );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The Camel instance object.</p>
+		</div>
+	</div>
+</div>
+
+<h3>Methods</h3>
+
+<div class="entire" id="GetWidth">
+	<h4 class="code">GetWidth()</h4>
+	<div class="explain">
+		<p class="note">Receices the width of the canvas element.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>console.log( engine.GetWidth() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The number.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="GetHeight">
+	<h4 class="code">GetHeight()</h4>
+	<div class="explain">
+		<p class="note">Receices the height of the canvas element.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>console.log( engine.GetHeight() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The number.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="GetBrowserWidth">
+	<h4 class="code">GetBrowserWidth()</h4>
+	<div class="explain">
+		<p class="note">Receices the width of the browser window.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>console.log( engine.GetBrowserWidth() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The number.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="GetBrowserHeight">
+	<h4 class="code">GetBrowserHeight()</h4>
+	<div class="explain">
+		<p class="note">Receices the height of the browser window.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>console.log( engine.GetBrowserHeight() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The number.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="SizeFitBrowser">
+	<h4 class="code">SizeFitBrowser()</h4>
+	<div class="explain">
+		<p class="note">Resize the context so that it is fited to the size of the browser window.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>console.log( engine.SizeFitBrowser() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The void return.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="SetClearColor">
+	<h4 class="code">SetClearColor( <span class="param">r</span>, <span class="param">g</span>, <span class="param">b</span> )</h4>
+	<div class="explain">
+		<p class="note">Set clear color for the context.</p>
+		<div class="note">
+			<p class="bold">The params</p>
+			<ul class="param">
+				<li><span class="code-param">r</span>:<span class="code">number</span> the number limited from 0 to 255 for red channel.</li>
+				<li><span class="code-param">g</span>:<span class="code">number</span> the number limited from 0 to 255 for green channel.</li>
+				<li><span class="code-param">b</span>:<span class="code">number</span> the number limited from 0 to 255 for blue channel.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>console.log( engine.SetClearColor( <span class="decimal">255</span>, <span class="decimal">0</span>, <span class="decimal">0</span> ) );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="GetGLSL" style="display:none">
+	<h4 class="code">GetGLSL( <span class="param">shaderId</span> )</h4>
+	<div class="explain">
+		<p class="note">Receices the compiled shader.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">shaderId</span>:<span class="code">array</span> param.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<p>Avoided method.</p>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The number.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="BuildScene">
+	<h4 class="code">BuildScene( <span class="param">renderer</span>, <span class="param">startCB</span>, <span class="param">updateCB</span>, <span class="param">renderCB</span>, <span class="param">beforeRenderCB</span> )</h4>
+	<div class="explain">
+		<p class="note">Builds the scene.</p>
+		<div class="note">
+			<p class="bold">The params</p>
+			<ul class="param">
+				<li><span class="code-param">renderer</span>:<span class="code">object</span> the renderer used to render the scene.</li>
+				<li><span class="code-param">startCB</span>:<span class="code">callback</span> the starting steps of the scene.</li>
+				<li><span class="code-param">updateCB</span>:<span class="code">callback</span> the update callback when the scene has being rendered.</li>
+				<li><span class="code-param">renderCB</span>:<span class="code">callback</span> the rendering steps.</li>
+				<li><span class="code-param">beforeRenderCB</span>:<span class="code">callback</span> the callback function executed before rendering.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li><span class="word">var</span> scene = engine.BuildScene(</li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="type">CAMEL_RENDERER_TEXTURE</span>, </li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;<span class="word">function</span>()</li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Some start code of the scene...</span></li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+				<li>);</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">Camel.Scene</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="OrderRender">
+	<h4 class="code">OrderRender( <span class="param">renderer</span> )</h4>
+	<div class="explain">
+		<p class="note">Registry the renderer into Camel render machine.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">renderer</span>:<span class="code">object</span> the needle renderer.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>console.log( engine.OrderRender( <span class="type">CAMEL_RENDERER_TEXTURE</span> ) );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The renderer object. In fail case, it returns <span class="code-word">false</span> value.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="BuildRender">
+	<h4 class="code">BuildRender( <span class="param">shaders</span>, <span class="param">constants</span>, <span class="param">beforeCB</span>, <span class="param">finishCB</span> )</h4>
+	<div class="explain">
+		<p class="note">Builds the renderer.</p>
+		<div class="note">
+			<p class="bold">The params</p>
+			<ul class="param">
+				<li><span class="code-param">shaders</span>:<span class="code">object</span> the shaders used to render the scene.</li>
+				<li><span class="code-param">constants</span>:<span class="code">object</span> the object contains the members are constants buffer of shader.</li>
+				<li><span class="code-param">beforeCB</span>:<span class="code">callback</span> the action has be executed when the scene has being rendered.</li>
+				<li><span class="code-param">finishCB</span>:<span class="code">callback</span> the action has be executed when the scene renders completely.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li><span class="word">var</span> scene = engine.BuildRender(</li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;[ <span class="type">vs</span>, <span class="type">fs</span> ]</li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;{</li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="char">'positionIn'</span>:<span class="type">CAMEL_ATTRIB</span></li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="char">'texCoordIn'</span>:<span class="type">CAMEL_ATTRIB</span></li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+				<li>);</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The renderer object. In fail case, it returns <span class="code-word">false</span> value.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="CreateVAB">
+	<h4 class="code">CreateVAB( <span class="param">vArr</span> )</h4>
+	<div class="explain">
+		<p class="note">Creates the vertex array buffer.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">vArr</span>:<span class="code">array</span> the array holds vertex raw data.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>engine.CreateVAB( [...] );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">WebGLBuffer</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="CreateIAB">
+	<h4 class="code">CreateIAB( <span class="param">iArr</span> )</h4>
+	<div class="explain">
+		<p class="note">Creates the indicies array buffer.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">iArr</span>:<span class="code">array</span> the array holds indice raw data.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>engine.CreateIAB( [...] );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">WebGLBuffer</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="CreateTexture">
+	<h4 class="code">CreateTexture( <span class="param">asset</span> )</h4>
+	<div class="explain">
+		<p class="note">Creates the textures.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">asset</span>:<span class="code">object</span> the asset object has received from Asset Manager.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>engine.CreateTexture( textureObj );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The input asset.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="GetTexture">
+	<h4 class="code">GetTexture( <span class="param">asset</span> )</h4>
+	<div class="explain">
+		<p class="note">Receives the textures from the asset.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">asset</span>:<span class="code">object</span> the asset object has received from Asset Manager.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>engine.GetTexture( textureObj );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The input asset.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="CreateRTT">
+	<h4 class="code">CreateRTT( <span class="param">name</span>, <span class="param">width</span>, <span class="param">height</span>, <span class="param">red</span>, <span class="param">green</span>, <span class="param">blue</span>, <span class="param">alpha</span>, <span class="param">render</span> )</h4>
+	<div class="explain">
+		<p class="note">Creates dynamic textures.</p>
+		<div class="note">
+			<p class="bold">The params</p>
+			<ul class="param">
+				<li><span class="code-param">name</span>:<span class="code">string</span> the string presents name of the texture.</li>
+				<li><span class="code-param">width</span>:<span class="code">number</span> the number presents the length of width of the texture.</li>
+				<li><span class="code-param">height</span>:<span class="code">number</span> the number presents the length of height of the texture.</li>
+				<li><span class="code-param">red</span>:<span class="code">number</span> the number presents the red channel of swap color.</li>
+				<li><span class="code-param">green</span>:<span class="code">number</span> the number presents the green channel of swap color.</li>
+				<li><span class="code-param">blue</span>:<span class="code">number</span> the number presents the blue channel of swap color.</li>
+				<li><span class="code-param">alpha</span>:<span class="code">number</span> the number presents the alpha channel of swap color.</li>
+				<li><span class="code-param">render</span>:<span class="code">object</span> the renderer used to render the scene.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>engine.CreateRTT( <span class="char">'texName'</span>, <span class="decimal">255</span>, <span class="decimal">255</span>, <span class="decimal">255</span>, <span class="decimal">0</span>, <span class="decimal">0</span>, <span class="decimal">100</span>, renderer );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The WebGLFrameBuffer instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="OpenRTT">
+	<h4 class="code">OpenRTT( <span class="param">buffer</span> )</h4>
+	<div class="explain">
+		<p class="note">Begin rendering to frame buffer.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">buffer</span>:<span class="code">object</span> the frame buffer shown as dynamic texture.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>engine.OpenRTT( renderer );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The void return.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="CloseRTT">
+	<h4 class="code">CloseRTT()</h4>
+	<div class="explain">
+		<p class="note">Close rendering from frame buffer.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>engine.OpenRTT( renderer );</li>
+				<li><span class="comment">// Render something at here...</span></li>
+				<li>engine.CloseRTT( renderer );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The void return.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="GetWGL">
+	<h4 class="code">GetWGL()</h4>
+	<div class="explain">
+		<p class="note">Receives the context of canvas which renders to current scene.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li><span class="word">var</span> ctx = engine.GetWGL();</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">WebGLRenderingContext</span> object instance.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="GetContext">
+	<h4 class="code">GetContext()</h4>
+	<div class="explain">
+		<p class="note">Receives the context of canvas which renders to current scene.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li><span class="word">var</span> ctx = engine.GetContext();</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">WebGLRenderingContext</span> object instance.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Prepare">
+	<h4 class="code">Prepare()</h4>
+	<div class="explain">
+		<p class="note">The function prepares before cycle.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li><span class="word">var</span> ctx = engine.Prepare();</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The void return.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Cycle">
+	<h4 class="code">Cycle( <span class="param">time</span> )</h4>
+	<div class="explain">
+		<p class="note">Begin render to frame buffer.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">time</span>:<span class="code">number</span> the delay time, in the second</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>engine.Cycle( 0 );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The void return.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="BuildDefault">
+	<h4 class="code">BuildDefault()</h4>
+	<div class="explain">
+		<p class="note">Builds default renderer.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>engine.BuildDefault();</li>
+				<li>engine.Cycle( 0 );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The void return.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="ToString">
+	<h4 class="code">ToString()</h4>
+	<div class="explain">
+		<p class="note">Receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>engine.BuildDefault();</li>
+				<li>engine.Cycle( 0 );</li>
+				<li>console.log( engine.ToString() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The string.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="InstanceOf">
+	<h4 class="code">InstanceOf()</h4>
+	<div class="explain">
+		<p class="note">Receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> engine = <span class="word">new</span> Camel( <span class="char">'canvas_id'</span>, { antialias: <span class="word">false</span>, [], <span class="decimal">4</span> } );</li>
+				<li>engine.BuildDefault();</li>
+				<li>engine.Cycle( 0 );</li>
+				<li>console.log( engine.InstanceOf() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The string.</p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,401 @@
+<h1>Camel.AssetManager</h1>
+<h2>Introduction</h2>
+<p class="note"><span class="code">Camel.AssetManager</span> makes a loading and manages the assets of a program.</p>
+
+<h3>Members</h3>
+
+<div class="entire" id="queueType">
+	<h4 class="code">queueType</h4>
+	<div class="explain">
+		<p class="note">The array holds the asset type.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr.queueType );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="errorCount">
+	<h4 class="code">errorCount</h4>
+	<div class="explain">
+		<p class="note">The number presents the counted error.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr.errorCount );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="successCount">
+	<h4 class="code">successCount</h4>
+	<div class="explain">
+		<p class="note">The number presents the counted success.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr.successCount );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="assetList">
+	<h4 class="code">assetList</h4>
+	<div class="explain">
+		<p class="note">The array holds the assets has completed loading.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr.assetList );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<h3>Constructor</h3>
+
+<div class="entire" id="Camel.AssetManager">
+	<h4 class="code">Camel.AssetManager( <span class="param">imgExt</span>, <span class="param">sndExt</span>, <span class="param">xhrExt</span>, <span class="param">vidExt</span> )</h4>
+	<div class="explain">
+		<p class="note">Creates a new <span class="code">Camel.AssetManager</span> instance object.</p>
+		<div class="note">
+			<p class="bold">The params</p>
+			<ul class="param">
+				<li><span class="code-param">imgExt</span>:<span class="code">string</span> the string presents the extensions of the image.</li>
+				<li><span class="code-param">sndExt</span>:<span class="code">string</span> the string presents the extensions of the sound.</li>
+				<li><span class="code-param">xhrExt</span>:<span class="code">string</span> the string presents the extensions of the xhttp.</li>
+				<li><span class="code-param">vidExt</span>:<span class="code">string</span> the string presents the extensions of the video.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The new <span class="code">Camel.AssetManager</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<h3>Methods</h3>
+
+<div class="entire" id="GetErrorNumber">
+	<h4 class="code">GetErrorNumber()</h4>
+	<div class="explain">
+		<p class="note">Receives the error count.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr.GetErrorNumber() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The number.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="GetSuccessNumber">
+	<h4 class="code">GetSuccessNumber()</h4>
+	<div class="explain">
+		<p class="note">Receives the success count.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr.GetSuccessNumber() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The number.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="GetAssetList">
+	<h4 class="code">GetAssetList()</h4>
+	<div class="explain">
+		<p class="note">Receives the list of loaded assets.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr.GetAssetList() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The array.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="IsComplete">
+	<h4 class="code">IsComplete()</h4>
+	<div class="explain">
+		<p class="note">Receives the flag which specifies whether the progress had completed or not.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr.IsComplete() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The boolean value.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="GetProgress">
+	<h4 class="code">GetProgress()</h4>
+	<div class="explain">
+		<p class="note">Receives the number of percent which specifies asset loading progress.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr.GetProgress() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The number of percent.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="ParseExt">
+	<h4 class="code">ParseExt( <span class="code-param">path</span> )</h4>
+	<div class="explain">
+		<p class="note">Receives the string presents the asset extension.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">path</span>:<span class="code">string</span> the string presents the asset path.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr.ParseExt( <span class="code-char">'path/asset-example.jpg'</span> ) );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The string.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="GetType">
+	<h4 class="code">GetType( <span class="code-param">path</span> )</h4>
+	<div class="explain">
+		<p class="note">Receives the number presents the asset type.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">path</span>:<span class="code">string</span> the string presents the asset path.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr.GetType( <span class="code-char">'path/asset-example.jpg'</span> ) );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The number.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="IsQueued">
+	<h4 class="code">IsQueued( <span class="code-param">path</span> )</h4>
+	<div class="explain">
+		<p class="note">Receives the number has being specify whether did queue or did not queue.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">path</span>:<span class="code">string</span> the string presents the asset path.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr.IsQueued( <span class="code-char">'path/asset-example.jpg'</span> ) );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The number, <span class="code-decimal">-1</span> value if had not queued or index of position if had queued.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="QueueFile">
+	<h4 class="code">QueueFile( <span class="code-param">path</span> )</h4>
+	<div class="explain">
+		<p class="note">Queues the file from the specified path into the Asset Manager.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">path</span>:<span class="code">string</span> the string presents the asset path.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr.QueueFile( <span class="code-char">'path/asset-example.jpg'</span> ) );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The void return.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="QueueDownloadFile">
+	<h4 class="code">QueueDownloadFile( <span class="code-param">index</span>, <span class="code-param">type</span> )</h4>
+	<div class="explain">
+		<p class="note">Downloads the asset file from the Asset Manager.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">index</span>:<span class="code">number</span> the number presents the position of the asset path.</li>
+				<li><span class="code-param">type</span>:<span class="code">string</span> the string presents the asset type.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>assetMgr.QueueFile( <span class="code-char">'path/asset-example.jpg'</span> );</li>
+				<li>assetMgr.QueueDownloadFile( <span class="code-decimal">0</span>, <span class="code-type">CAMEL_QUEUE_IMAGE</span> );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The void return.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="QueueDownloadFile">
+	<h4 class="code">QueueDownloadAll()</h4>
+	<div class="explain">
+		<p class="note">Downloads the asset files of all from the Asset Manager.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>assetMgr.QueueFile( <span class="code-char">'path/asset-example-01.jpg'</span> );</li>
+				<li>assetMgr.QueueFile( <span class="code-char">'path/asset-example-02.jpg'</span> );</li>
+				<li>assetMgr.QueueDownloadAll();</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The void return.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="GetAsset">
+	<h4 class="code">GetAsset( <span class="code-param">path</span> )</h4>
+	<div class="explain">
+		<p class="note">Receives the asset file from the Asset Manager.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">path</span>:<span class="code">string</span> the string presents the asset path.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>assetMgr.GetAsset( <span class="code-char">'path/asset-example.jpg'</span> );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The asset file.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="ToString">
+	<h4 class="code">ToString()</h4>
+	<div class="explain">
+		<p class="note">Receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr.ToString() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">string</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="InstanceOf">
+	<h4 class="code">InstanceOf()</h4>
+	<div class="explain">
+		<p class="note">Receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> assetMgr = <span class="word">new</span> Camel.AssetManager( <span class="char">'jpg|png|gif'</span> );</li>
+				<li>console.log( assetMgr.InstanceOf() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">string</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Camel.AssetManager.ToString">
+	<h4 class="code">Camel.AssetManager.ToString()</h4>
+	<div class="explain">
+		<p class="note">The static method, receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li>console.log( Camel.AssetManager.ToString() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">string</span>.</p>
+		</div>
+	</div>
+</div>

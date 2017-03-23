@@ -1,0 +1,121 @@
+<h1>Camel.Material</h1>
+<h2>Introduction</h2>
+<p class="note"><span class="code">Camel.Material</span> contains a lot of methods and members about material.</p>
+<p class="note">Extended by <span class="code">Camel.Color</span></p>
+
+<h3>Members</h3>
+
+<div class="entire" id="map">
+	<h4 class="code">map</h4>
+	<div class="explain">
+		<p class="note">The object holds the texture mapping.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mat = <span class="word">new</span> Camel.Material();</li>
+				<li>console.log( mat.map );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<p class="note">You can see members of <span class="code">Camel.Color</span> for more information.</p>
+
+<h3>Constructor</h3>
+
+<div class="entire" id="Camel.Material">
+	<h4 class="code">Camel.Material()</h4>
+	<div class="explain">
+		<p class="note">Creates a new <span class="code">Camel.Material</span> instance object.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mat = <span class="word">new</span> Camel.Material();</li>
+				<li>console.log( mat );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The new <span class="code">Camel.Material</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<h3>Methods</h3>
+
+<div class="entire" id="SetDiffuseMap">
+	<h4 class="code">SetDiffuseMap( <span class="param">map</span> )</h4>
+	<div class="explain">
+		<p class="note">Sets diffuse texture mapping to the material.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">map</span>:<span class="code">object</span> the texture mapping.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mat = <span class="word">new</span> Camel.Material();</li>
+				<li>mat.SetDiffuseMap( engine.GetTexture( assetMgr.GetAsset( <span class="code-char">'images/fish-tex.png'</span> ) );</li>
+				<li>console.log( mat.map.diffuse );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Material</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="SetAmbientMap">
+	<h4 class="code">SetAmbientMap( <span class="param">map</span> )</h4>
+	<div class="explain">
+		<p class="note">Sets ambient texture mapping to the material.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">map</span>:<span class="code">object</span> the texture mapping.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mat = <span class="word">new</span> Camel.Material();</li>
+				<li>mat.SetAmbientMap( engine.GetTexture( assetMgr.GetAsset( <span class="code-char">'images/fish-tex.png'</span> ) );</li>
+				<li>console.log( mat.map.ambient );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Material</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="SetSpecularMap">
+	<h4 class="code">SetSpecularMap( <span class="param">map</span> )</h4>
+	<div class="explain">
+		<p class="note">Sets specular texture mapping to the material.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">map</span>:<span class="code">object</span> the texture mapping.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mat = <span class="word">new</span> Camel.Material();</li>
+				<li>mat.SetSpecularMap( engine.GetTexture( assetMgr.GetAsset( <span class="code-char">'images/fish-tex.png'</span> ) );</li>
+				<li>console.log( mat.map.specular );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Material</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<p class="note">You can see methods of <span class="code">Camel.Color</span> for more information.</p>

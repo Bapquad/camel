@@ -1,0 +1,210 @@
+<h1>Camel.Scene</h1>
+<h2>Introduction</h2>
+<p class="note"><span class="code">Camel.Scene</span> has used to build a scene. It includes the follow methods and members</p>
+
+<h3>Members</h3>
+
+<div class="entire" id="visible">
+	<h4 class="code">visible</h4>
+	<div class="explain">
+		<p class="note">Holds the flag which specifies whether the scene is visible or is invisible. Default, it had set to <span class="code-word">true</span> value.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> scene = <span class="word">new</span> Camel.Scene();</li>
+				<li>console.log( scene.visible );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="disable">
+	<h4 class="code">disable</h4>
+	<div class="explain">
+		<p class="note">Holds the flag which specifies whether the scene is disable or is enable. Default, it had set to <span class="code-word">false</span> value.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> scene = <span class="word">new</span> Camel.Scene();</li>
+				<li>console.log( scene.disable );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="particleHolder">
+	<h4 class="code">particleHolder</h4>
+	<div class="explain">
+		<p class="note">The array holds the particle items. Default, it has the length to <span class="code-decimal">32</span> value.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> scene = <span class="word">new</span> Camel.Scene();</li>
+				<li>console.log( scene.particleHolder );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<h3>Constructor</h3>
+
+<div class="entire" id="Camel.Scene">
+	<h4 class="code">Camel.Scene( <span class="param">start</span>, <span class="param">update</span>, <span class="param">render</span>, <span class="param">beforeRender</span> )</h4>
+	<div class="explain">
+		<p class="note">Creates new <span class="code">Camel.Scene</span> instance object.</p>
+		<div class="note">
+			<p class="bold">The params</p>
+			<ul class="param">
+				<li><span class="code-param">start</span>:<span class="code">function</span> the function initializes the scene.</li>
+				<li><span class="code-param">update</span>:<span class="code">function</span> the function updates the scene.</li>
+				<li><span class="code-param">render</span>:<span class="code">function</span> the function renders the scene.</li>
+				<li><span class="code-param">beforeRender</span>:<span class="code">function</span> the function has executed before each render time.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> scene = <span class="word">new</span> Camel.Scene();</li>
+				<li>console.log( scene );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The new <span class="code">Camel.Scene</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<h3>Methods</h3>
+
+<div class="entire" id="Enable">
+	<h4 class="code">Enable()</h4>
+	<div class="explain">
+		<p class="note">Enables the scene.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> scene = <span class="word">new</span> Camel.Scene();</li>
+				<li>scene.Enable();</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The void return.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Disable">
+	<h4 class="code">Disable()</h4>
+	<div class="explain">
+		<p class="note">Disables the scene.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> scene = <span class="word">new</span> Camel.Scene();</li>
+				<li>scene.Disable();</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The void return.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="AddRenderer">
+	<h4 class="code">AddRenderer( <span class="code-param">renderer</span> )</h4>
+	<div class="explain">
+		<p class="note">Add a renderer to list of renderers.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">renderer</span>:<span class="code">object</span> the renderer used to render the scene.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> scene = <span class="word">new</span> Camel.Scene();</li>
+				<li>scene.AddRenderer( <span class="type">CAMEL_RENDERER_TEXTURE</span> );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Scene</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Pass">
+	<h4 class="code">Pass( <span class="code-param">renderer</span> )</h4>
+	<div class="explain">
+		<p class="note">Render the scene.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">renderer</span>:<span class="code">object</span> the renderer used to render the scene.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> scene = <span class="word">new</span> Camel.Scene();</li>
+				<li>scene.Pass( <span class="type">CAMEL_RENDERER_TEXTURE</span> );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The void return.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="AddChild">
+	<h4 class="code">AddChild( <span class="code-param">particle</span> )</h4>
+	<div class="explain">
+		<p class="note">Adds a particle to the scene.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">particle</span>:<span class="code">object</span> the particle has been render by the scene.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> scene = <span class="word">new</span> Camel.Scene();</li>
+				<li>scene.AddChild( particle );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The object had added.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="AddLight">
+	<h4 class="code">AddLight( <span class="code-param">light</span> )</h4>
+	<div class="explain">
+		<p class="note">Adds a light to the scene.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">light</span>:<span class="code">object</span> the light has been render by the scene.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> scene = <span class="word">new</span> Camel.Scene();</li>
+				<li>scene.AddLight( light );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The light had added.</p>
+		</div>
+	</div>
+</div>

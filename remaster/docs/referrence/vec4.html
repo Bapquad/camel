@@ -1,0 +1,593 @@
+<h1>Camel.Vec4</h1>
+<h2>Introduction</h2>
+<p class="note"><span class="code">Camel.Vec4</span> contains the functions in 4d vector (quaternion) mathematics.</p>
+
+<h3>Members</h3>
+
+<div class="entire" id="vec">
+	<h4 class="code">vec</h4>
+	<div class="explain">
+		<p class="note">Hold the <span class="code">Float32Array( 4 )</span>.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.0</span>, <span class="decimal">2.0</span>, <span class="decimal">1.5</span>, <span class="decimal">1.0</span> );</li>
+				<li>console.log( vec4.vec );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<h3>Constructor</h3>
+
+<div class="entire" id="Camel.Vec4">
+	<h4 class="code">Camel.Vec4( <span class="param">x</span>, <span class="param">y</span>, <span class="param">z</span>, <span class="param">w</span> )</h4>
+	<div class="explain">
+		<p class="note">Creates new a <span class="code">Camel.Vec4</span> instance object.</p>
+		<div class="note">
+			<p class="bold">The params</p>
+			<ul class="param">
+				<li><span class="code-param">x</span>:<span class="code">number</span> the x-coord of 4d vector.</li>
+				<li><span class="code-param">y</span>:<span class="code">number</span> the y-coord of 4d vector.</li>
+				<li><span class="code-param">z</span>:<span class="code">number</span> the z-coord of 4d vector.</li>
+				<li><span class="code-param">w</span>:<span class="code">number</span> the w-coord of 4d vector.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.0</span>, <span class="decimal">2.0</span>, <span class="decimal">1.5</span>, <span class="decimal">1.0</span> );</li>
+				<li>console.log( vec4.vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The new <span class="code">Camel.Vec4</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<h3>Methods</h3>
+
+<div class="entire" id="LoadVecFloat">
+	<h4 class="code">LoadVecFloat()</h4>
+	<div class="explain">
+		<p class="note">Receives the <span class="code">Float32Array( 4 )</span> value.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li>console.log( vec4.LoadVecFloat() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">Float32Array( 4 )</span> value.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="SetVector">
+	<h4 class="code">SetVector( <span class="param">x</span>, <span class="param">y</span>, <span class="param">z</span>, <span class="param">w</span> )</h4>
+	<div class="explain">
+		<p class="note">Sets the 4d vector.</p>
+		<div class="note">
+			<p class="bold">The return</p>
+			<ul class="param">
+				<li><span class="code-param">x</span>:<span class="code">number</span> the x-coord of 4d vector.</li>
+				<li><span class="code-param">y</span>:<span class="code">number</span> the y-coord of 4d vector.</li>
+				<li><span class="code-param">z</span>:<span class="code">number</span> the z-coord of 4d vector.</li>
+				<li><span class="code-param">w</span>:<span class="code">number</span> the w-coord of 4d vector.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li>vec4.SetVector( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">1.2</span> );</li>
+				<li>console.log( vec4.vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec4</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Clone">
+	<h4 class="code">Clone( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Duplicates the 4d vector.</p>
+		<div class="note">
+			<p class="bold">The return</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec4</span> the 4d vector cloned by. Unless it has been set, clones out new instance object from self object.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li><span class="word">var</span> vec2 = vec4.Clone();</li>
+				<li>console.log( vec2.vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">Camel.Vec4</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Add">
+	<h4 class="code">Add( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Adds the 4d vector.</p>
+		<div class="note">
+			<p class="bold">The return</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec4</span> the 4d vector added by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li><span class="word">var</span> vec3 = <span class="word">new</span> Camel.Vec4( <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.5</span>, <span class="decimal">0.0</span> );</li>
+				<li>vec4.Add( vec3 );</li>
+				<li>console.log( vec4.vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec4</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Subtract">
+	<h4 class="code">Subtract( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Subtracts the 4d vector.</p>
+		<div class="note">
+			<p class="bold">The return</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec4</span> the 4d vector subtracted by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li><span class="word">var</span> vec3 = <span class="word">new</span> Camel.Vec4( <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.5</span>, <span class="decimal">0.0</span> );</li>
+				<li>vec4.Subtract( vec3 );</li>
+				<li>console.log( vec4.vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec4</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Multiply">
+	<h4 class="code">Multiply( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Multiples the 4d vector.</p>
+		<div class="note">
+			<p class="bold">The return</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec4</span> the 4d vector multipled by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li><span class="word">var</span> vec3 = <span class="word">new</span> Camel.Vec4( <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.5</span>, <span class="decimal">0.0</span> );</li>
+				<li>vec4.Multiply( vec3 );</li>
+				<li>console.log( vec4.vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec4</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Divide">
+	<h4 class="code">Divide( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Divides the 4d vector.</p>
+		<div class="note">
+			<p class="bold">The return</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec4</span> the 4d vector divided by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li><span class="word">var</span> vec3 = <span class="word">new</span> Camel.Vec4( <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.5</span>, <span class="decimal">0.0</span> );</li>
+				<li>vec4.Divide( vec3 );</li>
+				<li>console.log( vec4.vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec4</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Scale">
+	<h4 class="code">Scale( <span class="param">value</span> )</h4>
+	<div class="explain">
+		<p class="note">Scales the 4d vector.</p>
+		<div class="note">
+			<p class="bold">The return</p>
+			<ul class="param">
+				<li><span class="code-param">value</span>:<span class="code">number</span> the number scaled by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li>vec4.Scale( <span class="decimal">2.0</span> );</li>
+				<li>console.log( vec4.vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec4</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="SqrtLen">
+	<h4 class="code">SqrtLen()</h4>
+	<div class="explain">
+		<p class="note">Receives square root of the length.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li><span class="word">var</span> sl = vec4.SqrtLen();</li>
+				<li>console.log( sl );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">number</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Length">
+	<h4 class="code">Length()</h4>
+	<div class="explain">
+		<p class="note">Computes and returns the length.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li><span class="word">var</span> l = vec4.Length();</li>
+				<li>console.log( l );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">number</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="SqrtDist">
+	<h4 class="code">SqrtDist( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Receives square root of the distance.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec4</span> the 4d vector instance object</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li><span class="word">var</span> vec3 = <span class="word">new</span> Camel.Vec4( <span class="decimal">0.5</span>, <span class="decimal">0.2</span>, <span class="decimal">2.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> sd = vec4.SqrtDist( vec3 );</li>
+				<li>console.log( sd );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">number</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Distance">
+	<h4 class="code">Distance( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Receives the distance with an another vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec4</span> the 4d vector instance object</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li><span class="word">var</span> vec3 = <span class="word">new</span> Camel.Vec4( <span class="decimal">0.5</span>, <span class="decimal">0.2</span>, <span class="decimal">2.0</span>, <span class="decimal">0.0</span> );</li>
+				<li><span class="word">var</span> d = vec4.Distance( vec3 );</li>
+				<li>console.log( d );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">number</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Symmetry">
+	<h4 class="code">Symmetry( <span class="param">x</span>, <span class="param">y</span>, <span class="param">z</span>, <span class="param">w</span> )</h4>
+	<div class="explain">
+		<p class="note">Symmetry the vector via a center point.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">x</span>:<span class="code">number</span> the x-coord of center point.</li>
+				<li><span class="code-param">y</span>:<span class="code">number</span> the y-coord of center point.</li>
+				<li><span class="code-param">z</span>:<span class="code">number</span> the z-coord of center point.</li>
+				<li><span class="code-param">w</span>:<span class="code">number</span> the w-coord of center point.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li>vec4.Symmetry( <span class="decimal">4.5</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.5</span> );</li>
+				<li>console.log( vec4 );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec4</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Inverse">
+	<h4 class="code">Inverse()</h4>
+	<div class="explain">
+		<p class="note">Computes and receives the inversed vector.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li>vec4.Inverse( <span class="decimal">4.5</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.5</span> );</li>
+				<li>console.log( vec4 );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec4</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Normalize">
+	<h4 class="code">Normalize( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Computes and receives the normalized 4d vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec4</span> if inputs, receives the normalized vector from this vector.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li><span class="word">var</span> vecN = vec4.Normalize();</li>
+				<li>console.log( vecN );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">Camel.Vec4</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Dot">
+	<h4 class="code">Dot( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Computes and receives the 4d vector dot between the self vector and an another vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec4</span> the vector has been dotted by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li><span class="word">var</span> vec3 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.2</span> );</li>
+				<li><span class="word">var</span> dotResult = vec4.Dot( vec3 );</li>
+				<li>console.log( dotResult );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">number</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Lerp">
+	<h4 class="code">Lerp( <span class="param">v</span>, <span class="param">t</span> )</h4>
+	<div class="explain">
+		<p class="note">Computes and receives the slurp interpolation between the self vector and an another vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec4</span> the vector has been lerp by.</li>
+				<li><span class="code-param">t</span>:<span class="code">number</span> the time. In miliseconds.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li><span class="word">var</span> vec3 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.2</span> );</li>
+				<li><span class="word">var</span> lerpResult = vec4.Lerp( vec3, dt );</li>
+				<li>console.log( lerpResult );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The new <span class="code">Camel.Vec4</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Random">
+	<h4 class="code">Random( <span class="param">scale</span> )</h4>
+	<div class="explain">
+		<p class="note">Makes random 4d vector with the given scale.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">scale</span>:<span class="code">number</span> the length of result vector.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li>vec4.Random( <span class="decimal">10.0</span> );</li>
+				<li>console.log( vec4.vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec4</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="TransformMat4">
+	<h4 class="code">TransformMat4( <span class="param">m</span> )</h4>
+	<div class="explain">
+		<p class="note">Transforms with 4x4 matrix.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">m</span>:<span class="code">Camel.Mx44</span> the 4x4 matrix for transforming.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li>vec4.TransformMat4( mat ); <span class="comment">// mat instanced by Camel.Mx44</span></li>
+				<li>console.log( vec4.vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec4</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="TransformQuat">
+	<h4 class="code">TransformQuat( <span class="param">q</span> )</h4>
+	<div class="explain">
+		<p class="note">Transforms with a quaternion.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">q</span>:<span class="code">Camel.Quat</span> the quaternion for transforming.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li>vec4.TransformQuat( quat ); <span class="comment">// quat instanced by Camel.Quat</span></li>
+				<li>console.log( vec4.vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec4</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="ToString">
+	<h4 class="code">ToString()</h4>
+	<div class="explain">
+		<p class="note">Receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li>console.log( vec4.ToString() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">string</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="InstanceOf">
+	<h4 class="code">InstanceOf()</h4>
+	<div class="explain">
+		<p class="note">Receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec4 = <span class="word">new</span> Camel.Vec4( <span class="decimal">1.5</span>, <span class="decimal">0.5</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span> );</li>
+				<li>console.log( vec4.InstanceOf() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">string</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Camel.Vec4.ToString">
+	<h4 class="code">Camel.Vec4.ToString()</h4>
+	<div class="explain">
+		<p class="note">The static method, receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li>console.log( Camel.Vec4.ToString() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">string</span>.</p>
+		</div>
+	</div>
+</div>

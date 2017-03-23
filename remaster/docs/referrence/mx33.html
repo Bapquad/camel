@@ -1,0 +1,540 @@
+<h1>Camel.Mx33</h1>
+<h2>Introduction</h2>
+<p class="note"><span class="code">Camel.Mx33</span> contains functions about 3x3 matrix mathematics.</p>
+
+<h3>Members</h3>
+
+<div class="entire" id="mat">
+	<h4 class="code">mat</h4>
+	<div class="explain">
+		<p class="note">Hold the <span class="code">Float32Array( 9 )</span>.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>console.log( mx.mat );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<h3>Constructor</h3>
+
+<div class="entire" id="Camel.Mx33">
+	<h4 class="code">Camel.Mx33( <span class="param">x1</span>, <span class="param">y1</span>, <span class="param">z1</span>, <span class="param">x2</span>, <span class="param">y2</span>, <span class="param">z2</span>, <span class="param">x3</span>, <span class="param">y3</span>, <span class="param">z3</span> )</h4>
+	<div class="explain">
+		<p class="note">Create new a 3x3 matrix.</p>
+		<div class="note">
+			<p class="bold">The params</p>
+			<ul class="param">
+				<li><span class="code-param">x1</span>:<span class="code">number</span> the x1 components of 3x3 matrix.</li>
+				<li><span class="code-param">y1</span>:<span class="code">number</span> the y1 components of 3x3 matrix.</li>
+				<li><span class="code-param">z1</span>:<span class="code">number</span> the z1 components of 3x3 matrix.</li>
+				<li><span class="code-param">x2</span>:<span class="code">number</span> the x2 components of 3x3 matrix.</li>
+				<li><span class="code-param">y2</span>:<span class="code">number</span> the y2 components of 3x3 matrix.</li>
+				<li><span class="code-param">z2</span>:<span class="code">number</span> the z2 components of 3x3 matrix.</li>
+				<li><span class="code-param">x3</span>:<span class="code">number</span> the x3 components of 3x3 matrix.</li>
+				<li><span class="code-param">y3</span>:<span class="code">number</span> the y3 components of 3x3 matrix.</li>
+				<li><span class="code-param">z3</span>:<span class="code">number</span> the z3 components of 3x3 matrix.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>console.log( mx );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The new <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<h3>Methods</h3>
+
+<div class="entire" id="LoadMXFloat">
+	<h4 class="code">LoadMXFloat()</h4>
+	<div class="explain">
+		<p class="note">Receives the <span class="code">Float32Array( 9 )</span> value.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>console.log( mx.LoadMXFloat() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">Float32Array( 9 )</span> value.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="SetMatrix">
+	<h4 class="code">SetMatrix( <span class="param">x1</span>, <span class="param">y1</span>, <span class="param">z1</span>, <span class="param">x2</span>, <span class="param">y2</span>, <span class="param">z2</span>, <span class="param">x3</span>, <span class="param">y3</span>, <span class="param">z3</span> )</h4>
+	<div class="explain">
+		<p class="note">Set matrix value.</p>
+		<div class="note">
+			<p class="bold">The params</p>
+			<ul class="param">
+				<li><span class="code-param">x1</span>:<span class="code">number</span> the x1 components of 3x3 matrix.</li>
+				<li><span class="code-param">y1</span>:<span class="code">number</span> the y1 components of 3x3 matrix.</li>
+				<li><span class="code-param">z1</span>:<span class="code">number</span> the z1 components of 3x3 matrix.</li>
+				<li><span class="code-param">x2</span>:<span class="code">number</span> the x2 components of 3x3 matrix.</li>
+				<li><span class="code-param">y2</span>:<span class="code">number</span> the y2 components of 3x3 matrix.</li>
+				<li><span class="code-param">z2</span>:<span class="code">number</span> the z2 components of 3x3 matrix.</li>
+				<li><span class="code-param">x3</span>:<span class="code">number</span> the x3 components of 3x3 matrix.</li>
+				<li><span class="code-param">y3</span>:<span class="code">number</span> the y3 components of 3x3 matrix.</li>
+				<li><span class="code-param">z3</span>:<span class="code">number</span> the z3 components of 3x3 matrix.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>mx.SetMatrix( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>console.log( mx.mat );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Clone">
+	<h4 class="code">Clone( <span class="code-param">m</span> )</h4>
+	<div class="explain">
+		<p class="note">Duplicates the 3x3 matrix instance object.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">m</span>:<span class="code">number</span> the target object has cloned by. Unless it had set, it uses self matrix object.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li><span class="word">var</span> m1 = mx.Clone();</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Identity">
+	<h4 class="code">Identity()</h4>
+	<div class="explain">
+		<p class="note">Sets 3x3 matrix value to identity 3x3 matrix.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>mx.Identity();</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Transpose">
+	<h4 class="code">Transpose()</h4>
+	<div class="explain">
+		<p class="note">Transposes the value of 3x3 matrix object.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>mx.Transpose();</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Invert">
+	<h4 class="code">Invert()</h4>
+	<div class="explain">
+		<p class="note">Inverts the value of 3x3 matrix object.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>mx.Invert();</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Adjoint">
+	<h4 class="code">Adjoint()</h4>
+	<div class="explain">
+		<p class="note">Calculates the adjugate of a 3x3 matrix object.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>mx.Adjoint();</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Determinant">
+	<h4 class="code">Determinant()</h4>
+	<div class="explain">
+		<p class="note">Calculates the determinant of a 3x3 matrix object.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>console.log( mx.Determinant() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">number</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Multiply">
+	<h4 class="code">Multiply( <span class="code-param">m</span> )</h4>
+	<div class="explain">
+		<p class="note">Multiples the self 3x3 matrix with an another 3x3 matrix.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">m</span>:<span class="code">Camel.Mx33</span> the target object has multipled by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li><span class="word">var</span> m1 = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>mx.Multiply( m1 );</li>
+				<li>console.log( mx.mat );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Translate">
+	<h4 class="code">Translate( <span class="code-param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Translates the self 3x3 matrix by the dimension in the given 2d vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec2</span> the 2d vector object presents the translating dimension.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li><span class="word">var</span> vec = <span class="word">new</span> Camel.Vec2( <span class="decimal">1.0</span>, <span class="decimal">1.5</span> );</li>
+				<li>mx.Translate( vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Rotate">
+	<h4 class="code">Rotate( <span class="code-param">deg</span> )</h4>
+	<div class="explain">
+		<p class="note">Rotates the self 3x3 matrix with the given angle.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">deg</span>:<span class="code">number</span> the angle has rotated by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>mx.Rotate( <span class="decimal">60.0</span> );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Scale">
+	<h4 class="code">Scale( <span class="code-param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Scales the self 3x3 matrix by the dimension in the given 2d vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec2</span> the 2d vector object presents the scaling dimension.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li><span class="word">var</span> vec = <span class="word">new</span> Camel.Vec2( <span class="decimal">1.0</span>, <span class="decimal">1.5</span> );</li>
+				<li>mx.Scale( vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="FromTranslation">
+	<h4 class="code">FromTranslation( <span class="code-param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Translates the 3x3 matrix from a given 2d vector. This is equivalent to (but much faster than): <span class="code">Camel.Mx33.prototype.Identity</span> and <span class="code">Camel.Mx33.prototype.Translate</span>.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec2</span> the 2d vector object has translated by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li><span class="word">var</span> vec = <span class="word">new</span> Camel.Vec2( <span class="decimal">1.0</span>, <span class="decimal">1.5</span> );</li>
+				<li>mx.FromTranslation( vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="FromRotation">
+	<h4 class="code">FromRotation( <span class="code-param">deg</span> )</h4>
+	<div class="explain">
+		<p class="note">Rotates 3x3 matrix from a given angle. This is equivalent to (but much faster than): <span class="code">Camel.Mx33.prototype.Identity</span> and <span class="code">Camel.Mx33.prototype.Rotate</span>.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">deg</span>:<span class="code">number</span> the angle has rotated by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>mx.FromRotation( <span class="decimal">45.0</span> );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="FromScaling">
+	<h4 class="code">FromScaling( <span class="code-param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Scaling the 3x3 matrix from a given 2d vector. This is equivalent to (but much faster than): <span class="code">Camel.Mx33.prototype.Identity</span> and <span class="code">Camel.Mx33.prototype.Scale</span>.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec2</span> the 2d vector object has scaled by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li><span class="word">var</span> vec = <span class="word">new</span> Camel.Vec2( <span class="decimal">1.0</span>, <span class="decimal">1.5</span> );</li>
+				<li>mx.FromScaling( vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="FromMat2d">
+	<h4 class="code">FromMat2d( <span class="code-param">m</span> )</h4>
+	<div class="explain">
+		<p class="note">Copies the matrix value from 2x3 matrix object to the self 3x3 matrix object.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">m</span>:<span class="code">Camel.Mx23</span> the matrix object has copied by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li><span class="word">var</span> m1 = <span class="word">new</span> Camel.Mx23( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span> );</li>
+				<li>mx.FromMat2d( m1 );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="FromQuat">
+	<h4 class="code">FromQuat( <span class="code-param">q</span> )</h4>
+	<div class="explain">
+		<p class="note">Computing a 3x3 matrix object from a given quaternion.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">q</span>:<span class="code">Camel.Quat</span> the quaternion object has computed with.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li><span class="word">var</span> q = <span class="word">new</span> Camel.Quat( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span> );</li>
+				<li>mx.FromQuat( q );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="NormalFromMat4">
+	<h4 class="code">NormalFromMat4( <span class="code-param">m</span> )</h4>
+	<div class="explain">
+		<p class="note">Computing a normal 3x3 matrix object from a given 4x4 matrix object.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">m</span>:<span class="code">Camel.Mx44</span> the 4x4 matrix object has computed with.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li><span class="word">var</span> m1 = <span class="word">new</span> Camel.Mx44( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span> );</li>
+				<li>mx.NormalFromMat4( m1 );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Mx33</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Frob">
+	<h4 class="code">Frob()</h4>
+	<div class="explain">
+		<p class="note">Calculates the Frobenius norm of 3x3 matrix object.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>console.log( mx.Frob() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">number</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="ToString">
+	<h4 class="code">ToString()</h4>
+	<div class="explain">
+		<p class="note">Receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>console.log( mx.ToString() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">string</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="InstanceOf">
+	<h4 class="code">InstanceOf()</h4>
+	<div class="explain">
+		<p class="note">Receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> mx = <span class="word">new</span> Camel.Mx33( <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span>, <span class="decimal">1.0</span>, <span class="decimal">1.0</span>, <span class="decimal">2.5</span>, <span class="decimal">1.0</span>, <span class="decimal">1.5</span>, <span class="decimal">2.0</span> );</li>
+				<li>console.log( mx.InstanceOf() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">string</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Camel.Mx33.ToString">
+	<h4 class="code">Camel.Mx33.ToString()</h4>
+	<div class="explain">
+		<p class="note">The static method, receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li>console.log( Camel.Mx33.ToString() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">string</span>.</p>
+		</div>
+	</div>
+</div>

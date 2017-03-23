@@ -1,0 +1,638 @@
+<h1>Camel.Vec2</h1>
+<h2>Introduction</h2>
+<p class="note"><span class="code">Camel.Vec2</span> contains the functions about 2d mathematics.</p>
+
+<h3>Members</h3>
+
+<div class="entire" id="vec">
+	<h4 class="code">vec</h4>
+	<div class="explain">
+		<p class="note">It holds the <span class="code">Float32Array( 2 )</span>.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec2 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li>console.log( vec2.vec );</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<h3>Constructor</h3>
+
+<div class="entire" id="Camel.Vec2">
+	<h4 class="code">Camel.Vec2( <span class="param">x</span>, <span class="param">y</span> )</h4>
+	<div class="explain">
+		<p class="note">Create new a vector 2D instance object.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">x</span>:<span class="code">number</span> the x-coord value.</li>
+				<li><span class="code-param">y</span>:<span class="code">number</span> the y-coord value.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec2 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li>console.log( vec2.vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<h3>Methods</h3>
+
+<div class="entire" id="LoadVecFloat">
+	<h4 class="code">LoadVecFloat()</h4>
+	<div class="explain">
+		<p class="note">Receives the vector coord data.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec2 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li>console.log( vec2.LoadVecFloat() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">Float32Array( 2 )</span> data.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="SetVector">
+	<h4 class="code">SetVector( <span class="param">x</span>, <span class="param">y</span> )</h4>
+	<div class="explain">
+		<p class="note">Sets the 2d vector.</p>
+		<div class="note">
+			<p class="bold">The params</p>
+			<ul class="param">
+				<li><span class="code-param">x</span>:<span class="code">number</span> the x-coord value.</li>
+				<li><span class="code-param">y</span>:<span class="code">number</span> the y-coord value.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec2 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li>vec2.SetVector( <span class="decimal">20.0</span>, <span class="decimal">10.0</span> );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Clone">
+	<h4 class="code">Clone( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Duplicates the 2d vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec2</span> the 2d vector has cloned by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li><span class="word">var</span> vec2 = null;</li>
+				<li>vec1.Clone( vec2 );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The cloned <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Add">
+	<h4 class="code">Add( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Adds the vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec2</span> the 2d vector has added by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li><span class="word">var</span> vec2 = <span class="word">new</span> Camel.Vec2( <span class="decimal">9.0</span>, <span class="decimal">1.0</span> );</li>
+				<li>vec1.Add( vec2 );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Subtract">
+	<h4 class="code">Subtract( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Subtracts the vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec2</span> the 2d vector has subtracted by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li><span class="word">var</span> vec2 = <span class="word">new</span> Camel.Vec2( <span class="decimal">9.0</span>, <span class="decimal">1.0</span> );</li>
+				<li>vec1.Subtract( vec2 );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Multiply">
+	<h4 class="code">Multiply( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Multiply the vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec2</span> the 2d vector has multiplied by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li><span class="word">var</span> vec2 = <span class="word">new</span> Camel.Vec2( <span class="decimal">9.0</span>, <span class="decimal">1.0</span> );</li>
+				<li>vec1.Multiply( vec2 );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Divide">
+	<h4 class="code">Divide( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Divides the vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec2</span> the 2d vector has divided by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li><span class="word">var</span> vec2 = <span class="word">new</span> Camel.Vec2( <span class="decimal">9.0</span>, <span class="decimal">1.0</span> );</li>
+				<li>vec1.Divide( vec2 );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Scale">
+	<h4 class="code">Scale( <span class="param">value</span> )</h4>
+	<div class="explain">
+		<p class="note">Scale the 2d vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">value</span>:<span class="code">number</span> the number has scaled by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li>vec1.Scale( <span class="decimal">2.0</span> );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="SqrtLen">
+	<h4 class="code">SqrtLen()</h4>
+	<div class="explain">
+		<p class="note">Receives square root of the length.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li><span class="word">var</span> sl = vec1.SqrtLen();</li>
+				<li>console.log( sl );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">number</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Length">
+	<h4 class="code">Length()</h4>
+	<div class="explain">
+		<p class="note">Computes and returns the length.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li><span class="word">var</span> l = vec1.length();</li>
+				<li>console.log( l );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">number</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="SqrtDist">
+	<h4 class="code">SqrtDist( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Receives square root of the distance.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec2</span> the 2d vector instance object.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li><span class="word">var</span> vec2 = <span class="word">new</span> Camel.Vec2( <span class="decimal">10.0</span>, <span class="decimal">5.0</span> );</li>
+				<li><span class="word">var</span> n = vec1.SqrtDist( vec2 );</li>
+				<li>console.log( n );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">number</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Distance">
+	<h4 class="code">Distance( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Receives the distance with an another vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec2</span> the 2d vector instance object.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li><span class="word">var</span> vec2 = <span class="word">new</span> Camel.Vec2( <span class="decimal">10.0</span>, <span class="decimal">5.0</span> );</li>
+				<li><span class="word">var</span> d = vec1.Distance( vec2 );</li>
+				<li>console.log( d );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">number</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Symmetry">
+	<h4 class="code">Symmetry( <span class="param">x</span>, <span class="param">y</span> )</h4>
+	<div class="explain">
+		<p class="note">Symmetry the vector via a center point.</p>
+		<div class="note">
+			<p class="bold">The params</p>
+			<ul class="param">
+				<li><span class="code-param">x</span>:<span class="code">number</span> the x-coord of center point.</li>
+				<li><span class="code-param">y</span>:<span class="code">number</span> the y-coord of center point.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li>vec1.Symmetry( <span class="decimal">0.0</span>, <span class="decimal">0.0</span> );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Inverse">
+	<h4 class="code">Inverse()</h4>
+	<div class="explain">
+		<p class="note">Computes and receives the inversed vector.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li><span class="word">var</span> inv = vec1.Inverse();</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Normalize">
+	<h4 class="code">Normalize( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Computes and receives the normalized 2d vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec2</span> if inputs, receives the normalized vector from this vector.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li><span class="word">var</span> vecN = vec1.Normalize();</li>
+				<li>console.log( vecN );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Dot">
+	<h4 class="code">Dot( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Computes and receives the 2d vector dot between the self vector and an another vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec2</span> the vector has dotted by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li><span class="word">var</span> vec2 = <span class="word">new</span> Camel.Vec2( <span class="decimal">1.0</span>, <span class="decimal">1.0</span> );</li>
+				<li><span class="word">var</span> dotResult = vec1.Dot( vec2 );</li>
+				<li>console.log( dotResult );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">number</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Cross">
+	<h4 class="code">Cross( <span class="param">v</span> )</h4>
+	<div class="explain">
+		<p class="note">Computes and receives the 2d vector cross between the self vector and an another vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec2</span> the vector has crossed by.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li><span class="word">var</span> vec2 = <span class="word">new</span> Camel.Vec2( <span class="decimal">1.0</span>, <span class="decimal">1.0</span> );</li>
+				<li><span class="word">var</span> crossResult = vec1.Cross( vec2 );</li>
+				<li>console.log( crossResult );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The new <span class="code">Camel.Vec3</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Lerp">
+	<h4 class="code">Lerp( <span class="param">v</span>, <span class="param">t</span> )</h4>
+	<div class="explain">
+		<p class="note">Computes and receives the slurp interpolation between the self vector and an another vector.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">v</span>:<span class="code">Camel.Vec2</span> the vector has lerp by.</li>
+				<li><span class="code-param">t</span>:<span class="code">number</span> the time. In miliseconds</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li><span class="word">var</span> vec2 = <span class="word">new</span> Camel.Vec2( <span class="decimal">1.0</span>, <span class="decimal">1.0</span> );</li>
+				<li><span class="word">var</span> lerpResult = vec1.Lerp( vec2, dt );</li>
+				<li>console.log( lerpResult );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The new <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="Random">
+	<h4 class="code">Random( <span class="param">scale</span> )</h4>
+	<div class="explain">
+		<p class="note">Makes random 2d vector with the given scale.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">scale</span>:<span class="code">number</span> the length of the result vector.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li>vec1.Random( <span class="decimal">3.0</span> );</li>
+				<li>console.log( vec1.vec );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="TransformMat2">
+	<h4 class="code">TransformMat2( <span class="param">m</span> )</h4>
+	<div class="explain">
+		<p class="note">Transforms with a 2x2 matrix.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">m</span>:<span class="code">Camel.Mx22</span> the 2x2 matrix for transforming.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li>vec1.TransformMat2( mat2 ); <span class="comment">// the mat2 object had instanced by Camel.Mx22</span></li>
+				<li>console.log( vec1 );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="TransformMat2d">
+	<h4 class="code">TransformMat2d( <span class="param">m</span> )</h4>
+	<div class="explain">
+		<p class="note">Transforms with a 2x3 matrix.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">m</span>:<span class="code">Camel.Mx23</span> the 2x3 matrix for transforming.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li>vec1.TransformMat2d( mat2d ); <span class="comment">// the mat2d object had instanced by Camel.Mx23</span></li>
+				<li>console.log( vec1 );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="TransformMat3">
+	<h4 class="code">TransformMat3( <span class="param">m</span> )</h4>
+	<div class="explain">
+		<p class="note">Transforms with a 3x3 matrix.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">m</span>:<span class="code">Camel.Mx33</span> the 3x3 matrix for transforming.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li>vec1.TransformMat3( mat ); <span class="comment">// the mat object had instanced by Camel.Mx33</span></li>
+				<li>console.log( vec1 );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="TransformMat4">
+	<h4 class="code">TransformMat4( <span class="param">m</span> )</h4>
+	<div class="explain">
+		<p class="note">Transforms with a 4x4 matrix.</p>
+		<div class="note">
+			<p class="bold">The param</p>
+			<ul class="param">
+				<li><span class="code-param">m</span>:<span class="code">Camel.Mx44</span> the 4x4 matrix for transforming.</li>
+			</ul>
+		</div>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li>vec1.TransformMat4( mat ); <span class="comment">// the mat object had instanced by Camel.Mx33</span></li>
+				<li>console.log( vec1 );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The self <span class="code">Camel.Vec2</span> instance object.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="ToString">
+	<h4 class="code">ToString()</h4>
+	<div class="explain">
+		<p class="note">Receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li>console.log( vec1.ToString() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">string</span>.</p>
+		</div>
+	</div>
+</div>
+
+<div class="entire" id="InstanceOf">
+	<h4 class="code">InstanceOf()</h4>
+	<div class="explain">
+		<p class="note">Receives the class name string.</p>
+		<p class="bold">How to use</p>
+		<div class="code-block">
+			<ul>
+				<li><span class="word">var</span> vec1 = <span class="word">new</span> Camel.Vec2( <span class="decimal">90.0</span>, <span class="decimal">10.0</span> );</li>
+				<li>console.log( vec1.InstanceOf() );</li>
+			</ul>
+		</div>
+		<div class="note">
+			<p class="bold">The return</p>
+			<p>The <span class="code">string</span>.</p>
+		</div>
+	</div>
+</div>
