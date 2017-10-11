@@ -983,8 +983,8 @@ Camel.Vec2.prototype.Symmetry = function( x, y )
 {
 	x = x || 1.0;
 	y = y || 1.0;
-	this.vec[0] *= (-1)*x;
-	this.vec[1] *= (-1)*y;
+	this.vec[0] += (x - this.vec[0]) * 2;
+	this.vec[1] += (x - this.vec[0]) * 2;
 	return this;
 };
 Camel.Vec2.prototype.Inverse = function() 
@@ -1214,9 +1214,9 @@ Camel.Vec3.prototype.Symmetry = function( x, y, z )
 	x = x || 1.0;
 	y = y || 1.0;
 	z = z || 1.0;
-	this.vec[0] *= (-1)*x;
-	this.vec[1] *= (-1)*y;
-	this.vec[2] *= (-1)*z;
+	this.vec[0] += (x - this.vec[0]) * 2;
+	this.vec[1] += (y - this.vec[1]) * 2;
+	this.vec[2] += (z - this.vec[2]) * 2;
 	return this;
 };
 Camel.Vec3.prototype.Inverse = function() 
@@ -1374,7 +1374,7 @@ Camel.Vec3.prototype.TransformMat4 = function( m )
 {
 	var x = this.vec[0], 
 		y = this.vec[1], 
-		z = this.vec[2],
+		z = this.vec[2], 
 		w = m.mat[3] * x + m.mat[7] * y + m.mat[11] * z + m.mat[15];
 	w = w || 1.0;
 	this.vec[0] = (m.mat[0] * x + m.mat[4] * y +  m.mat[8] * z + m.mat[12]) / w;
@@ -1548,10 +1548,10 @@ Camel.Vec4.prototype.Symmetry = function( x, y, z, w )
 	y = y || 1.0;
 	z = z || 1.0;
 	w = w || 1.0;
-	this.vec[0] *= (-1)*x;
-	this.vec[1] *= (-1)*y;
-	this.vec[2] *= (-1)*z;
-	this.vec[3] *= (-1)*w;
+	this.vec[0] += (x - this.vec[0]) * 2;
+	this.vec[1] += (y - this.vec[1]) * 2;
+	this.vec[2] += (z - this.vec[2]) * 2;
+	this.vec[3] += (w - this.vec[3]) * 2;
 	return this;
 };
 Camel.Vec4.prototype.Inverse = function() 
@@ -1623,8 +1623,13 @@ Camel.Vec4.prototype.TransformMat4 = function( m )
 };
 Camel.Vec4.prototype.TransformQuat = function( q ) 
 {
-	var x = this.vec[0], y = this.vec[1], z = this.vec[2],
-		qx = q[0], qy = q[1], qz = q[2], qw = q[3],
+	var x = this.vec[0], 
+		y = this.vec[1], 
+		z = this.vec[2],
+		qx = q[0], 
+		qy = q[1], 
+		qz = q[2], 
+		qw = q[3],
 		// calculate quat * vec
 		ix = qw * x + qy * z - qz * y,
 		iy = qw * y + qz * x - qx * z,
@@ -1634,7 +1639,7 @@ Camel.Vec4.prototype.TransformQuat = function( q )
 	this.vec[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;
 	this.vec[1] = iy * qw + iw * -qy + iz * -qx - ix * -qz;
 	this.vec[2] = iz * qw + iw * -qz + ix * -qy - iy * -qx;
-	this.vec[3] = a[3];
+	this.vec[3] = q[3];
 	return this;
 };
 Camel.Vec4.prototype.ToString = function() 
@@ -1665,7 +1670,6 @@ Camel.Quat.prototype.FromValues = Camel.Vec4.prototype.SetVector;
 Camel.Quat.prototype.Clone = Camel.Vec4.prototype.Clone;
 Camel.Quat.prototype.Add = Camel.Vec4.prototype.Add;
 Camel.Quat.prototype.Subtract = Camel.Vec4.prototype.Subtract;
-Camel.Quat.prototype.Multiply = Camel.Vec4.prototype.Multiply;
 Camel.Quat.prototype.Divide = Camel.Vec4.prototype.Divide;
 Camel.Quat.prototype.Scale = Camel.Vec4.prototype.Scale;
 Camel.Quat.prototype.Dot = Camel.Vec4.prototype.Dot;
@@ -1683,6 +1687,22 @@ Camel.Quat.prototype.Identity = function()
 	this.vec[3] = 1.0;
 	return this;
 };
+Camel.Quat.prototype.Multiply = function( quat ) 
+{
+	a = this.vec;
+	b = quat.vec;
+	
+	out = new Camel.Quat();
+	
+	var ax = a[0], ay = a[1], az = a[2], aw = a[3],
+		bx = b[0], by = b[1], bz = b[2], bw = b[3];
+
+    out.vec[0] = ax * bw + aw * bx + ay * bz - az * by;
+    out.vec[1] = ay * bw + aw * by + az * bx - ax * bz;
+    out.vec[2] = az * bw + aw * bz + ax * by - ay * bx;
+    out.vec[3] = aw * bw - ax * bx - ay * by - az * bz;
+    return out;
+};
 Camel.Quat.prototype.SetAxisAngle = function( axis, deg ) 
 {
 	deg = deg * 0.5;
@@ -1699,7 +1719,7 @@ Camel.Quat.prototype.RotateX = function ( deg )
 	var ax = this.vec[0], 
 		ay = this.vec[1], 
 		az = this.vec[2], 
-		aw = this.vec[3],
+		aw = this.vec[3], 
 		bx = Math.sin(deg), bw = Math.cos(deg);
 	this.vec[0] = ax * bw + aw * bx;
 	this.vec[1] = ay * bw + az * bx;
