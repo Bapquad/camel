@@ -28,8 +28,8 @@ function init()
 
 function progress() 
 {
-	Timer = AssetMgr.getProgress();
-	if(AssetMgr.isComplete()) 
+	Timer = AssetMgr.GetProgress();
+	if(AssetMgr.IsComplete()) 
 	{
 		UnTick();
 		Timer = setTimeout(create, 300);
@@ -56,17 +56,17 @@ function create()
 		// Set number of render which holded with
 		4 
 	);
-	engine.setClearColor(23, 26, 30);
-	engine.sizeFitBrowser();
+	engine.SetClearColor(23, 26, 30);
+	engine.SizeFitBrowser();
 	
 	/**
 	 * Create Projection and Camera
 	 */
-	var projection = new Camel.Perspective(45, engine.getWidth()/engine.getHeight(), 1, 200);
+	var projection = new Camel.Perspective(45, engine.GetWidth()/engine.GetHeight(), 1, 200);
 	window.onresize = function() 
 	{
-		engine.sizeFitBrowser();
-		projection.set(45, engine.getWidth()/engine.getHeight(), 1, 200);
+		engine.SizeFitBrowser();
+		projection.Set(45, engine.GetWidth()/engine.GetHeight(), 1, 200);
 	};
 	
 	var camera = new Camel.Camera(new Camel.Vec3(0.0, 5.0, 20.0), 
@@ -74,19 +74,20 @@ function create()
 								  new Camel.Vec3(0.0, 1.0, 0.0));
 	
 	/** Create scene */
-	var scene = engine.buildScene( 
+	var scene = engine.BuildScene( 
+		CAMEL_RENDERER_STANDARD, 
 		function() 
 		{
-			this.dragon = this.addChild(new Camel.Model(AssetMgr.getAsset('model/dragon.json')));
-			this.dragon.translateY(-6.0);
-			this.dragon.translateZ(-16.0);
-			this.dragon.setDiffuseMap(engine.createTexture(AssetMgr.getAsset('images/dragon.png')));
+			this.dragon = this.AddChild(new Camel.Model(AssetMgr.GetAsset('model/dragon.json')));
+			this.dragon.TranslateY(-6.0);
+			this.dragon.TranslateZ(-16.0);
+			this.dragon.SetDiffuseMap(engine.CreateTexture(AssetMgr.GetAsset('images/dragon.png')));
 			this.dragon.onTick(function(dt) {
-				this.rotateY(0.002*dt);
+				this.RotateY(0.002*dt);
 			});
-			this.dragon.setDiffuse(25.0, 120.0, 60.0);
+			this.dragon.SetDiffuse(25.0, 120.0, 60.0);
 			
-			this.addLight(new Camel.DirectLight(0.0, 0.0, 1.0));
+			this.AddLight(new Camel.DirectLight(0.0, 0.0, 1.0));
 			
 			this.projection = projection;
 			this.camera = camera;
@@ -95,7 +96,7 @@ function create()
 	
 	var animate = function(time) 
 	{
-		engine.cycle(time);
+		engine.Cycle(time);
 		RequestAnimationFrame(animate);
 	};
 	animate(0);

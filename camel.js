@@ -564,11 +564,16 @@ Camel.prototype.Prepare = function()
 	
 	this.beforeCycle = function() 
 	{
-		for(x in this.frameBuffers)
+		var fbuffs = this.frameBuffers;
+		for(x in fbuffs)
 		{
-			this.OpenRTT(this.frameBuffers[x]);
-				this.frameBuffers[x].Pass();
-			this.CloseRTT();
+			var fbuff = fbuffs[x];
+			if(typeof fbuff == "object" && fbuff.toString() == "[object WebGLFramebuffer]") 
+			{
+				this.OpenRTT(this.frameBuffers[x]);
+				this.frameBuffers[x].pass();
+				this.CloseRTT();
+			}
 		}
 	};
 };
@@ -3546,6 +3551,13 @@ Camel.AssetManager.prototype.QueueFile = function( path )
 		return;
 	var filePoint;
 	var type = this.GetType(path);
+	var obj = {
+		path:path, 
+		type:type, 
+		ready:false, 
+		ext:this.extStr,
+		isAsset:true,  
+	};
 	switch(type) {
 		case CAMEL_QUEUE_IMAGE:
 			filePoint = new Image();
@@ -3556,6 +3568,35 @@ Camel.AssetManager.prototype.QueueFile = function( path )
 			break;
 		case CAMEL_QUEUE_SOUND:
 			filePoint = new Audio();
+			obj["Play"] = function() 
+			{
+				var promise = filePoint.play();
+				if(promise!=undefined) 
+				{
+					promise.then(function()
+					{
+						filePoint.play();
+					}).catch(function(err)
+					{
+						console.error("ERRORS: Audio autoplay is not allowed.");
+					});
+				}
+			}; 
+			obj["Loop"] = function(flag) 
+			{
+				var loop = flag || true;
+				obj["asset"].loop = loop;
+			};
+			obj["Mute"] = function(flag) 
+			{
+				var mute = flag || true;
+				obj["asset"].muted = mute;
+			};
+			obj["Volume"] = function(value) 
+			{
+				var volume = (value/100).toFixed(0) || 0;
+				obj["asset"].volume = volume;
+			};
 			break;
 		case CAMEL_QUEUE_XHTTP:
 			filePoint = new Camel.GetHttpRequest();
@@ -3563,16 +3604,8 @@ Camel.AssetManager.prototype.QueueFile = function( path )
 		default:
 			break;
 	}
-	this.assetList.push(
-		{
-			path:path, 
-			asset:filePoint, 
-			type:type, 
-			ready:false, 
-			ext:this.extStr,
-			isAsset:true,  
-		}
-	);
+	obj["asset"] = filePoint;
+	this.assetList.push(obj);
 	this.extStr = null;
 	return;
 };
@@ -3851,6 +3884,21 @@ Camel.Transform = function()
 	{
 		return this.mx;
 	};
+	
+	this.GetPositionX = function() 
+	{
+		return this.mx[12];
+	} 
+	
+	this.GetPositionY = function() 
+	{
+		return this.mx[13];
+	} 
+	
+	this.GetPositionZ = function() 
+	{
+		return this.mx[14];
+	}
 	
 	this.Translate = function(x, y, z) 
 	{
@@ -4261,7 +4309,7 @@ Camel.Particle = function()
 		return this;
 	};
 	
-	this.OnTick = function( callback ) 
+	this.onTick = function( callback ) 
 	{
 		this.ontick = callback;
 	};

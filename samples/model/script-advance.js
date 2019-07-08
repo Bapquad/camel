@@ -15,21 +15,23 @@ function UnTick() {
 	CancelAnimationFrame(TickGID);	
 }
 
-var AssetMgr = new Camel.AssetManager('jpg|png|gif', 'mp3|wav|ogg', 'json|vert|frag');
+CAMEL_DEVICE_MOBILE = false;
+
+var assetMgr = new Camel.AssetManager('jpg|png|gif', 'mp3|wav|ogg', 'json|vert|frag');
 var Timer = 0;
 
 function init() 
 {
-	AssetMgr.QueueFile('images/dragon.png');
-	AssetMgr.QueueFile('model/dragon.json');
-	AssetMgr.QueueDownloadAll();
+	assetMgr.QueueFile('images/dragon.png');
+	assetMgr.QueueFile('model/dragon.json');
+	assetMgr.QueueDownloadAll();
 	progress();
 }
 
 function progress() 
 {
-	Timer = AssetMgr.getProgress();
-	if(AssetMgr.isComplete()) {
+	Timer = assetMgr.GetProgress();
+	if(assetMgr.IsComplete()) {
 		UnTick();
 		Timer = setTimeout(create, 300);
 		return;
@@ -55,35 +57,37 @@ function create()
 		// Set number of renderer which holded with
 		4 
 	);
-	engine.setClearColor(23, 26, 30);
-	engine.sizeFitBrowser();
+	engine.SetClearColor(23, 26, 30);
+	engine.SizeFitBrowser();
 	
 	/**
 	 * Create Projection and Camera
 	 */
-	var projection = new Camel.Perspective(45, engine.getWidth()/engine.getHeight(), 1, 200);
+	var projection = new Camel.Perspective(45, engine.GetWidth()/engine.GetHeight(), 1, 200);
 	window.onresize = function() 
 	{
-		engine.sizeFitBrowser();
-		projection.set(45, engine.getWidth()/engine.getHeight(), 1, 200);
+		engine.SizeFitBrowser();
+		projection.Set(45, engine.GetWidth()/engine.GetHeight(), 1, 200);
 	};
 	var camera = new Camel.Camera(new Camel.Vec3(0.0, 5.0, 20.0), 
 								  new Camel.Vec3(0.0, 0.0, -1.0),
 								  new Camel.Vec3(0.0, 1.0, 0.0));
 	
 	/** create tex-render */
-	var tex_scene = engine.buildScene(
+	var tex_scene = engine.BuildScene(
 		CAMEL_RENDERER_TEXTURE, 
 		function() 
 		{
-			this.cell = this.addChild(new Camel.Cell(10));
-			this.cell.translate(38, 18, -80);
-			this.cell.setAlpha(20);
-			this.cell.set2Side(true);
+			this.cell = this.AddChild(new Camel.Cell(10));
+			this.cell.Translate(18, -15, -20);
+			this.cell.SetAlpha(20);
+			this.cell.Set2Side(true);
 			
-			this.cell.setDiffuseMap(engine.createRTT('bnv2.04', 512, 512, 1.0, 0.0, 0.0, 0.0, function() {
-				scene.pass(CAMEL_RENDERER_WORLD);
+			this.cell.SetDiffuseMap(engine.CreateRTT('bnv2.04', 512, 512, 1.0, 0.0, 0.0, 0.0, function() {
+				scene.Pass(CAMEL_RENDERER_WORLD);
 			}));
+
+			this.cell.SetDiffuse(255, 255, 255);
 			
 			this.projection = projection;
 			this.camera = camera;
@@ -91,19 +95,20 @@ function create()
 	);
 	
 	/** Create scene */
-	var scene = engine.buildScene(
+	var scene = engine.BuildScene(
+		CAMEL_RENDERER_WORLD, 
 		function() 
 		{
-			this.dragon = this.addChild(new Camel.Model(AssetMgr.getAsset('model/dragon.json')));
-			this.dragon.translateY(-6.0);
-			this.dragon.translateZ(-16.0);
-			this.dragon.setDiffuseMap(engine.createTexture(AssetMgr.getAsset('images/dragon.png')));
+			this.dragon = this.AddChild(new Camel.Model(assetMgr.GetAsset('model/dragon.json')));
+			this.dragon.TranslateY(-6.0);
+			this.dragon.TranslateZ(-16.0);
+			this.dragon.SetDiffuseMap(engine.CreateTexture(assetMgr.GetAsset('images/dragon.png')));
 			this.dragon.onTick(function(dt) {
-				this.rotateY(0.002*dt);
+				this.RotateY(0.002*dt);
 			});
-			this.dragon.setDiffuse(25.0, 120.0, 60.0);
+			this.dragon.SetDiffuse(25.0, 20.0, 160.0);
 			
-			this.addLight(new Camel.DirectLight(0.0, 0.0, 1.0));
+			this.AddLight(new Camel.DirectLight(0.9, 0.8, 0.0));
 			
 			this.projection = projection;
 			this.camera = camera;
@@ -112,7 +117,7 @@ function create()
 	
 	var animate = function(time) 
 	{
-		engine.cycle(time);
+		engine.Cycle(time);
 		RequestAnimationFrame(animate);
 	};
 	animate(0);

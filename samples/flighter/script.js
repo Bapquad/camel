@@ -20,16 +20,16 @@ var Timer = 0;
 
 function init() 
 {
-	AssetMgr.QueueFile('images/dragon.png');
-	AssetMgr.QueueFile('model/dragon.json');
+	AssetMgr.QueueFile('images/Ame.png');
+	AssetMgr.QueueFile('model/model.json');
 	AssetMgr.QueueDownloadAll();
 	progress();
 }
 
 function progress() 
 {
-	Timer = AssetMgr.getProgress();
-	if(AssetMgr.isComplete()) 
+	Timer = AssetMgr.GetProgress();
+	if(AssetMgr.IsComplete()) 
 	{
 		UnTick();
 		Timer = setTimeout(create, 300);
@@ -46,7 +46,7 @@ function create()
 		"Camel",				// ID of Canvas Element.
 		// Settings of WEBGL.
 		{
-			antialias: false	// Blur setup to false.
+			antialias: true	// Blur setup to false.
 		}, 
 		// Get Extension for Webgl
 		[
@@ -56,35 +56,37 @@ function create()
 		// Set number of render which holded with
 		4 
 	);
-	engine.setClearColor(23, 26, 30);
-	engine.sizeFitBrowser();
+	engine.SetClearColor(220, 220, 220);
+	engine.SizeFitBrowser();
 	
 	/**
 	 * Create Projection and Camera
 	 */
-	var projection = new Camel.Perspective(45, engine.getWidth()/engine.getHeight(), 1, 200);
+	var projection = new Camel.Perspective(45, engine.GetWidth()/engine.GetHeight(), 1, 200);
 	window.onresize = function() 
 	{
-		engine.sizeFitBrowser();
-		projection.set(45, engine.getWidth()/engine.getHeight(), 1, 200);
+		engine.SizeFitBrowser();
+		projection.Set(45, engine.GetWidth()/engine.GetHeight(), 1, 200);
 	};
-	var camera = new Camel.Camera(new Camel.Vec3(0.0, 2.0, 5.0), 
-								  new Camel.Vec3(0.0, 1.0, 0.0),
+	
+	var camera = new Camel.Camera(new Camel.Vec3(0.0, 5.0, 10.0), 
+								  new Camel.Vec3(0.0, 0.0, 0.0),
 								  new Camel.Vec3(0.0, 1.0, 0.0));
 	
-	/** create tex-render */
-	var tex_scene = engine.buildScene(
-		CAMEL_RENDERER_STANDARD, 
+	/** Create scene */
+	var scene = engine.BuildScene( 
+		CAMEL_RENDERER_WORLD, 
 		function() 
-		{			
-			this.dragon = this.addChild(new Camel.Model(AssetMgr.getAsset('model/dragon.json')));
-			this.dragon.translateY(-6.0);
-			this.dragon.translateZ(-16.0);
-			this.dragon.setDiffuseMap(engine.createTexture(AssetMgr.getAsset('images/dragon.png')));
+		{
+			this.dragon = this.AddChild(new Camel.Model(AssetMgr.GetAsset('model/model.json')));
+			this.dragon.RotateX(-3.14/2);
+			this.dragon.SetDiffuseMap(engine.CreateTexture(AssetMgr.GetAsset('images/Ame.png')));
 			this.dragon.onTick(function(dt) {
-				this.rotateY(0.002*dt);
+				this.RotateY(0.0002*dt);
 			});
+			this.dragon.SetDiffuse(120.0, 120.0, 150.0);
 			
+			this.AddLight(new Camel.DirectLight(0.0, 0.7, 1.0));
 			
 			this.projection = projection;
 			this.camera = camera;
@@ -93,7 +95,7 @@ function create()
 	
 	var animate = function(time) 
 	{
-		engine.cycle(time);
+		engine.Cycle(time);
 		RequestAnimationFrame(animate);
 	};
 	animate(0);
