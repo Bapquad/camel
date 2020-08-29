@@ -125,8 +125,15 @@ Object.prototype.extends = function( proto )
 
 var Camel = function( CANVASElementID, settings, extensions, numberHolder ) 
 {
-	this.id 		= CANVASElementID;
-	this.element	= document.getElementById(this.id);
+	if(typeof CANVASElementID=="string") 
+	{
+		this.id 		= CANVASElementID;
+		this.element	= document.getElementById(this.id);
+	}
+	else
+	{
+		this.element	= CANVASElementID;
+	}
 	this.gl 		= NULL;
 	this.context 	= NULL;
 	
