@@ -42,10 +42,10 @@ export const EMPTY = '';
 export const UNSET = undefined;
 export const GL_COLOR_BUFFER_BIT = 16384; 
 export const GL_DEPTH_BUFFER_BIT = 256;
-export const CAMEL_RENDERER_TEXTURE = EMPTY; 
-export const CAMEL_RENDERER_WORLD = EMPTY;  
-export const CAMEL_RENDERER_STANDARD = EMPTY; 
-export const CAMEL_RENDERER_CAREM = EMPTY;
+export let CAMEL_RENDERER_TEXTURE = EMPTY; 
+export let CAMEL_RENDERER_WORLD = EMPTY;  
+export let CAMEL_RENDERER_STANDARD = EMPTY; 
+export let CAMEL_RENDERER_CAREM = EMPTY;
 export const CAMEL_LIGHT_DIRECT = 0;  
 export const CAMEL_LIGHT_POINT = 1;
 export const CAMEL_STRIKE_ATTRIB = 0;  
@@ -55,21 +55,55 @@ export const CAMEL_IS_OPERA = (!!window.opr && !!opr.addons) || !!window.opera |
 export const CAMEL_IS_FIREFOX = typeof InstallTrigger !== 'undefined';	// Firefox 1.0+
 export const CAMEL_IS_SAFARI = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;	// At least Safari 3+: "[object HTMLElementConstructor]"
 export const CAMEL_IS_IE = /*@cc_on!@*/false || !!document.documentMode;	// Internet Explorer 6-11
-export const CAMEL_IS_EDGE = !CAMEL_IS_IE && !!window.StyleMedia;	// Edge 20+
-export const CAMEL_IS_CHROME = !!window.chrome && !!window.chrome.webstore;		// Chrome 1+
+export const CAMEL_IS_EDGE = !(/*@cc_on!@*/false || !!document.documentMode) && /(Edge|Edg)/.test(navigator.userAgent);	// Edge 20+
+export const CAMEL_IS_CHROME = (!!window.chrome && !!window.chrome.webstore)||(/Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor) && navigator.userAgent.indexOf(' OPR/')===-1 && navigator.userAgent.indexOf('Edg/')===-1);
 export const CAMEL_IS_BLINK = (CAMEL_IS_CHROME || CAMEL_IS_OPERA) && !!window.CSS;	// Blink engine detection
 export const CAMEL_IS_OPERAMINI = navigator.userAgent.match(/Opera Mini/i);
-export const CAMEL_DEVICE_ANDROID = /android/i.test(navigator.userAgent.toLowerCase());
-export const CAMEL_DEVICE_BLACKBERRY = /blackberry/i.test(navigator.userAgent.toLowerCase());
-export const CAMEL_DEVICE_IOS = /ipad|iphone|ipod/i.test(navigator.userAgent.toLowerCase());
+export const CAMEL_DEVICE_ANDROID = (/android/i.test(navigator.userAgent.toLowerCase())) && navigator.userAgent.toLowerCase().indexOf("windows phone")===-1;
+export const CAMEL_DEVICE_BLACKBERRY = /(blackberry|bb|playbook)/i.test(navigator.userAgent.toLowerCase());
+export const CAMEL_DEVICE_IOS = /(ipad|iphone|ipod)/i.test(navigator.userAgent.toLowerCase());
 export const CAMEL_DEVICE_IPHONE = /iphone/i.test(navigator.userAgent.toLowerCase());
 export const CAMEL_DEVICE_IPAD = /ipad/i.test(navigator.userAgent.toLowerCase());
 export const CAMEL_DEVICE_IPOD = /ipod/i.test(navigator.userAgent.toLowerCase());
-export const CAMEL_DEVICE_WINDOWSPHONE = /windows phone/i.test(navigator.userAgent.toLowerCase());
+export const CAMEL_DEVICE_WINDOWSPHONE = /(windows phone|iemobile)/i.test(navigator.userAgent.toLowerCase());
 export const CAMEL_DEVICE_WEBOS = /webos/i.test(navigator.userAgent.toLowerCase());
 export const CAMEL_DEVICE_MOBILE = /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) 
     || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0,4));
-	
+export function Tick( callback ) 
+{
+	if(window.requestAnimationFrame) 
+	{
+		return window.requestAnimationFrame(callback);
+	} 
+	else if(window.mozRequestAnimationFrame) 
+	{
+		return window.mozRequestAnimationFrame(callback);
+	} 
+	else if(window.webkitRequestAnimationFrame) 
+	{
+		return window.webkitRequestAnimationFrame(callback);
+	} 
+	else if(window.msRequestAnimationFrame) 
+	{
+		return window.msRequestAnimationFrame(callback);
+	}
+	else 
+	{
+		return window.SetTimeout(callback, 1000 / 60);
+	}
+} 
+export function UnTick(tickID) 
+{
+	if(window.cancelAnimationFrame) 
+	{
+		return window.cancelAnimationFrame(tickID); 
+	} 
+	else 
+	{
+		return window.clearTimeout(tickID);
+	}
+}
+
 /**
  * New function for Math
  */
@@ -125,6 +159,8 @@ Object.prototype.extends = function( proto )
 
 var Camel = function( CANVASElementID, settings, extensions, numberHolder ) 
 {
+	settings = settings || {antialias:false};
+	extensions = extensions || ["OES_element_index_uint", "WEBKIT_OES_element_index_uint"];
 	if(typeof CANVASElementID=="string") 
 	{
 		this.id 		= CANVASElementID;
@@ -149,15 +185,16 @@ var Camel = function( CANVASElementID, settings, extensions, numberHolder )
 		this.gl = this.element.getContext(CAMEL_WEBGL, settings);
 		this.gl.engine = this;
 		this.context = this.GetWGL();
-		var lim = extensions.length;
-		for(var i=0; i<lim; i++)
+		var len = extensions.length;
+		for(var i=0; i<len; i++)
+		{
 			this.gl.getExtension(extensions[i]);
-		
+		}
 		this.BuildDefault();
 	}
 	catch(e) 
 	{
-		Camel.Alert("Could not initialize WebGL. Maybe browser not support WebGL compatible.");
+		console.error("Could not initialize WebGL. Maybe browser not support WebGL compatible.");
 		return FALSE;
 	}
 };
@@ -315,7 +352,7 @@ Camel.prototype.BuildRender = function( shaders, constants, beforeCB, finishCB )
 			renderer.gl = gl;
 			renderer.program = p;
 			renderer.sceneHolder = new Array(8);
-			for(x in constants) 
+			for(var x in constants) 
 			{
 				switch(constants[x]) 
 				{
@@ -547,7 +584,8 @@ Camel.prototype.Prepare = function()
 		{
 			if(this.renderHolder[i].sceneHolder[j] != UNSET) 
 			{
-				this.renderHolder[i].sceneHolder[j].start();
+				var scene = this.renderHolder[i].sceneHolder[j];
+				scene.start(scene);
 				for(var k=0; k<32; k++) 
 				{
 					if(this.renderHolder[i].sceneHolder[j].particleHolder[k] != UNSET 
@@ -572,7 +610,7 @@ Camel.prototype.Prepare = function()
 	this.beforeCycle = function() 
 	{
 		var fbuffs = this.frameBuffers;
-		for(x in fbuffs)
+		for(var x in fbuffs)
 		{
 			var fbuff = fbuffs[x];
 			if(typeof fbuff == "object" && fbuff.toString() == "[object WebGLFramebuffer]") 
@@ -670,6 +708,7 @@ Camel.prototype.BuildDefault = function()
 			'}'
 		];
 	fs = engine.GetGLSL(c);
+	
 	CAMEL_RENDERER_TEXTURE = this.BuildRender( 
 		[vs,fs], 
 		{
@@ -768,11 +807,7 @@ Camel.prototype.BuildDefault = function()
 			'texCoordIn' : CAMEL_ATTRIB, 
 		}
 	);
-	
-	if(CAMEL_DEVICE_MOBILE) 
-	{
-		return;
-	}
+	if(CAMEL_DEVICE_MOBILE)return;
 	
 	c = [
 			CAMEL_SHADER_VERT, 
@@ -830,6 +865,7 @@ Camel.prototype.BuildDefault = function()
 			'}'
 		]; 
 	fs = engine.GetGLSL(c);
+	
 	CAMEL_RENDERER_WORLD = this.BuildRender(
 		[vs,fs], 
 		{
@@ -889,6 +925,14 @@ Camel.ToString = function()
 {
 	return 'Camel';
 };
+
+Camel.prototype.cycle = Camel.prototype.Cycle;
+Camel.prototype.build = Camel.prototype.BuildScene;
+Camel.prototype.sizeFitBrowser = Camel.prototype.SizeFitBrowser;
+Camel.prototype.setClearColor = Camel.prototype.SetClearColor;
+Camel.prototype.setBgColor = Camel.prototype.SetClearColor;
+Camel.prototype.width = Camel.prototype.GetWidth;
+Camel.prototype.height = Camel.prototype.GetHeight;
 
 /**________________________________________________________________________
  * 
@@ -1923,6 +1967,7 @@ Camel.Mx22.prototype.LoadMXFloat = function()
 {
 	return this.mat;
 };
+Camel.Mx22.prototype.LoadMxFloat = Camel.Mx22.prototype.LoadMXFloat;
 Camel.Mx22.prototype.SetMatrix = function( x1, y1, x2, y2 ) 
 {
 	this.mat[0] = x1 || 1.0;
@@ -2088,6 +2133,7 @@ Camel.Mx23.prototype.LoadMXFloat = function()
 {
 	return this.mat;
 };
+Camel.Mx23.prototype.LoadMxFloat = Camel.Mx23.prototype.LoadMXFloat;
 Camel.Mx23.prototype.SetMatrix = function( x1, y1, z1, x2, y2, z2 ) 
 {	
 	this.mat[0] = x1 || 1.0;
@@ -2273,6 +2319,7 @@ Camel.Mx33.prototype.LoadMXFloat = function()
 {
 	return this.mat;
 };
+Camel.Mx33.prototype.LoadMxFloat = Camel.Mx33.prototype.LoadMXFloat;
 Camel.Mx33.prototype.SetMatrix = function( x1, y1, z1, x2, y2, z2, x3, y3, z3 ) 
 {
 	this.mat[0] = x1 || 1.0;this.mat[1] = y1 || 0.0;this.mat[2] = z1 || 0.0;
@@ -2584,6 +2631,7 @@ Camel.Mx44.prototype.LoadMXFloat = function()
 {
 	return this.mat;
 };
+Camel.Mx44.prototype.LoadMxFloat = Camel.Mx44.prototype.LoadMXFloat;
 Camel.Mx44.prototype.SetMatrix = function( x1, y1, z1, w1, x2, y2, z2, w2, x3, y3, z3, w3, x4, y4, z4, w4 ) 
 {
 	this.mat[0] = x1 || 1.0; this.mat[1] = y1 || 0.0; this.mat[2] = z1 || 0.0; this.mat[3] = w1 || 0.0;
@@ -3238,6 +3286,7 @@ Camel.Perspective.prototype.LoadMXFloat = function()
 {
 	return this.mat;
 };
+Camel.Perspective.prototype.LoadMxFloat = Camel.Perspective.prototype.LoadMXFloat;
 Camel.Perspective.prototype.Integrate = function( angle, aspect, near, far ) 
 {
 	this.angle = angle || 45.0;
@@ -3258,7 +3307,9 @@ Camel.Perspective.prototype.Integrate = function( angle, aspect, near, far )
 	return this;
 };
 Camel.Perspective.prototype.Initialize = Camel.Perspective.prototype.Integrate;
+Camel.Perspective.prototype.init = Camel.Perspective.prototype.Integrate;
 Camel.Perspective.prototype.Set = Camel.Perspective.prototype.Integrate;
+Camel.Perspective.prototype.set = Camel.Perspective.prototype.Integrate;
 Camel.Perspective.prototype.ToString = function() 
 {
 	return 'perspective('+this.angle.toString()+', '+this.aspect.toString()+', '+this.near.toString()+', '+this.far.toString()+')';
@@ -3290,6 +3341,7 @@ Camel.Orthographic.prototype.LoadMXFloat = function()
 {
 	return this.mat;
 };
+Camel.Orthographic.prototype.LoadMxFloat = Camel.Orthographic.prototype.LoadMXFloat;
 Camel.Orthographic.prototype.Integrate = function( left, top, right, bottom, near, far ) 
 {
 	this.left = left || 0.0;
@@ -3337,6 +3389,7 @@ Camel.Camera.prototype.LoadMXFloat = function()
 {
 	return this.mat;
 };
+Camel.Camera.prototype.LoadMxFloat = Camel.Camera.prototype.LoadMXFloat;
 Camel.Camera.prototype.Identity = function() 
 {
 	this.mat[0] =1.0; this.mat[1] =0.0; this.mat[2] =0.0; this.mat[3] =0.0;
@@ -3890,6 +3943,11 @@ Camel.Transform = function()
 	this.LoadMXFloat = function() 
 	{
 		return this.mx;
+	};
+	
+	this.LoadMxFloat = function() 
+	{
+		return this.LoadMXFloat();
 	};
 	
 	this.GetPositionX = function() 
