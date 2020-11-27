@@ -48,8 +48,8 @@ export let CAMEL_RENDERER_STANDARD = EMPTY;
 export let CAMEL_RENDERER_CAREM = EMPTY;
 export const CAMEL_LIGHT_DIRECT = 0;  
 export const CAMEL_LIGHT_POINT = 1;
-export const CAMEL_STRIKE_ATTRIB = 0;  
-export const CAMEL_OFFSET_ATTRIB = 0;
+export let CAMEL_STRIKE_ATTRIB = 0;  
+export let CAMEL_OFFSET_ATTRIB = 0;
 	
 export const CAMEL_IS_OPERA = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;	// Opera 8.0+
 export const CAMEL_IS_FIREFOX = typeof InstallTrigger !== 'undefined';	// Firefox 1.0+
@@ -203,12 +203,12 @@ Camel.Digital = /(^Digit)|(^Numpad)|(^Delete$)|(^Period$)|(^Backspace$)|(^ArrowR
 
 Camel.prototype.GetWidth = function() 
 {
-	return parseInt(this.element.style.width);
+	return parseInt(this.element.style.width||this.element.width);
 };
 
 Camel.prototype.GetHeight = function() 
 {
-	return parseInt(this.element.style.height);
+	return parseInt(this.element.style.height||this.element.height);
 };
 
 Camel.prototype.GetBrowserWidth = function() 
@@ -299,7 +299,7 @@ Camel.prototype.BuildScene = function( renderer, startCB, updateCB, renderCB, be
 	{
 		case CAMEL_TYPE_FUNC:
 			scene = new Camel.Scene(renderer, updateCB, renderCB, beforeRenderCB);
-			scene.AddRenderer(CAMEL_RENDERER_WORLD);
+			scene.AddRenderer(CAMEL_RENDERER_STANDARD);
 			break;
 		case CAMEL_TYPE_OBJECT:
 		default:
@@ -3754,8 +3754,8 @@ Camel.Scene = function( startCB, updateCB, renderCB, beforeRenderCB )
 	this.particleHolder = new Array(32);
 	
 	this.start = startCB;
-	
 	if(updateCB == UNSET) 
+	{
 		this.update	= function(dt) 
 		{
 			for(var i=0;i<32;i++) 
@@ -3767,16 +3767,22 @@ Camel.Scene = function( startCB, updateCB, renderCB, beforeRenderCB )
 				this.particleHolder[i].ontick(dt);
 			}
 		};
+	}
 	else 
+	{
 		this.ontick	= updateCB;
+	}
 	
-	if(renderCB == UNSET)
+	if(renderCB == UNSET) 
+	{
 		this.render	= function(renderer) 
 		{
 			renderer.gl.uniformMatrix4fv(renderer.pMatrix, false, this.projection.LoadMXFloat());
 			renderer.gl.uniformMatrix4fv(renderer.vMatrix, false, this.camera.LoadMXFloat());
 			
 			if(this.lightHolder != UNSET)
+			{
+				console.log("light");
 				for(var i=0;i<8;i++) 
 				{
 					if(this.lightHolder[i] == UNSET) 
@@ -3796,45 +3802,38 @@ Camel.Scene = function( startCB, updateCB, renderCB, beforeRenderCB )
 						renderer.gl.uniform3fv(renderer.plight_vector, this.lightHolder[i].LoadVecFloat());
 					}
 				}
-			
+			}
 			for(var i=0;i<32;i++) 
 			{
 				if(this.particleHolder[i] == UNSET 
 				|| this.particleHolder[i].disable 
 				|| !this.particleHolder[i].visible)
 					continue;
-					
-				if(this.particleHolder[i].alpha < 1.0) 
-				{
-					renderer.gl.uniform1f(renderer.mat_alpha, this.particleHolder[i].alpha);
+
+				var particle = this.particleHolder[i];
+				if(particle.alpha < 1.0) 
 					renderer.gl.enable(renderer.gl.BLEND);
-				}
-				else
-					renderer.gl.disable(renderer.gl.BLEND);
-				
-				renderer.gl.uniform1f(renderer.mat_shininess, this.particleHolder[i].shininess);
-				renderer.gl.uniform3fv(renderer.mat_ambient_color, this.particleHolder[i].color.ambient.LoadVecFloat());
-				renderer.gl.uniform3fv(renderer.mat_diffuse_color, this.particleHolder[i].color.diffuse.LoadVecFloat());
-				renderer.gl.uniform3fv(renderer.mat_specular_color, this.particleHolder[i].color.specular.LoadVecFloat());
-				
-				if(this.particleHolder[i].maskart != UNSET) 
-					renderer.gl.uniform4fv(renderer.maskart, this.particleHolder[i].maskart.LoadVecFloat());
-				
-				if(!this.particleHolder[i].cull)
-					renderer.gl.enable(renderer.gl.CULL_FACE);	
 				else 
+					renderer.gl.disable(renderer.gl.BLEND);
+				if(particle.cull)
 					renderer.gl.disable(renderer.gl.CULL_FACE);
-				
-				renderer.gl.uniform1i(renderer.sampler, 0);
-				if(this.particleHolder[i].map.diffuse != NULL) 
+				else 
+					renderer.gl.enable(renderer.gl.CULL_FACE);
+				if(particle.maskart != UNSET) 
+					renderer.gl.uniform4fv(renderer.maskart, particle.maskart.LoadVecFloat());
+				if(particle.map.diffuse != NULL) 
 				{
 					renderer.gl.activeTexture(renderer.gl.TEXTURE0);
-					renderer.gl.bindTexture(renderer.gl.TEXTURE_2D, this.particleHolder[i].map.diffuse.Texture);
+					renderer.gl.bindTexture(renderer.gl.TEXTURE_2D, particle.map.diffuse.Texture);
 				}
-				
-				renderer.gl.uniformMatrix4fv(renderer.mMatrix, false, this.particleHolder[i].mx);
-
-				renderer.gl.bindBuffer(renderer.gl.ARRAY_BUFFER, this.particleHolder[i].vertexBuffer);
+				renderer.gl.uniform1f(renderer.mat_alpha, particle.alpha);
+				renderer.gl.uniform1f(renderer.mat_shininess, particle.shininess);
+				renderer.gl.uniform3fv(renderer.mat_ambient_color, particle.color.ambient.LoadVecFloat());
+				renderer.gl.uniform3fv(renderer.mat_diffuse_color, particle.color.diffuse.LoadVecFloat());
+				renderer.gl.uniform3fv(renderer.mat_specular_color, particle.color.specular.LoadVecFloat());
+				renderer.gl.uniform1i(renderer.sampler, 0);
+				renderer.gl.uniformMatrix4fv(renderer.mMatrix, false, particle.mx);
+				renderer.gl.bindBuffer(renderer.gl.ARRAY_BUFFER, particle.vertexBuffer);
 				
 				CAMEL_STRIKE_ATTRIB = 4*(3+3+2);
 				CAMEL_OFFSET_ATTRIB = 3*4;
@@ -3858,13 +3857,15 @@ Camel.Scene = function( startCB, updateCB, renderCB, beforeRenderCB )
 				
 				renderer.gl.vertexAttribPointer(renderer.positionIn, 3, renderer.gl.FLOAT, false,CAMEL_STRIKE_ATTRIB,0);
 				renderer.gl.vertexAttribPointer(renderer.texCoordIn, 2, renderer.gl.FLOAT, false,CAMEL_STRIKE_ATTRIB,CAMEL_OFFSET_ATTRIB);
-
-				renderer.gl.bindBuffer(renderer.gl.ELEMENT_ARRAY_BUFFER, this.particleHolder[i].indiceBuffer);
-				renderer.gl.drawElements(renderer.gl.TRIANGLES, this.particleHolder[i].numberOfIndices, renderer.gl.UNSIGNED_INT, 0);
+				renderer.gl.bindBuffer(renderer.gl.ELEMENT_ARRAY_BUFFER, particle.indiceBuffer);
+				renderer.gl.drawElements(renderer.gl.TRIANGLES, particle.numberOfIndices, renderer.gl.UNSIGNED_INT, 0);
 			}
 		};
+	}
 	else 
+	{
 		this.render	= renderCB;
+	}
 	
 	this.beforeRender = beforeRenderCB;
 };
@@ -3909,6 +3910,8 @@ Camel.Scene.prototype.AddChild = function( particle )
 		}
 	}
 };
+
+Camel.Scene.prototype.add = Camel.Scene.prototype.AddChild;
 
 Camel.Scene.prototype.AddLight = function( light ) 
 {
