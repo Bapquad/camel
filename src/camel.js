@@ -3764,7 +3764,8 @@ Camel.Scene = function( startCB, updateCB, renderCB, beforeRenderCB )
 				|| this.particleHolder[i].disable 
 				|| this.particleHolder[i].ontick == UNSET)
 					continue;
-				this.particleHolder[i].ontick(dt);
+				var particle = this.particleHolder[i];
+				particle.ontick(dt, particle);
 			}
 		};
 	}
